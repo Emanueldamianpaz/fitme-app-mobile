@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ar.davinci.edu.activities.DetailActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="625dp">
+
+                <TextView
+                    android:id="@+id/txtTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/descriptionTxt"
+                    android:layout_alignLeft="@+id/descriptionTxt"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignRight="@+id/descriptionTxt"
+                    android:layout_alignStart="@+id/descriptionTxt"
+                    android:layout_marginTop="20dp"
+                    android:text="Titulo"
+                    android:textColor="#000000"
+                    android:textSize="30sp" />
+
+                <FrameLayout
+                    android:id="@+id/frameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/txtTitle"
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:id="@+id/detailFlightImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        app:srcCompat="@android:color/holo_blue_bright" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/destinationFromTxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="20dp"
+                            android:text="Origen"
+                            android:textColor="#ffffff"
+
+                            android:textSize="22sp" />
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_toLeftOf="@+id/destinationToTxt"
+                            android:layout_toRightOf="@+id/destinationFromTxt"
+                            android:background="@android:color/darker_gray" />
+
+                        <TextView
+                            android:id="@+id/destinationToTxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/destinationFromTxt"
+                            android:layout_alignBottom="@+id/destinationFromTxt"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginRight="20dp"
+                            android:text="Destino"
+                            android:textColor="#ffffff"
+                            android:textSize="22sp" />
+
+                    </RelativeLayout>
+
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/descriptionTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/frameLayout"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginRight="18dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur suscipit enim at blandit. Nunc in sagittis nulla. Aliquam bibendum felis id diam mattis tempus. Cras a consectetur tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas ut gravida orci."
+                    android:textAlignment="inherit"
+                    android:textColor="#4e4e4e"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/mapView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/backBtn"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/descriptionTxt"
+                    android:layout_marginTop="17dp"
+                    android:orientation="vertical"></ImageView>
+
+                <Button
+                    android:id="@+id/backBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Volver"
+                    android:layout_alignBaseline="@+id/addBtn"
+                    android:layout_alignBottom="@+id/addBtn"
+                    android:layout_alignLeft="@+id/descriptionTxt"
+                    android:layout_alignStart="@+id/descriptionTxt" />
+
+                <Button
+                    android:id="@+id/addBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/descriptionTxt"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignRight="@+id/descriptionTxt"
+                    android:text="Agregar"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

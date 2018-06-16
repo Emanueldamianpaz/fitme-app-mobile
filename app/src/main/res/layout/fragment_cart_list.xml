@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:layout_marginRight="10dp"
+    android:background="@drawable/item"
+    android:elevation="10dp"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+
+    <TextView
+        android:id="@+id/itemFlightTitleTxt"
+        android:layout_width="144dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:text="Titulo"
+        android:textColor="#484848"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/itemFlightImg"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@android:color/holo_blue_bright"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/itemFlightTitleTxt"
+        android:layout_alignStart="@+id/itemFlightTitleTxt"
+        android:layout_below="@+id/itemFlightTitleTxt"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/destinationFromTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+
+            android:layout_centerVertical="true"
+
+            android:text="Origen"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/destinationToTxt"
+            android:layout_toRightOf="@+id/destinationFromTxt"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/destinationToTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:text="Destino"
+            android:textColor="#000000"
+
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
