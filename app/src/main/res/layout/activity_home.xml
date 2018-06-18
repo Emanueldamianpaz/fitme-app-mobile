@@ -26,10 +26,12 @@
                 android:background="@color/colorPrimary" />
 
 
-            <View
+            <fragment
                 android:id="@+id/homeFragment"
+                android:name="ar.davinci.edu.fragments.HomeFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                tools:layout="@layout/fragment_home" />
         </LinearLayout>
 
         <android.support.design.widget.NavigationView

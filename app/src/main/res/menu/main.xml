@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:actionMenuTextColor="@color/white">
 
     <item
         android:id="@+id/tip"
         android:icon="@drawable/message"
         android:orderInCategory="100"
+        android:padding="10dp"
         android:title="@string/message"
         app:showAsAction="always" />
     <TextView

@@ -4,17 +4,12 @@ import android.content.Context;
 import android.os.StrictMode;
 import android.widget.Toast;
 
-import ar.davinci.edu.infraestructure.models.Flight;
-import ar.davinci.edu.infraestructure.models.User;
 import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -51,7 +46,7 @@ public class ApiClient {
             e.printStackTrace();
         }
 
-        User[] users = jsonParser.fromJson(responseRequest, User[].class);
+      /*  User[] users = jsonParser.fromJson(responseRequest, User[].class);
 
         if (users != null) {
             for (User user : users) {
@@ -64,13 +59,14 @@ public class ApiClient {
             authOk = false;
 
         }
-        return authOk;
+        return authOk;*/
+        return true;
     }
 
 
     public void getListFlights(final OnSuccessCallback callback) {
 
-        Call<List<Flight>> result = service.getFlightList();
+      /*  Call<List<Flight>> result = service.getFlightList();
 
         result.enqueue(new Callback<List<Flight>>() {
             @Override
@@ -83,7 +79,7 @@ public class ApiClient {
                 Toast.makeText(context, "Fallo al querer conectarse con el servidor", Toast.LENGTH_SHORT).show();
             }
 
-        });
+        });*/
 
     }
 }
