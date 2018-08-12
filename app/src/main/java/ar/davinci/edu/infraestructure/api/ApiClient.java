@@ -7,9 +7,13 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.List;
 
+import ar.davinci.edu.infraestructure.model.RoutineDTO;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -25,7 +29,7 @@ public class ApiClient {
         this.context = context;
         jsonParser = new Gson();
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://my-json-server.typicode.com/emanueldamianpaz/")
+                .baseUrl("https://fitme-app.herokuapp.com/fitme/api/")
                 .addConverterFactory(GsonConverterFactory.create(new Gson()))
                 .build();
 
@@ -39,12 +43,7 @@ public class ApiClient {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        boolean authOk = false;
-        try {
-            responseRequest = result.execute().body().string();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
 
       /*  User[] users = jsonParser.fromJson(responseRequest, User[].class);
 
@@ -64,22 +63,23 @@ public class ApiClient {
     }
 
 
-    public void getListFlights(final OnSuccessCallback callback) {
+    public void getRoutines(final OnSuccessCallback callback) {
 
-      /*  Call<List<Flight>> result = service.getFlightList();
+        Call<List<RoutineDTO>> routines = service.getRoutines();
 
-        result.enqueue(new Callback<List<Flight>>() {
+
+        routines.enqueue(new Callback<List<RoutineDTO>>() {
             @Override
-            public void onResponse(Call<List<Flight>> call, Response<List<Flight>> response) {
+            public void onResponse(Call<List<RoutineDTO>> call, Response<List<RoutineDTO>> response) {
                 callback.execute(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<Flight>> call, Throwable throwable) {
+            public void onFailure(Call<List<RoutineDTO>> call, Throwable throwable) {
                 Toast.makeText(context, "Fallo al querer conectarse con el servidor", Toast.LENGTH_SHORT).show();
             }
 
-        });*/
+        });
 
     }
 }

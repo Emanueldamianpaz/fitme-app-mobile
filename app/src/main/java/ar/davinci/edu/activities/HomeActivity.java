@@ -12,9 +12,16 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import java.util.List;
 
 import ar.davinci.edu.R;
 import ar.davinci.edu.fragments.HomeFragment;
+import ar.davinci.edu.fragments.RoutineAdapter;
+import ar.davinci.edu.infraestructure.api.ApiClient;
+import ar.davinci.edu.infraestructure.api.OnSuccessCallback;
+import ar.davinci.edu.infraestructure.model.RoutineDTO;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -39,6 +46,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         ft.replace(R.id.homeFragment, new HomeFragment());
         ft.commit();
 
+        final ApiClient apiClient = new ApiClient(getBaseContext());
+
+        apiClient.getRoutines(new OnSuccessCallback() {
+            @Override
+            public void execute(Object body) {
+
+                ListView itemsFlight = (ListView) findViewById(R.id.listItemView);
+                itemsFlight.setAdapter(new RoutineAdapter(getBaseContext(), (List<RoutineDTO>) body));
+
+            }
+        });
     }
 
 

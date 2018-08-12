@@ -163,109 +163,12 @@
         android:background="@android:color/darker_gray" />
 
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardRoutine"
+    <ListView
+        android:id="@+id/listItemView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_alignTop="@+id/divider"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"
-        app:cardElevation="6dp"
-        app:cardPreventCornerOverlap="false">
+        android:layout_height="wrap_content"
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/running_exercise" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#78ffffff"></View>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/routine"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginTop="10dp"
-                    android:lineSpacingExtra="10sp"
-                    android:text="Rutina de ejemplo"
-                    android:textAllCaps="false"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="0dp"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/imgExercise"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            tools:src="@drawable/heartbeat" />
-
-                        <TextView
-                            android:id="@+id/lblExercise"
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Ejercicios"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/imgNutrition"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            tools:src="@drawable/book" />
-
-                        <TextView
-                            android:id="@+id/lblNutrition"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Dietas"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-            </RelativeLayout>
-
-
-        </FrameLayout>
-    </android.support.v7.widget.CardView>
+        android:layout_alignTop="@+id/divider" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
