@@ -30,7 +30,21 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        final ApiClient apiClient = new ApiClient(getBaseContext());
 
+        bootstraping();
+
+      /*  apiClient.getRoutines(new OnSuccessCallback() {
+            @Override
+            public void execute(Object body) {
+                ListView itemsFlight = (ListView) findViewById(R.id.listItemRoutine);
+                itemsFlight.setAdapter(new RoutineAdapter(getBaseContext(), (List<RoutineDTO>) body));
+
+            }
+        });*/
+    }
+
+    public void bootstraping() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -46,19 +60,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         ft.replace(R.id.homeFragment, new HomeFragment());
         ft.commit();
 
-        final ApiClient apiClient = new ApiClient(getBaseContext());
-
-        apiClient.getRoutines(new OnSuccessCallback() {
-            @Override
-            public void execute(Object body) {
-
-                ListView itemsFlight = (ListView) findViewById(R.id.listItemView);
-                itemsFlight.setAdapter(new RoutineAdapter(getBaseContext(), (List<RoutineDTO>) body));
-
-            }
-        });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -87,6 +89,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(login);
                 finish();
                 break;
+
+            case R.id.begin_run:
+                Intent running = new Intent(this, RunningActivity.class);
+                startActivity(running);
+                finish();
+                break;
+
             case R.id.my_account:
                 Log.i("de costado", "cliqueó my_account");
                 break;

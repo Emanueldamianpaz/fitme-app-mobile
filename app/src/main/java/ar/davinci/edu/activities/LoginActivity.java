@@ -27,10 +27,10 @@ public class LoginActivity extends AppCompatActivity {
 
         final ApiClient apiClient = new ApiClient(getBaseContext());
 
-        final TextView usernameTxt = (TextView) findViewById(R.id.usernameTxt);
-        final TextView passwordTxt = (TextView) findViewById(R.id.passwordTxt);
-        final CheckBox saveUserCheck = (CheckBox) findViewById(R.id.saveUserCheck);
-        Button loginBtn = (Button) findViewById(R.id.loginBtn);
+        final TextView usernameTxt = (TextView) findViewById(R.id.txtUsername);
+        final TextView passwordTxt = (TextView) findViewById(R.id.txtPassword);
+        final CheckBox saveUserCheck = (CheckBox) findViewById(R.id.chkSaveUser);
+        Button loginBtn = (Button) findViewById(R.id.btnLogin);
 
         sharedPreferences = context.getSharedPreferences(getResources().getString(R.string.app_name), MODE_PRIVATE);
 
