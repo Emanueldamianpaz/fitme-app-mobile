@@ -7,6 +7,7 @@
     <string name="my_account">Cuenta</string>
     <string name="message">Mensajes</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="com_auth0_client_id">mWdxl1wxhy1SktUHwOJC98zGllF3WqnQ</string>
+    <string name="com_auth0_domain">fitme.auth0.com</string>
 </resources>
