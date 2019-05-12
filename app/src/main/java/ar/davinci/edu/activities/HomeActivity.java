@@ -12,25 +12,42 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
+import android.view.View;
+import android.widget.TextView;
 
-import java.util.List;
+import com.auth0.android.jwt.JWT;
 
 import ar.davinci.edu.R;
 import ar.davinci.edu.fragments.HomeFragment;
-import ar.davinci.edu.fragments.RoutineAdapter;
 import ar.davinci.edu.infraestructure.api.ApiClient;
-import ar.davinci.edu.infraestructure.api.OnSuccessCallback;
-import ar.davinci.edu.infraestructure.model.RoutineDTO;
+import ar.davinci.edu.infraestructure.security.FitmeUser;
+import ar.davinci.edu.infraestructure.storage.SharedJWT;
+import ar.davinci.edu.infraestructure.storage.SharedPreferencesManager;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private FitmeUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         final ApiClient apiClient = new ApiClient(getBaseContext());
+
+
+        JWT payload = SharedJWT.getJWT();
+
+        user = FitmeUser.builder()
+                .id(payload.getSubject())
+                .name(payload.getClaim("given_name").asString())
+                .last_name(payload.getClaim("family_name").asString())
+                .picture(payload.getClaim("picture").asString())
+                .gender(payload.getClaim("gender").asString())
+                .nickname(payload.getClaim("nickname").asString())
+                .email(payload.getClaim("email").asString())
+                .build();
+
 
         bootstraping();
 
@@ -55,6 +72,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView lblUsername = (TextView) headerView.findViewById(R.id.lblUsername);
+        lblUsername.setText(user.getNickname());
+
+
+        TextView lblEmail = (TextView) headerView.findViewById(R.id.lblEmail);
+        lblEmail.setText(user.getEmail());
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.homeFragment, new HomeFragment());
@@ -86,6 +111,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.close_session:
                 Intent login = new Intent(this, LoginActivity.class);
+                SharedPreferencesManager.write(SharedPreferencesManager.CREDENTIAL_FITME, "");
                 startActivity(login);
                 finish();
                 break;
@@ -99,7 +125,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.my_account:
                 Log.i("de costado", "cliqueó my_account");
                 break;
-
 
         }
 

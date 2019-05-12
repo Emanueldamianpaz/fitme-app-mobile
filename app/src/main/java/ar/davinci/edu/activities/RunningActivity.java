@@ -17,16 +17,15 @@ import java.io.InputStreamReader;
 
 import ar.davinci.edu.R;
 import ar.davinci.edu.infraestructure.tracker.GPSTracker;
-import ar.davinci.edu.infraestructure.tracker.RegistradorKML;
+import ar.davinci.edu.infraestructure.tracker.TrackerKML;
 
 public class RunningActivity extends AppCompatActivity {
     private GPSTracker gps;
-    private RegistradorKML registro;
+    private TrackerKML tracker;
 
-    // Elementos visuales.
-    public static ToggleButton botonGPS; // TODO: Quitar la variable estática y hacerle un get.
-    private Button botonMaps;
-    private TextView texto;
+    public static ToggleButton btnGPS; // TODO: Quitar la variable estática y hacerle un get.
+    private Button btnMap;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,23 +34,23 @@ public class RunningActivity extends AppCompatActivity {
 
 
         // Inicialización de variables.
-        botonGPS = findViewById(R.id.botonGPS);
-        botonMaps = findViewById(R.id.botonMaps);
-        texto = findViewById(R.id.texto);
-        registro = new RegistradorKML(this);
-        gps = new GPSTracker(this, registro);
+        btnGPS = findViewById(R.id.botonGPS);
+        btnMap = findViewById(R.id.botonMaps);
+        textView = findViewById(R.id.texto);
+        tracker = new TrackerKML(this);
+        gps = new GPSTracker(this, tracker);
 
         // Función botón GPS.
-        botonGPS.setOnClickListener(new Button.OnClickListener() {
+        btnGPS.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Gestiona las acciones a tomar por el programa.
-                alternarAccion(botonGPS.isChecked());
+                alternarAccion(btnGPS.isChecked());
             }
         });
 
         // Función botón Maps.
-        botonMaps.setOnClickListener(new Button.OnClickListener() {
+        btnMap.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Aquí se lanza el intent de maps.
@@ -67,47 +66,44 @@ public class RunningActivity extends AppCompatActivity {
     private void alternarAccion(boolean activado) {
         if (activado) { // En el caso de encender el botón.
             // Con esto evitamos que el usuario abra maps antes de guardar el fichero.
-            botonMaps.setVisibility(Button.INVISIBLE);
-            texto.setVisibility(TextView.INVISIBLE);
+            btnMap.setVisibility(Button.INVISIBLE);
+            textView.setVisibility(TextView.INVISIBLE);
 
             // Abrimos el fichero (sobreescribe) y comienza los updates.
-            registro.abrirFichero();
+            tracker.openFile();
             gps.toggleLocationUpdates(true);
         } else { // En el caso de parar el botón.
-            botonMaps.setVisibility(Button.VISIBLE);
-            texto.setVisibility(TextView.VISIBLE);
+            btnMap.setVisibility(Button.VISIBLE);
+            textView.setVisibility(TextView.VISIBLE);
 
             gps.toggleLocationUpdates(false);
-            registro.cerrarFichero();
+            tracker.closeFile();
 
-            // Muestra el fichero en pantalla (debug).
-            mostrarFichero();
+            showFile();
+
+            // TODO Hacer post al backend
         }
     }
 
-    /**
-     * Para mostrar el KML en pantalla y ver fallos.
-     */
-    public void mostrarFichero() {
-        InputStreamReader flujoLectura;
-        BufferedReader filtroLectura;
-        String linea;
+    public void showFile() {
+        InputStreamReader inputStreamReader;
+        BufferedReader bufferedReader;
+        String line;
 
         try {
-            flujoLectura = new FileReader(new File(this.getFilesDir(), RegistradorKML.KML_NOMBRE_FICHERO));
-            filtroLectura = new BufferedReader(flujoLectura);
-            texto.setText("\n");
+            inputStreamReader = new FileReader(new File(this.getFilesDir(), TrackerKML.KML_FILENAME));
+            bufferedReader = new BufferedReader(inputStreamReader);
+            textView.setText("\n");
 
-            linea = filtroLectura.readLine();
+            line = bufferedReader.readLine();
 
-            while (linea != null) {
-                texto.append(linea + "\n");
-
-                linea = filtroLectura.readLine();
+            while (line != null) {
+                textView.append(line + "\n");
+                line = bufferedReader.readLine();
             }
 
-            filtroLectura.close();
-            flujoLectura.close();
+            bufferedReader.close();
+            inputStreamReader.close();
 
         } catch (IOException e) {
             Toast.makeText(RunningActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();

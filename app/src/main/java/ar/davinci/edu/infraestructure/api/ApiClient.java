@@ -30,7 +30,7 @@ public class ApiClient {
         jsonParser = new Gson();
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://fitme-app.herokuapp.com/fitme/api/")
-                .addConverterFactory(GsonConverterFactory.create(new Gson()))
+                .addConverterFactory(GsonConverterFactory.create(jsonParser))
                 .build();
 
         service = retrofit.create(ApiService.class);

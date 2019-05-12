@@ -8,28 +8,28 @@
 
     <ToggleButton
         android:id="@+id/botonGPS"
-        android:layout_width="match_parent"
+        android:layout_width="338dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="28dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp"
         android:textOff="Iniciar"
         android:textOn="Parar" />
 
     <Button
         android:id="@+id/botonMaps"
-        android:layout_width="match_parent"
+        android:layout_width="338dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="88dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="89dp"
         android:text="Ver mapa"
         android:visibility="invisible" />
 
     <TextView
         android:id="@+id/texto"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="361dp"
+        android:layout_height="354dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="59dp" />
