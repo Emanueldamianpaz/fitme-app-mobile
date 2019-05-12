@@ -6,14 +6,13 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import ar.davinci.edu.R;
-import ar.davinci.edu.infraestructure.tracker.RegistradorKML;
+import ar.davinci.edu.infraestructure.tracker.TrackerKML;
 import ar.davinci.edu.infraestructure.tracker.SaxHandler;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.xml.sax.SAXException;
@@ -29,43 +28,30 @@ import javax.xml.parsers.SAXParserFactory;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mapa;
-
-    // Esto lo hemos creado para poder usarlo en el AsyncTask.
+    private GoogleMap map;
     private SAXParser parser;
     private SaxHandler handler;
 
-    //======================================
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        // Aquí se lee el KML y se ponen los puntos.
 
-        mapa = googleMap;
-
-        // Lo que hacemos aquí es leer el KML con SAX y llenar el mapa de puntos.
-        // Hay que hacerlo con AsyncTask porque si hay muchos puntos peta.
+        map = googleMap;
         SAXParserFactory factory = SAXParserFactory.newInstance();
 
         try {
             parser = factory.newSAXParser();
+            handler = new SaxHandler(map);
 
-            // Manejador SAX programado por nosotros. Le pasamos nuestro mapa para que ponga los puntos.
-            handler = new SaxHandler(mapa);
-
-            // AsyncTask. Le pasamos el directorio de ficheros como string.
-            ProcesarKML procesador = new ProcesarKML();
-            procesador.execute(this.getFilesDir().getAbsolutePath());
-
+            ProcessKML processor = new ProcessKML();
+            processor.execute(this.getFilesDir().getAbsolutePath());
         } catch (SAXException e) {
             System.out.println(e.getMessage());
         } catch (ParserConfigurationException e) {
@@ -73,39 +59,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    //==============================================================================================
-    // ASYNCTASK - TAREA ASÍNCRONA
-    //==============================================================================================
-    private class ProcesarKML extends AsyncTask<String, Integer, Boolean> {
+    private class ProcessKML extends AsyncTask<String, Integer, Boolean> {
 
         @Override
         protected Boolean doInBackground(String... strings) {
             try {
-
-                parser.parse(new FileInputStream(new File(strings[0], RegistradorKML.KML_NOMBRE_FICHERO)), handler);
-
+                parser.parse(new FileInputStream(new File(strings[0], TrackerKML.KML_FILENAME)), handler);
             } catch (FileNotFoundException e) {
                 Toast.makeText(MapsActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-
             } catch (SAXException e) {
                 Toast.makeText(MapsActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-
             } catch (IOException e) {
                 Toast.makeText(MapsActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
-
             return true;
         }
 
         @Override
         protected void onPostExecute(Boolean aBoolean) {
-            mapa.addPolyline(handler.getRuta()); // Se añade una ruta.
+            map.addPolyline(handler.getRouteTracked());
+            map.addMarker(new MarkerOptions().position(handler.getFirstCoordinates()).title("Inicio"));
+            map.addMarker(new MarkerOptions().position(handler.getLastCoordinates()).title("Final"));
 
-            // Se añade un punto en el mapa.
-            //mapa.addMarker(new MarkerOptions().position(handler.coordenadas).title("hola"));
-
-            // Se mueve la cámara a la última posición.
-            mapa.moveCamera(CameraUpdateFactory.newLatLngZoom(handler.getLastCoordenadas(), 15));
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(handler.getLastCoordinates(), 15));
         }
     }
 }

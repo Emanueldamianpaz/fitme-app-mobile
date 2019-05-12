@@ -26,11 +26,6 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 
 import ar.davinci.edu.activities.RunningActivity;
 
-/**
- * Clase de copia y pega a full. Los métodos interesantes son:
- * enableLocationUpdates() - Configura el refresco de gps
- * updateUI() - Se lanza en cada refresco (pesicola >.<)
- */
 public class GPSTracker extends AppCompatActivity
         implements GoogleApiClient.OnConnectionFailedListener,
         GoogleApiClient.ConnectionCallbacks,
@@ -38,22 +33,20 @@ public class GPSTracker extends AppCompatActivity
 
     private static final String LOGTAG = "android-localizacion";
 
-    private static final int PETICION_PERMISO_LOCALIZACION = 101;
-    private static final int PETICION_CONFIG_UBICACION = 201;
+    private static final int PETITION_PERMISSION_LOCALIZATION = 101;
+    private static final int PETITION_CONF_UBICATION = 201;
 
     public GoogleApiClient apiClient;
-    private Activity contexto;
-    private RegistradorKML registrador;
+    private Activity context;
+    private TrackerKML trackerKML;
 
     private LocationRequest locRequest;
 
-    /* ============================ Constructor ============================ */
+    public GPSTracker(Activity context, TrackerKML tracker) {
+        this.context = context;
+        this.trackerKML = tracker;
 
-    public GPSTracker(Activity contexto, RegistradorKML registrador) {
-        this.contexto = contexto;
-        this.registrador = registrador;
-        //Construcción cliente API Google
-        apiClient = new GoogleApiClient.Builder(this.contexto)
+        apiClient = new GoogleApiClient.Builder(this.context)
                 .enableAutoManage(this, this)
                 .addConnectionCallbacks(this)
                 .addApi(LocationServices.API)
@@ -61,7 +54,6 @@ public class GPSTracker extends AppCompatActivity
         apiClient.connect();
     }
 
-    /* ============================ Métodos ============================ */
 
     public void toggleLocationUpdates(boolean enable) {
         if (enable) {
@@ -78,6 +70,8 @@ public class GPSTracker extends AppCompatActivity
     private void enableLocationUpdates() {
 
         locRequest = new LocationRequest();
+
+        // TODO Sensibilidad
         locRequest.setInterval(1000);
         locRequest.setFastestInterval(600);
         locRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
@@ -97,24 +91,19 @@ public class GPSTracker extends AppCompatActivity
                 final Status status = locationSettingsResult.getStatus();
                 switch (status.getStatusCode()) {
                     case LocationSettingsStatusCodes.SUCCESS:
-
-                        Log.i(LOGTAG, "Configuración correcta");
+                        Log.i(LOGTAG, "Configuration ok!");
                         startLocationUpdates();
-
                         break;
                     case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
                         try {
-                            Log.i(LOGTAG, "Se requiere actuación del usuario");
-                            status.startResolutionForResult(contexto, PETICION_CONFIG_UBICACION);
+                            Log.i(LOGTAG, "User attention is required...");
+                            status.startResolutionForResult(context, PETITION_CONF_UBICATION);
                         } catch (IntentSender.SendIntentException e) {
-                            // Pasa algo raro al pedir configurar ubicacion
-                            Log.i(LOGTAG, "Error al intentar solucionar configuración de ubicación");
+                            Log.i(LOGTAG, "Error to try fix location configuration");
                         }
-
                         break;
-                    // No se pueede pedir cambio de configuracion
                     case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-                        Log.i(LOGTAG, "No se puede cumplir la configuración de ubicación necesaria");
+                        Log.i(LOGTAG, "Can't apply configuration of necessary location");
                         break;
                 }
             }
@@ -123,99 +112,61 @@ public class GPSTracker extends AppCompatActivity
 
     private void disableLocationUpdates() {
 
-        LocationServices.FusedLocationApi.removeLocationUpdates(
-                apiClient, this);
+        LocationServices.FusedLocationApi.removeLocationUpdates(apiClient, this);
 
     }
 
     private void startLocationUpdates() {
-        if (ActivityCompat.checkSelfPermission(contexto,
+        if (ActivityCompat.checkSelfPermission(context,
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-
-            //Ojo: estamos suponiendo que ya tenemos concedido el permiso.
-            //Sería recomendable implementar la posible petición en caso de no tenerlo.
-
-            Log.i(LOGTAG, "Inicio de recepción de ubicaciones");
-
-            LocationServices.FusedLocationApi.requestLocationUpdates(
-                    apiClient, locRequest, this);
+            Log.i(LOGTAG, "Begin of tracking locations");
+            LocationServices.FusedLocationApi.requestLocationUpdates(apiClient, locRequest, this);
         }
     }
 
     @Override
     public void onConnectionFailed(ConnectionResult result) {
-        //Se ha producido un error que no se puede resolver automáticamente
-        //y la conexión con los Google Play Services no se ha establecido.
-
-        Log.e(LOGTAG, "Error grave al conectar con Google Play Services");
+        Log.e(LOGTAG, "Error to connect with Google Play Services");
     }
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        //Conectado correctamente a Google Play Services
 
-        if (ActivityCompat.checkSelfPermission(this.contexto,
-                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this.context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(this.contexto,
+            ActivityCompat.requestPermissions(
+                    this.context,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    PETICION_PERMISO_LOCALIZACION);
+                    PETITION_PERMISSION_LOCALIZATION);
         } else {
-
-            Location lastLocation =
-                    LocationServices.FusedLocationApi.getLastLocation(apiClient);
-
+            Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(apiClient);
             updateUI(lastLocation);
         }
     }
 
     @Override
     public void onConnectionSuspended(int i) {
-        //Se ha interrumpido la conexión con Google Play Services
-
-        Log.e(LOGTAG, "Se ha interrumpido la conexión con Google Play Services");
+        Log.e(LOGTAG, "Interrupted connection with Google Play Services");
     }
 
-    /**
-     * TODO método importante
-     * Se lanza periódicamente si hemos activado las actualizaciones
-     *
-     * @param loc
-     */
     private void updateUI(Location loc) {
         if (loc != null) {
-            registrador.anhadirPunto(loc.getLatitude(), loc.getLongitude(), loc.getAltitude());
+            trackerKML.addPoint(loc.getLatitude(), loc.getLongitude(), loc.getAltitude());
         } else {
-            // Si entramos aquí es porque las coordenadas son desconocidas
+            // Coordinates unknows
         }
     }
 
-    /**
-     * TODO Método interesante: gestiona lo que pasa cuando aceptamos/rechazamos permisos
-     *
-     * @param requestCode
-     * @param permissions
-     * @param grantResults
-     */
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (requestCode == PETICION_PERMISO_LOCALIZACION) {
-            if (grantResults.length == 1
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                //Permiso concedido
-
+        if (requestCode == PETITION_PERMISSION_LOCALIZATION) {
+            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 @SuppressWarnings("MissingPermission")
-                Location lastLocation =
-                        LocationServices.FusedLocationApi.getLastLocation(apiClient);
-
+                Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(apiClient);
                 updateUI(lastLocation);
-
             } else {
-                //Permiso denegado, desactivamos botón que hemos encendido
-
-                Log.e(LOGTAG, "Permiso denegado");
-                RunningActivity.botonGPS.setChecked(false);
+                Log.e(LOGTAG, "Permission denied");
+                RunningActivity.btnGPS.setChecked(false);
             }
         }
     }
@@ -223,30 +174,21 @@ public class GPSTracker extends AppCompatActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
-            case PETICION_CONFIG_UBICACION:
+            case PETITION_CONF_UBICATION:
                 switch (resultCode) {
                     case Activity.RESULT_OK:
                         startLocationUpdates();
                         break;
                     case Activity.RESULT_CANCELED:
-                        Log.i(LOGTAG, "El usuario no ha realizado los cambios de configuración necesarios");
+                        Log.i(LOGTAG, "Users no apply changes of neccesary configuration");
                         break;
                 }
                 break;
         }
     }
 
-    /**
-     * TODO Método que se lanza cuando recién actualiza
-     *
-     * @param location
-     */
     @Override
     public void onLocationChanged(Location location) {
-
-        Log.i(LOGTAG, "Recibida nueva ubicación!");
-
-        //Mostramos la nueva ubicación recibida
         updateUI(location);
     }
 }
