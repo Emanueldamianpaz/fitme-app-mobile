@@ -1,9 +1,12 @@
-package ar.davinci.edu.activities;
+package ar.davinci.edu.fragments;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,10 +19,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import ar.davinci.edu.R;
+import ar.davinci.edu.activities.MapsActivity;
 import ar.davinci.edu.infraestructure.tracker.GPSTracker;
 import ar.davinci.edu.infraestructure.tracker.TrackerKML;
 
-public class RunningActivity extends AppCompatActivity {
+
+public class RunningFragment extends Fragment {
     private GPSTracker gps;
     private TrackerKML tracker;
 
@@ -27,18 +32,16 @@ public class RunningActivity extends AppCompatActivity {
     private Button btnMap;
     private TextView textView;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_running);
+    public RunningFragment() {
+    }
 
-
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         // Inicialización de variables.
-        btnGPS = findViewById(R.id.botonGPS);
-        btnMap = findViewById(R.id.botonMaps);
-        textView = findViewById(R.id.texto);
-        tracker = new TrackerKML(this);
-        gps = new GPSTracker(this, tracker);
+        btnGPS = getView().findViewById(R.id.botonGPS);
+        btnMap = getView().findViewById(R.id.botonMaps);
+        textView = getView().findViewById(R.id.texto);
+        tracker = new TrackerKML(getContext());
+        gps = new GPSTracker(getActivity(), tracker);
 
         // Función botón GPS.
         btnGPS.setOnClickListener(new Button.OnClickListener() {
@@ -54,15 +57,20 @@ public class RunningActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Aquí se lanza el intent de maps.
-                Intent intent = new Intent(getApplication(), MapsActivity.class);
+                Intent intent = new Intent(getActivity().getApplication(), MapsActivity.class);
                 startActivity(intent);
             }
         });
     }
 
-    //==============================================================================================
-    // MÉTODOS
-    //==============================================================================================
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+
+        return inflater.inflate(R.layout.fragment_running, container, false);
+    }
+
     private void alternarAccion(boolean activado) {
         if (activado) { // En el caso de encender el botón.
             // Con esto evitamos que el usuario abra maps antes de guardar el fichero.
@@ -91,7 +99,7 @@ public class RunningActivity extends AppCompatActivity {
         String line;
 
         try {
-            inputStreamReader = new FileReader(new File(this.getFilesDir(), TrackerKML.KML_FILENAME));
+            inputStreamReader = new FileReader(new File(getContext().getFilesDir(), TrackerKML.KML_FILENAME));
             bufferedReader = new BufferedReader(inputStreamReader);
             textView.setText("\n");
 
@@ -106,7 +114,7 @@ public class RunningActivity extends AppCompatActivity {
             inputStreamReader.close();
 
         } catch (IOException e) {
-            Toast.makeText(RunningActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 }

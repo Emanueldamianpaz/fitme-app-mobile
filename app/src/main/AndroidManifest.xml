@@ -29,7 +29,6 @@
             android:value="AIzaSyBAJF-lhWIH_8kyXK6n2v9EItOGzymhyvk" />
 
         <activity android:name=".activities.HomeActivity" />
-        <activity android:name=".activities.RunningActivity"></activity>
 
 
         <activity

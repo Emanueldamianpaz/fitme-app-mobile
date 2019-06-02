@@ -10,17 +10,18 @@ import android.widget.TextView;
 import java.util.List;
 
 import ar.davinci.edu.R;
-import ar.davinci.edu.infraestructure.model.RoutineDTO;
+import ar.davinci.edu.infraestructure.model.Routine;
+import ar.davinci.edu.infraestructure.model.dto.RoutineDTO;
 
 public class RoutineAdapter extends BaseAdapter {
 
     private Context context;
-    private List<RoutineDTO> routineList;
+    private List<Routine> routineList;
 
     private RoutineAdapter() {
     }
 
-    public RoutineAdapter(Context context, List<RoutineDTO> routineList) {
+    public RoutineAdapter(Context context, List<Routine> routineList) {
         this.routineList = routineList;
         this.context = context;
     }
@@ -47,7 +48,7 @@ public class RoutineAdapter extends BaseAdapter {
 
         TextView itemTitle = (TextView) routineView.findViewById(R.id.routineTitle);
 
-        RoutineDTO routine = routineList.get(i);
+        Routine routine = routineList.get(i);
 
         itemTitle.setText(routine.getName());
 

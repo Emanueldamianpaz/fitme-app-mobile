@@ -24,7 +24,7 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 
-import ar.davinci.edu.activities.RunningActivity;
+import ar.davinci.edu.fragments.RunningFragment;
 
 public class GPSTracker extends AppCompatActivity
         implements GoogleApiClient.OnConnectionFailedListener,
@@ -166,7 +166,7 @@ public class GPSTracker extends AppCompatActivity
                 updateUI(lastLocation);
             } else {
                 Log.e(LOGTAG, "Permission denied");
-                RunningActivity.btnGPS.setChecked(false);
+                RunningFragment.btnGPS.setChecked(false);
             }
         }
     }

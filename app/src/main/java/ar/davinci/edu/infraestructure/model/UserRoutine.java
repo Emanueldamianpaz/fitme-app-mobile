@@ -1,5 +1,7 @@
 package ar.davinci.edu.infraestructure.model;
 
+import java.util.List;
+
 import lombok.*;
 
 
@@ -12,7 +14,7 @@ public class UserRoutine {
     private Long id;
     private User user;
     private Scoring scoring;
-    private Routine routine;
+    private List<Routine> routines;
 
 
 }

@@ -13,13 +13,19 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.auth0.android.jwt.JWT;
 
 import ar.davinci.edu.R;
 import ar.davinci.edu.fragments.HomeFragment;
+import ar.davinci.edu.fragments.RoutineAdapter;
+import ar.davinci.edu.fragments.RunningFragment;
 import ar.davinci.edu.infraestructure.api.ApiClient;
+import ar.davinci.edu.infraestructure.api.OnFailureCallback;
+import ar.davinci.edu.infraestructure.api.OnSuccessCallback;
+import ar.davinci.edu.infraestructure.model.User;
 import ar.davinci.edu.infraestructure.security.FitmeUser;
 import ar.davinci.edu.infraestructure.storage.SharedJWT;
 import ar.davinci.edu.infraestructure.storage.SharedPreferencesManager;
@@ -27,14 +33,12 @@ import ar.davinci.edu.infraestructure.storage.SharedPreferencesManager;
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FitmeUser user;
+    final ApiClient apiClient = new ApiClient(getBaseContext());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        final ApiClient apiClient = new ApiClient(getBaseContext());
-
 
         JWT payload = SharedJWT.getJWT();
 
@@ -51,14 +55,28 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         bootstraping();
 
-      /*  apiClient.getRoutines(new OnSuccessCallback() {
-            @Override
-            public void execute(Object body) {
-                ListView itemsFlight = (ListView) findViewById(R.id.listItemRoutine);
-                itemsFlight.setAdapter(new RoutineAdapter(getBaseContext(), (List<RoutineDTO>) body));
+        getMyRoutines();
 
-            }
-        });*/
+
+    }
+
+    public void getMyRoutines() {
+        apiClient.getMyRoutines(
+                new OnSuccessCallback() {
+                    @Override
+                    public void execute(Object body) {
+                        User userInfo = (User) body;
+                        ListView routineList = (ListView) findViewById(R.id.listItemRoutine);
+                        routineList.setAdapter(new RoutineAdapter(getBaseContext(), userInfo.getUserRoutine().getRoutines()));
+                    }
+                },
+                new OnFailureCallback() {
+                    @Override
+                    public void execute(Object body) {
+                        // TODO Show error
+                    }
+
+                });
     }
 
     public void bootstraping() {
@@ -82,7 +100,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         lblEmail.setText(user.getEmail());
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.homeFragment, new HomeFragment());
+        ft.replace(R.id.fragmentMain, new HomeFragment());
+        ft.addToBackStack(null);
+        ft.show(new HomeFragment());
         ft.commit();
 
     }
@@ -117,9 +137,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.begin_run:
-                Intent running = new Intent(this, RunningActivity.class);
-                startActivity(running);
-                finish();
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fragmentMain, new RunningFragment());
+                ft.addToBackStack(null);
+
+                ft.commit();
+
+
                 break;
 
             case R.id.my_account:

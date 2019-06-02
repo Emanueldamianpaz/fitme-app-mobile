@@ -27,7 +27,7 @@
 
 
             <fragment
-                android:id="@+id/homeFragment"
+                android:id="@+id/fragmentMain"
                 android:name="ar.davinci.edu.fragments.HomeFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
