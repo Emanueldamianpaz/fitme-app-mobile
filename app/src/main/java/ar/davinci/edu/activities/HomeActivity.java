@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.auth0.android.jwt.JWT;
 
@@ -55,7 +56,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         bootstraping();
 
-        getMyRoutines();
+    //    getMyRoutines();
 
 
     }
@@ -69,14 +70,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         ListView routineList = (ListView) findViewById(R.id.listItemRoutine);
                         routineList.setAdapter(new RoutineAdapter(getBaseContext(), userInfo.getUserRoutine().getRoutines()));
                     }
-                },
-                new OnFailureCallback() {
-                    @Override
-                    public void execute(Object body) {
-                        // TODO Show error
-                    }
 
-                });
+                    @Override
+                    public void error(Object body) {
+                        Toast.makeText(getBaseContext(), "Error!", Toast.LENGTH_LONG).show();
+
+                    }
+                }, new Long(1));
     }
 
     public void bootstraping() {

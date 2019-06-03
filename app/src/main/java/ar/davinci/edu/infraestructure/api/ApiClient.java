@@ -44,12 +44,12 @@ public class ApiClient {
 
             @Override
             public void onFailure(Call<UserFit> call, Throwable throwable) {
-                Toast.makeText(context, "Fallo al querer conectarse con el servidor", Toast.LENGTH_SHORT).show();
+                callback.error(throwable);
             }
         });
     }
 
-    public void getMyRoutines(final OnSuccessCallback callback, OnFailureCallback id) {
+    public void getMyRoutines(final OnSuccessCallback callback, Long id) {
         Call<User> infoFitSession = userFitService.getMyInfo(id);
         infoFitSession.enqueue(new Callback<User>() {
             @Override
@@ -59,7 +59,7 @@ public class ApiClient {
 
             @Override
             public void onFailure(Call<User> call, Throwable throwable) {
-                Toast.makeText(context, "Fallo al querer conectarse con el servidor", Toast.LENGTH_SHORT).show();
+                callback.error(throwable);
             }
         });
     }
@@ -75,7 +75,7 @@ public class ApiClient {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable throwable) {
-                Toast.makeText(context, "Fallo al querer conectarse con el servidor", Toast.LENGTH_SHORT).show();
+                callback.error(throwable);
             }
         });
     }
@@ -91,7 +91,7 @@ public class ApiClient {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable throwable) {
-                Toast.makeText(context, "Fallo al querer conectarse con el servidor", Toast.LENGTH_SHORT).show();
+                callback.error(throwable);
             }
         });
     }
