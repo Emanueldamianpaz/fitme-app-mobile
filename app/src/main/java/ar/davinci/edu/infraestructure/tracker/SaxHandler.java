@@ -16,7 +16,6 @@ import java.util.List;
 
 public class SaxHandler extends DefaultHandler {
 
-    private GoogleMap map;
     private LatLng pointTracked;
     private List<LatLng> listPoints;
     private PolylineOptions routeTracked;
@@ -24,8 +23,7 @@ public class SaxHandler extends DefaultHandler {
     private boolean inTag;
     private String textReaded;
 
-    public SaxHandler(GoogleMap map) {
-        this.map = map;
+    public SaxHandler() {
         this.inTag = false;
         this.listPoints = new ArrayList<>();
         this.routeTracked = new PolylineOptions();
@@ -92,6 +90,10 @@ public class SaxHandler extends DefaultHandler {
 
     public LatLng getLastCoordinates() {
         return pointTracked;
+    }
+
+    public List<LatLng> getPoints() {
+        return listPoints;
     }
 
     public LatLng getFirstCoordinates() {

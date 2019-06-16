@@ -48,7 +48,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         try {
             parser = factory.newSAXParser();
-            handler = new SaxHandler(map);
+            handler = new SaxHandler();
 
             ProcessKML processor = new ProcessKML();
             processor.execute(this.getFilesDir().getAbsolutePath());

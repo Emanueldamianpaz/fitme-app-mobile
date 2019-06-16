@@ -20,6 +20,7 @@ import java.io.InputStreamReader;
 
 import ar.davinci.edu.R;
 import ar.davinci.edu.activities.MapsActivity;
+import ar.davinci.edu.infraestructure.tracker.AnalyzerKML;
 import ar.davinci.edu.infraestructure.tracker.GPSTracker;
 import ar.davinci.edu.infraestructure.tracker.TrackerKML;
 
@@ -87,34 +88,18 @@ public class RunningFragment extends Fragment {
             gps.toggleLocationUpdates(false);
             tracker.closeFile();
 
-            showFile();
+            setupCoordinates();
 
             // TODO Hacer post al backend
         }
     }
 
-    public void showFile() {
-        InputStreamReader inputStreamReader;
-        BufferedReader bufferedReader;
-        String line;
+    public void setupCoordinates() {
 
-        try {
-            inputStreamReader = new FileReader(new File(getContext().getFilesDir(), TrackerKML.KML_FILENAME));
-            bufferedReader = new BufferedReader(inputStreamReader);
-            textView.setText("\n");
+        // TODO Mostrar mensaje
+        AnalyzerKML.getKilometersRunned(getContext());
 
-            line = bufferedReader.readLine();
+        // TODO Realizar post AnalyzerKML.getLocations();
 
-            while (line != null) {
-                textView.append(line + "\n");
-                line = bufferedReader.readLine();
-            }
-
-            bufferedReader.close();
-            inputStreamReader.close();
-
-        } catch (IOException e) {
-            Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-        }
     }
 }
