@@ -1,7 +1,7 @@
 package ar.davinci.edu.activities;
 
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
@@ -19,12 +19,13 @@ import android.widget.Toast;
 
 import com.auth0.android.jwt.JWT;
 
+
 import ar.davinci.edu.R;
 import ar.davinci.edu.fragments.HomeFragment;
 import ar.davinci.edu.fragments.RoutineAdapter;
 import ar.davinci.edu.fragments.RunningFragment;
+import ar.davinci.edu.infraestructure.FragmentMng;
 import ar.davinci.edu.infraestructure.api.ApiClient;
-import ar.davinci.edu.infraestructure.api.OnFailureCallback;
 import ar.davinci.edu.infraestructure.api.OnSuccessCallback;
 import ar.davinci.edu.infraestructure.model.User;
 import ar.davinci.edu.infraestructure.security.FitmeUser;
@@ -56,7 +57,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         bootstraping();
 
-    //    getMyRoutines();
+        //    getMyRoutines();
 
 
     }
@@ -95,17 +96,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         TextView lblUsername = (TextView) headerView.findViewById(R.id.lblUsername);
         lblUsername.setText(user.getNickname());
 
-
         TextView lblEmail = (TextView) headerView.findViewById(R.id.lblEmail);
         lblEmail.setText(user.getEmail());
 
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.fragmentMain, new HomeFragment());
-        ft.addToBackStack(null);
-        ft.show(new HomeFragment());
-        ft.commit();
+        FragmentMng.changeFragments(this, new HomeFragment());
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -129,6 +126,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()) {
 
+            case R.id.home_fitme:
+                FragmentMng.changeFragments(this, new HomeFragment());
+                break;
+
+            case R.id.begin_run:
+                FragmentMng.changeFragments(this, new RunningFragment());
+                break;
+
             case R.id.close_session:
                 Intent login = new Intent(this, LoginActivity.class);
                 SharedPreferencesManager.write(SharedPreferencesManager.CREDENTIAL_FITME, "");
@@ -136,15 +141,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 finish();
                 break;
 
-            case R.id.begin_run:
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.fragmentMain, new RunningFragment());
-                ft.addToBackStack(null);
-
-                ft.commit();
-
-
-                break;
 
             case R.id.my_account:
                 Log.i("de costado", "cliqueó my_account");

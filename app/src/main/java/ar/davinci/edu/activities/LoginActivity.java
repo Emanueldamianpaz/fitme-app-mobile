@@ -75,12 +75,10 @@ public class LoginActivity extends AppCompatActivity {
         context = getBaseContext();
         account = new Auth0(context);
         sharedPreferences = context.getSharedPreferences(getResources().getString(R.string.app_name), MODE_PRIVATE);
-
         intent = new Intent(context, HomeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        if (SharedPreferencesManager.read(SharedPreferencesManager.CREDENTIAL_FITME, null) != null
-                || SharedPreferencesManager.read(SharedPreferencesManager.CREDENTIAL_FITME, null) != "") {
+        if (SharedPreferencesManager.read(SharedPreferencesManager.CREDENTIAL_FITME, null) != null) {
             context.startActivity(intent);
         }
 
