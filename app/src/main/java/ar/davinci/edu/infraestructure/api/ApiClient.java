@@ -64,7 +64,7 @@ public class ApiClient {
         });
     }
 
-    public void addExerciseSession(final OnSuccessCallback callback, Long id, ExerciseDTO exercise) {
+    public void addExerciseSession(Long id, ExerciseDTO exercise, final OnSuccessCallback callback) {
 
         Call<ResponseBody> infoFitSession = userFitService.addExerciseSession(exercise, id);
         infoFitSession.enqueue(new Callback<ResponseBody>() {

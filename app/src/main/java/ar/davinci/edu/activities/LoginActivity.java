@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void bootstraping() {
+    private void bootstraping() {
         SharedPreferencesManager.init(getApplicationContext());
         gson = new GsonBuilder().create();
         context = getBaseContext();

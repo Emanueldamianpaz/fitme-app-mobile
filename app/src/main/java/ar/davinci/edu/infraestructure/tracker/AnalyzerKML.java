@@ -3,30 +3,33 @@ package ar.davinci.edu.infraestructure.tracker;
 import android.content.Context;
 import android.location.Location;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.xml.sax.SAXException;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import ar.davinci.edu.infraestructure.model.dto.ExerciseDTO;
+
 
 public class AnalyzerKML {
 
     private static List<Location> locationList = new ArrayList<>();
+    private static List<SimpleDateFormat> timestampList = new ArrayList<>();
 
+    public static ExerciseDTO getSessionRunning(Context context) {
+        return new ExerciseDTO(getKilometersRunned(context), getLocations(), getTimestamps());
+    }
 
     private static List<Location> analyzeKML(Context context) {
         SAXParser parser;
@@ -40,12 +43,15 @@ public class AnalyzerKML {
             e.printStackTrace();
         }
 
-
         for (LatLng latLng : handler.getPoints()) {
             Location location = new Location(latLng.toString());
             location.setLongitude(latLng.longitude);
             location.setLatitude(latLng.latitude);
 
+            SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss");
+            dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));
+
+            timestampList.add(dateFormatGmt);
             locationList.add(location);
         }
 
@@ -53,7 +59,7 @@ public class AnalyzerKML {
 
     }
 
-    public static double getKilometersRunned(Context context) {
+    private static double getKilometersRunned(Context context) {
 
         locationList = AnalyzerKML.analyzeKML(context);
 
@@ -64,12 +70,15 @@ public class AnalyzerKML {
 
         distance = Math.round((distance / 1000) * 100.0) / 100.0; // Kilometers
 
-
         return distance;
     }
 
-    public static List<Location> getLocations() {
+    private static List<Location> getLocations() {
         return locationList;
+    }
+
+    private static List<SimpleDateFormat> getTimestamps() {
+        return timestampList;
     }
 
 }

@@ -80,7 +80,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 }, new Long(1));
     }
 
-    public void bootstraping() {
+    private void bootstraping() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

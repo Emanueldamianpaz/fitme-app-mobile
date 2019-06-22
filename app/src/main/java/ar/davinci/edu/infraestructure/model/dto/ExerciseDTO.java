@@ -1,6 +1,11 @@
 package ar.davinci.edu.infraestructure.model.dto;
 
 
+import android.location.Location;
+
+import java.text.SimpleDateFormat;
+import java.util.List;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class ExerciseDTO {
-    private RunningDTO runningSession;
-    private Double kilometersRunned;
+    private double kilometersRunned;
+    private List<Location> locationsRunned;
+    private List<SimpleDateFormat> timestamptRunned;
 }
