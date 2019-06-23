@@ -34,15 +34,6 @@ public class RunningFragment extends Fragment {
     public RunningFragment() {
     }
 
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        bootstraping();
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_running, container, false);
-    }
-
     private void bootstraping() {
         btnGPS = getView().findViewById(R.id.btnGPS);
         btnMap = getView().findViewById(R.id.btnMaps);
@@ -104,4 +95,14 @@ public class RunningFragment extends Fragment {
                     }
                 });
     }
+
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        bootstraping();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_running, container, false);
+    }
+
 }
