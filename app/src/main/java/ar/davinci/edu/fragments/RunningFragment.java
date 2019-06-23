@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -17,7 +16,6 @@ import ar.davinci.edu.R;
 import ar.davinci.edu.activities.MapsActivity;
 import ar.davinci.edu.infraestructure.api.ApiClient;
 import ar.davinci.edu.infraestructure.api.OnSuccessCallback;
-import ar.davinci.edu.infraestructure.model.User;
 import ar.davinci.edu.infraestructure.model.dto.ExerciseDTO;
 import ar.davinci.edu.infraestructure.tracker.AnalyzerKML;
 import ar.davinci.edu.infraestructure.tracker.GPSTracker;
@@ -46,9 +44,9 @@ public class RunningFragment extends Fragment {
     }
 
     private void bootstraping() {
-        btnGPS = getView().findViewById(R.id.botonGPS);
-        btnMap = getView().findViewById(R.id.botonMaps);
-        textView = getView().findViewById(R.id.texto);
+        btnGPS = getView().findViewById(R.id.btnGPS);
+        btnMap = getView().findViewById(R.id.btnMaps);
+        textView = getView().findViewById(R.id.txtKml);
         tracker = new TrackerKML(getContext());
         gps = new GPSTracker(getActivity(), tracker);
 

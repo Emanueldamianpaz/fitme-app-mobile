@@ -1,4 +1,4 @@
-package ar.davinci.edu.fragments;
+package ar.davinci.edu.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,6 @@ import java.util.List;
 
 import ar.davinci.edu.R;
 import ar.davinci.edu.infraestructure.model.Routine;
-import ar.davinci.edu.infraestructure.model.dto.RoutineDTO;
 
 public class RoutineAdapter extends BaseAdapter {
 
@@ -44,9 +43,9 @@ public class RoutineAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View routineView, ViewGroup viewGroup) {
 
-        routineView = LayoutInflater.from(context).inflate(R.layout.fragment_item_list, viewGroup, false);
+        routineView = LayoutInflater.from(context).inflate(R.layout.fragment_item_routine, viewGroup, false);
 
-        TextView itemTitle = (TextView) routineView.findViewById(R.id.routineTitle);
+        TextView itemTitle = (TextView) routineView.findViewById(R.id.kilometersRunnedLbl);
 
         Routine routine = routineList.get(i);
 

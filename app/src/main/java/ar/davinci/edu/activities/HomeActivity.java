@@ -1,13 +1,13 @@
 package ar.davinci.edu.activities;
 
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -22,7 +22,7 @@ import com.auth0.android.jwt.JWT;
 
 import ar.davinci.edu.R;
 import ar.davinci.edu.fragments.HomeFragment;
-import ar.davinci.edu.fragments.RoutineAdapter;
+import ar.davinci.edu.adapters.RoutineAdapter;
 import ar.davinci.edu.fragments.RunningFragment;
 import ar.davinci.edu.infraestructure.FragmentMng;
 import ar.davinci.edu.infraestructure.api.ApiClient;
@@ -62,7 +62,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    public void getMyRoutines() {
+    private void getMyRoutines() {
         apiClient.getMyRoutines(
                 new OnSuccessCallback() {
                     @Override
@@ -83,6 +83,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private void bootstraping() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        CardView cardKilometersRunned = (CardView) findViewById(R.id.cardKilometersRunned);
+        cardKilometersRunned.setOnClickListener(new CardView.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO cambiar fragment por el adapterList
+            }
+        });
+
+        CardView cardCalories = (CardView) findViewById(R.id.cardCalories);
+        cardCalories.setOnClickListener(new CardView.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO cambiar fragment por el adapterList
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

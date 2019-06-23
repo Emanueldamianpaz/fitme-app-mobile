@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class ExerciseDTO {
+    private long id;
     private double kilometersRunned;
     private List<Location> locationsRunned;
     private List<SimpleDateFormat> timestamptRunned;
