@@ -1,5 +1,6 @@
 package ar.davinci.edu.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import ar.davinci.edu.R;
-import ar.davinci.edu.infraestructure.model.dto.ExerciseDTO;
+import ar.davinci.edu.infraestructure.dto.ExerciseDTO;
 
 public class ExerciseAdapter extends BaseAdapter {
 
@@ -41,17 +42,15 @@ public class ExerciseAdapter extends BaseAdapter {
         return (exerciseList.get(i).getId());
     }
 
+    @SuppressLint("ViewHolder")
     @Override
     public View getView(int i, View exerciseView, ViewGroup viewGroup) {
         exerciseView = LayoutInflater.from(context).inflate(R.layout.fragment_item_exercise, viewGroup, false);
-        TextView itemTitle = (TextView) exerciseView.findViewById(R.id.kilometersRunnedLbl);
+        TextView itemTitle = exerciseView.findViewById(R.id.kilometersRunnedLbl);
 
-        LinearLayout showMap = (LinearLayout) exerciseView.findViewById(R.id.lylShowMap);
-        showMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO Abrir mapa // o no... es complicado ya que lee el kml local... habría que generar uno nuevo según listCoordinates
-            }
+        LinearLayout showMap = exerciseView.findViewById(R.id.lylShowMap);
+        showMap.setOnClickListener(view -> {
+            // TODO Abrir mapa // o no... es complicado ya que lee el kml local... habría que generar uno nuevo según listCoordinates
         });
 
         ExerciseDTO exercise = exerciseList.get(i);

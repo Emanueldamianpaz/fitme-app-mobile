@@ -7,10 +7,10 @@ import com.google.gson.Gson;
 import java.util.Set;
 
 import ar.davinci.edu.infraestructure.api.userFit.UserFitService;
-import ar.davinci.edu.infraestructure.model.User;
+import ar.davinci.edu.infraestructure.dto.ExerciseDTO;
+import ar.davinci.edu.infraestructure.dto.NutritionDTO;
 import ar.davinci.edu.infraestructure.model.ExerciseSession;
-import ar.davinci.edu.infraestructure.model.dto.ExerciseDTO;
-import ar.davinci.edu.infraestructure.model.dto.NutritionDTO;
+import ar.davinci.edu.infraestructure.model.User;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -65,9 +65,9 @@ public class ApiClient {
         });
     }
 
-    public void addExerciseSession(Long id, ExerciseDTO exercise, final OnSuccessCallback callback) {
+    public void addExerciseSession(ExerciseDTO exercise, final OnSuccessCallback callback) {
 
-        Call<ResponseBody> infoFitSession = userFitService.addExerciseSession(exercise, id);
+        Call<ResponseBody> infoFitSession = userFitService.addExerciseSession(exercise, exercise.getId());
         infoFitSession.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

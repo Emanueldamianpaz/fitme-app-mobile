@@ -10,31 +10,25 @@ import org.xml.sax.SAXException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.TimeZone;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import ar.davinci.edu.infraestructure.model.dto.ExerciseDTO;
+import ar.davinci.edu.infraestructure.model.RunningSession;
 
 
 public class AnalyzerKML {
 
-    private static List<Location> locationList = new ArrayList<>();
-    private static List<SimpleDateFormat> timestampList = new ArrayList<>();
-
-    public static ExerciseDTO getSessionRunning(Context context) {
-        return new ExerciseDTO(getKilometersRunned(context), getLocations(), getTimestamps());
+    public static RunningSession getSessionRunning(Context context) {
+        return analyzeKML(context);
     }
 
-    private static List<Location> analyzeKML(Context context) {
+    private static RunningSession analyzeKML(Context context) {
         SAXParser parser;
         SaxHandler handler = new SaxHandler();
         SAXParserFactory factory = SAXParserFactory.newInstance();
+        RunningSession runningSession = new RunningSession();
 
         try {
             parser = factory.newSAXParser();
@@ -48,37 +42,12 @@ public class AnalyzerKML {
             location.setLongitude(latLng.longitude);
             location.setLatitude(latLng.latitude);
 
-            SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss");
-            dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));
-
-            timestampList.add(dateFormatGmt);
-            locationList.add(location);
+            runningSession.trackLocation(location);
         }
 
-        return locationList;
+        return runningSession;
 
     }
 
-    private static double getKilometersRunned(Context context) {
-
-        locationList = AnalyzerKML.analyzeKML(context);
-
-        double distance = 0;
-        for (int i = 1; i < locationList.size(); i++) {
-            distance = distance + locationList.get(i).distanceTo(locationList.get(i - 1));
-        }
-
-        distance = Math.round((distance / 1000) * 100.0) / 100.0; // Kilometers
-
-        return distance;
-    }
-
-    private static List<Location> getLocations() {
-        return locationList;
-    }
-
-    private static List<SimpleDateFormat> getTimestamps() {
-        return timestampList;
-    }
 
 }

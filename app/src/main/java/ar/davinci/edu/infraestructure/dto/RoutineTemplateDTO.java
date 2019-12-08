@@ -1,4 +1,4 @@
-package ar.davinci.edu.infraestructure.model.dto;
+package ar.davinci.edu.infraestructure.dto;
 
 import java.util.List;
 

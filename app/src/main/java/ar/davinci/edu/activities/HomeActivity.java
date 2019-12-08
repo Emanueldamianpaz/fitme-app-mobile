@@ -1,13 +1,12 @@
 package ar.davinci.edu.activities;
 
-import android.support.design.widget.NavigationView;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.CardView;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -19,10 +18,9 @@ import android.widget.Toast;
 
 import com.auth0.android.jwt.JWT;
 
-
 import ar.davinci.edu.R;
-import ar.davinci.edu.fragments.HomeFragment;
 import ar.davinci.edu.adapters.RoutineAdapter;
+import ar.davinci.edu.fragments.HomeFragment;
 import ar.davinci.edu.fragments.RunningFragment;
 import ar.davinci.edu.infraestructure.FragmentMng;
 import ar.davinci.edu.infraestructure.api.ApiClient;
@@ -55,7 +53,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 .build();
 
 
-        bootstraping();
+        bootstrapping();
 
         //    getMyRoutines();
 
@@ -80,29 +78,28 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 }, new Long(1));
     }
 
-    private void bootstraping() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    private void bootstrapping() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         View headerView = navigationView.getHeaderView(0);
-        TextView lblUsername = (TextView) headerView.findViewById(R.id.lblUsername);
+        TextView lblUsername = headerView.findViewById(R.id.lblUsername);
         lblUsername.setText(user.getNickname());
 
-        TextView lblEmail = (TextView) headerView.findViewById(R.id.lblEmail);
+        TextView lblEmail = headerView.findViewById(R.id.lblEmail);
         lblEmail.setText(user.getEmail());
 
         FragmentMng.changeFragments(this, new HomeFragment());
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -141,7 +138,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 finish();
                 break;
 
-
             case R.id.my_account:
                 Log.i("de costado", "cliqueó my_account");
                 break;
@@ -149,7 +145,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

@@ -1,4 +1,4 @@
-package ar.davinci.edu.infraestructure.model.dto;
+package ar.davinci.edu.infraestructure.dto;
 
 public class RoutineDTO {
 

@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import ar.davinci.edu.R;
-
 public class SharedPreferencesManager {
     private static SharedPreferences mSharedPref;
     public static final String CREDENTIAL_FITME = "credential_fitme";

@@ -2,10 +2,10 @@ package ar.davinci.edu.infraestructure.api.userFit;
 
 import java.util.Set;
 
-import ar.davinci.edu.infraestructure.model.User;
+import ar.davinci.edu.infraestructure.dto.ExerciseDTO;
+import ar.davinci.edu.infraestructure.dto.NutritionDTO;
 import ar.davinci.edu.infraestructure.model.ExerciseSession;
-import ar.davinci.edu.infraestructure.model.dto.ExerciseDTO;
-import ar.davinci.edu.infraestructure.model.dto.NutritionDTO;
+import ar.davinci.edu.infraestructure.model.User;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;

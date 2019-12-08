@@ -15,7 +15,6 @@ import android.util.Log;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
@@ -85,27 +84,24 @@ public class GPSTracker extends AppCompatActivity
                 LocationServices.SettingsApi.checkLocationSettings(
                         apiClient, locSettingsRequest);
 
-        result.setResultCallback(new ResultCallback<LocationSettingsResult>() {
-            @Override
-            public void onResult(LocationSettingsResult locationSettingsResult) {
-                final Status status = locationSettingsResult.getStatus();
-                switch (status.getStatusCode()) {
-                    case LocationSettingsStatusCodes.SUCCESS:
-                        Log.i(LOGTAG, "Configuration ok!");
-                        startLocationUpdates();
-                        break;
-                    case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-                        try {
-                            Log.i(LOGTAG, "User attention is required...");
-                            status.startResolutionForResult(context, PETITION_CONF_UBICATION);
-                        } catch (IntentSender.SendIntentException e) {
-                            Log.i(LOGTAG, "Error to try fix location configuration");
-                        }
-                        break;
-                    case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-                        Log.i(LOGTAG, "Can't apply configuration of necessary location");
-                        break;
-                }
+        result.setResultCallback(locationSettingsResult -> {
+            final Status status = locationSettingsResult.getStatus();
+            switch (status.getStatusCode()) {
+                case LocationSettingsStatusCodes.SUCCESS:
+                    Log.i(LOGTAG, "Configuration ok!");
+                    startLocationUpdates();
+                    break;
+                case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                    try {
+                        Log.i(LOGTAG, "User attention is required...");
+                        status.startResolutionForResult(context, PETITION_CONF_UBICATION);
+                    } catch (IntentSender.SendIntentException e) {
+                        Log.i(LOGTAG, "Error to try fix location configuration");
+                    }
+                    break;
+                case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                    Log.i(LOGTAG, "Can't apply configuration of necessary location");
+                    break;
             }
         });
     }

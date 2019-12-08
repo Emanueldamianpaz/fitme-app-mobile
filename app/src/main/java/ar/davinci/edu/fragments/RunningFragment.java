@@ -16,7 +16,8 @@ import ar.davinci.edu.R;
 import ar.davinci.edu.activities.MapsActivity;
 import ar.davinci.edu.infraestructure.api.ApiClient;
 import ar.davinci.edu.infraestructure.api.OnSuccessCallback;
-import ar.davinci.edu.infraestructure.model.dto.ExerciseDTO;
+import ar.davinci.edu.infraestructure.dto.ExerciseDTO;
+import ar.davinci.edu.infraestructure.model.RunningSession;
 import ar.davinci.edu.infraestructure.tracker.AnalyzerKML;
 import ar.davinci.edu.infraestructure.tracker.GPSTracker;
 import ar.davinci.edu.infraestructure.tracker.TrackerKML;
@@ -41,19 +42,11 @@ public class RunningFragment extends Fragment {
         tracker = new TrackerKML(getContext());
         gps = new GPSTracker(getActivity(), tracker);
 
-        btnGPS.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alternateAction(btnGPS.isChecked());
-            }
-        });
+        btnGPS.setOnClickListener(v -> alternateAction(btnGPS.isChecked()));
 
-        btnMap.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity().getApplication(), MapsActivity.class);
-                startActivity(intent);
-            }
+        btnMap.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity().getApplication(), MapsActivity.class);
+            startActivity(intent);
         });
     }
 
@@ -77,11 +70,10 @@ public class RunningFragment extends Fragment {
     }
 
     private void setupCoordinates() {
-        ExerciseDTO runningSession = AnalyzerKML.getSessionRunning(getContext());
+        RunningSession runningSession = AnalyzerKML.getSessionRunning(getContext());
 
         apiClient.addExerciseSession(
-                new Long(runningSession.hashCode()),
-                runningSession,
+                new ExerciseDTO(runningSession),
                 new OnSuccessCallback() {
                     @Override
                     public void execute(Object body) {

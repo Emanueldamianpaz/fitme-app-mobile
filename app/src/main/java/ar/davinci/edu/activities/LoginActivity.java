@@ -4,10 +4,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -34,42 +33,39 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        bootstraping();
+        bootstrapping();
 
-        Button loginBtn = (Button) findViewById(R.id.btnLogin);
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context, "Iniciando sesión...", Toast.LENGTH_LONG).show();
-                WebAuthProvider
-                        .init(account)
-                        .withScope("openid profile email app_metadata")
-                        .start(LoginActivity.this, new AuthCallback() {
-                            @Override
-                            public void onFailure(@NonNull Dialog dialog) {
-                                Toast.makeText(context, "Login incorrecto!", Toast.LENGTH_LONG).show();
-                            }
+        Button loginBtn = findViewById(R.id.btnLogin);
+        loginBtn.setOnClickListener(view -> {
+            Toast.makeText(context, "Iniciando sesión...", Toast.LENGTH_LONG).show();
+            WebAuthProvider
+                    .init(account)
+                    .withScope("openid profile email app_metadata")
+                    .start(LoginActivity.this, new AuthCallback() {
+                        @Override
+                        public void onFailure(@NonNull Dialog dialog) {
+                            Toast.makeText(context, "Login incorrecto!", Toast.LENGTH_LONG).show();
+                        }
 
-                            @Override
-                            public void onFailure(AuthenticationException exception) {
-                                Toast.makeText(context, "Login incorrecto!", Toast.LENGTH_LONG).show();
-                            }
+                        @Override
+                        public void onFailure(AuthenticationException exception) {
+                            Toast.makeText(context, "Login incorrecto!", Toast.LENGTH_LONG).show();
+                        }
 
-                            @Override
-                            public void onSuccess(@NonNull Credentials credentials) {
+                        @Override
+                        public void onSuccess(@NonNull Credentials credentials) {
 
-                                SharedPreferencesManager.write(SharedPreferencesManager.CREDENTIAL_FITME, gson.toJson(credentials.getIdToken()));
+                            SharedPreferencesManager.write(SharedPreferencesManager.CREDENTIAL_FITME, gson.toJson(credentials.getIdToken()));
 
-                                context.startActivity(intent);
-                            }
-                        });
-            }
+                            context.startActivity(intent);
+                        }
+                    });
         });
 
 
     }
 
-    private void bootstraping() {
+    private void bootstrapping() {
         SharedPreferencesManager.init(getApplicationContext());
         gson = new GsonBuilder().create();
         context = getBaseContext();

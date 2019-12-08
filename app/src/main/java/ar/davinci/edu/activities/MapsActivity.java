@@ -1,13 +1,9 @@
 package ar.davinci.edu.activities;
 
 import android.os.AsyncTask;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
-
-import ar.davinci.edu.R;
-import ar.davinci.edu.infraestructure.tracker.TrackerKML;
-import ar.davinci.edu.infraestructure.tracker.SaxHandler;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -25,6 +21,10 @@ import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+
+import ar.davinci.edu.R;
+import ar.davinci.edu.infraestructure.tracker.SaxHandler;
+import ar.davinci.edu.infraestructure.tracker.TrackerKML;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
