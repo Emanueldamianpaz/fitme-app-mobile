@@ -1,13 +1,14 @@
 package ar.davinci.edu.infraestructure.api;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import java.util.Set;
+
 import ar.davinci.edu.infraestructure.api.userFit.UserFitService;
 import ar.davinci.edu.infraestructure.model.User;
-import ar.davinci.edu.infraestructure.model.UserFit;
+import ar.davinci.edu.infraestructure.model.ExerciseSession;
 import ar.davinci.edu.infraestructure.model.dto.ExerciseDTO;
 import ar.davinci.edu.infraestructure.model.dto.NutritionDTO;
 import okhttp3.ResponseBody;
@@ -35,15 +36,15 @@ public class ApiClient {
     }
 
     public void getMyInfoFitSession(final OnSuccessCallback callback, Long id) {
-        Call<UserFit> infoFitSession = userFitService.getInfoFitSession(id);
-        infoFitSession.enqueue(new Callback<UserFit>() {
+        Call<Set<ExerciseSession>> infoFitSession = userFitService.getExerciseSessions(id);
+        infoFitSession.enqueue(new Callback<Set<ExerciseSession>>() {
             @Override
-            public void onResponse(Call<UserFit> call, Response<UserFit> response) {
+            public void onResponse(Call<Set<ExerciseSession>> call, Response<Set<ExerciseSession>> response) {
                 callback.execute(response.body());
             }
 
             @Override
-            public void onFailure(Call<UserFit> call, Throwable throwable) {
+            public void onFailure(Call<Set<ExerciseSession>> call, Throwable throwable) {
                 callback.error(throwable);
             }
         });

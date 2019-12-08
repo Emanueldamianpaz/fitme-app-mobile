@@ -14,7 +14,7 @@ public class UserInfo {
     private Double currentFat;
     private String frecuencyExercise;
     private Goal goal;
-    private UserFit userFit;
+    private ExerciseSession userFit;
 
     public UserInfo(String id) {
         this.id = id;
