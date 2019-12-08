@@ -84,22 +84,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        CardView cardKilometersRunned = (CardView) findViewById(R.id.cardKilometersRunned);
-        cardKilometersRunned.setOnClickListener(new CardView.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO cambiar fragment por el adapterList
-            }
-        });
-
-        CardView cardCalories = (CardView) findViewById(R.id.cardCalories);
-        cardCalories.setOnClickListener(new CardView.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO cambiar fragment por el adapterList
-            }
-        });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);

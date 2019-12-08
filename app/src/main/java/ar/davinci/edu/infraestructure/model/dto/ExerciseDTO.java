@@ -21,4 +21,12 @@ public class ExerciseDTO {
     private double kilometersRunned;
     private List<Location> locationsRunned;
     private List<SimpleDateFormat> timestamptRunned;
+
+    public ExerciseDTO(double kilometersRunned,
+                       List<Location> locationsRunned,
+                       List<SimpleDateFormat> timestamptRunned) {
+        this.kilometersRunned = kilometersRunned;
+        this.locationsRunned = locationsRunned;
+        this.timestamptRunned = timestamptRunned;
+    }
 }
