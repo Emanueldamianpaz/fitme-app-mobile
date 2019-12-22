@@ -12,11 +12,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.auth0.android.jwt.JWT;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import ar.davinci.edu.R;
 import ar.davinci.edu.adapters.RoutineAdapter;
@@ -92,10 +95,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         View headerView = navigationView.getHeaderView(0);
         TextView lblUsername = headerView.findViewById(R.id.lblUsername);
-        lblUsername.setText(user.getNickname());
+        lblUsername.setText(user.getName() + " " + user.getLast_name());
 
         TextView lblEmail = headerView.findViewById(R.id.lblEmail);
         lblEmail.setText(user.getEmail());
+
+        ImageView imgUser = headerView.findViewById(R.id.imgUser);
+        Glide.with(this)
+                .load(user.getPicture())
+                .apply(RequestOptions.circleCropTransform())
+                .into(imgUser);
 
         FragmentMng.changeFragments(this, new HomeFragment());
 
