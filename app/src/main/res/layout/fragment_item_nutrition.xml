@@ -3,7 +3,7 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/crdExercise"
+    android:id="@+id/crdNutrition"
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_margin="20dp"
@@ -41,10 +41,10 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/lblName"
+                    android:id="@+id/lblType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nombre de la rutina"
+                    android:text="Tipo"
                     android:textAllCaps="false"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -57,24 +57,12 @@
 
 
                     <TextView
-                        android:id="@+id/lblDifficulty"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:gravity="right"
-                        android:lineSpacingExtra="10sp"
-                        android:text="Dificultad"
-                        android:textAllCaps="false"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/lblType"
+                        android:id="@+id/lblCalories"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:lineSpacingExtra="10sp"
-                        android:text="(Tipo)"
+                        android:text="(Calorias)"
                         android:textAllCaps="false"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -83,7 +71,7 @@
 
 
             <TextView
-                android:id="@+id/lblDescription"
+                android:id="@+id/lblName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

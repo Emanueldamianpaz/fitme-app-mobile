@@ -29,8 +29,6 @@
             android:value="AIzaSyBAJF-lhWIH_8kyXK6n2v9EItOGzymhyvk" />
 
         <activity android:name=".activities.HomeActivity" />
-
-
         <activity
             android:name="com.auth0.android.provider.RedirectActivity"
             tools:node="replace">
@@ -47,8 +45,6 @@
             </intent-filter>
         </activity>
         <activity android:name="com.auth0.android.provider.WebAuthActivity" />
-
-
     </application>
 
 </manifest>

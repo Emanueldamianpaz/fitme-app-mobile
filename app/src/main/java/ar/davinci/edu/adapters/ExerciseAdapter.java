@@ -6,23 +6,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
 import ar.davinci.edu.R;
-import ar.davinci.edu.infraestructure.dto.exercise_session.ExerciseDTO;
+import ar.davinci.edu.infraestructure.model.Exercise;
 
 public class ExerciseAdapter extends BaseAdapter {
 
     private Context context;
-    private List<ExerciseDTO> exerciseList;
+    private List<Exercise> exerciseList;
 
     private ExerciseAdapter() {
     }
 
-    public ExerciseAdapter(Context context, List<ExerciseDTO> exerciseList) {
+    public ExerciseAdapter(Context context, List<Exercise> exerciseList) {
         this.exerciseList = exerciseList;
         this.context = context;
     }
@@ -46,16 +45,17 @@ public class ExerciseAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View exerciseView, ViewGroup viewGroup) {
         exerciseView = LayoutInflater.from(context).inflate(R.layout.fragment_item_exercise, viewGroup, false);
-        TextView itemTitle = exerciseView.findViewById(R.id.kilometersRunnedLbl);
+        TextView txtName = exerciseView.findViewById(R.id.lblName);
+        TextView txtDescription = exerciseView.findViewById(R.id.lblDescription);
+        TextView txtDifficulty = exerciseView.findViewById(R.id.lblDifficulty);
+        TextView txtType = exerciseView.findViewById(R.id.lblType);
 
-        LinearLayout showMap = exerciseView.findViewById(R.id.lylShowMap);
-        showMap.setOnClickListener(view -> {
-            // TODO Abrir mapa // o no... es complicado ya que lee el kml local... habría que generar uno nuevo según listCoordinates
-        });
+        Exercise exercise = exerciseList.get(i);
 
-        ExerciseDTO exercise = exerciseList.get(i);
-        itemTitle.setText(exercise.getId() + ". " + exercise.getKilometersRunned() + "km. - " + exercise.getTimestamptRunned().get(0));
-
+        txtName.setText(exercise.getName());
+        txtDescription.setText(exercise.getDescription());
+        txtDifficulty.setText(exercise.getDifficulty());
+        txtType.setText("(" + exercise.getType() + ")");
 
         return exerciseView;
     }

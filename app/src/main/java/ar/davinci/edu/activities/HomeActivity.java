@@ -64,6 +64,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+
     private void getMyRoutines() {
         apiClient.getUserRoutines(
                 new OnSuccessCallback() {
@@ -71,7 +72,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     public void execute(Object body) {
                         UserRoutineDTO userRoutine = (UserRoutineDTO) body;
                         ListView routineList = findViewById(R.id.listItemRoutine);
-                        routineList.setAdapter(new RoutineAdapter(getBaseContext(), userRoutine.getRoutine()));
+                        routineList.setAdapter(new RoutineAdapter(HomeActivity.this, userRoutine.getRoutine()));
                     }
 
                     @Override
@@ -135,6 +136,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.home_fitme:
                 FragmentMng.changeFragments(this, new HomeFragment());
+                getMyRoutines();
                 break;
 
             case R.id.begin_run:
