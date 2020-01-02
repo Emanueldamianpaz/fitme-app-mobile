@@ -16,7 +16,7 @@ import ar.davinci.edu.R;
 import ar.davinci.edu.activities.MapsActivity;
 import ar.davinci.edu.infraestructure.api.ApiClient;
 import ar.davinci.edu.infraestructure.api.OnSuccessCallback;
-import ar.davinci.edu.infraestructure.dto.ExerciseDTO;
+import ar.davinci.edu.infraestructure.dto.exercise_session.ExerciseDTO;
 import ar.davinci.edu.infraestructure.model.RunningSession;
 import ar.davinci.edu.infraestructure.tracker.AnalyzerKML;
 import ar.davinci.edu.infraestructure.tracker.GPSTracker;

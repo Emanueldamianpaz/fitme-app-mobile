@@ -19,14 +19,19 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import ar.davinci.edu.R;
+import ar.davinci.edu.infraestructure.api.ApiClient;
 import ar.davinci.edu.infraestructure.storage.SharedPreferencesManager;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     private Context context;
     private Auth0 account;
-    private SharedPreferences sharedPreferences;
+    public static SharedPreferences sharedPreferences;
     private Gson gson;
     private Intent intent;
+    final ApiClient apiClient = new ApiClient(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +59,21 @@ public class LoginActivity extends AppCompatActivity {
 
                         @Override
                         public void onSuccess(@NonNull Credentials credentials) {
+                            String idToken = credentials.getIdToken();
+                            Call<ResponseBody> createSession = apiClient.createSession(idToken);
 
-                            SharedPreferencesManager.write(SharedPreferencesManager.CREDENTIAL_FITME, gson.toJson(credentials.getIdToken()));
+                            try {
+                                Response<ResponseBody> response = createSession.execute();
+                                response.toString();
 
-                            context.startActivity(intent);
+                                SharedPreferencesManager.write(SharedPreferencesManager.CREDENTIAL_FITME, gson.toJson(idToken));
+                                context.startActivity(intent);
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
+                                Toast.makeText(context, "Login incorrecto!", Toast.LENGTH_LONG).show();
+                            }
+
+
                         }
                     });
         });

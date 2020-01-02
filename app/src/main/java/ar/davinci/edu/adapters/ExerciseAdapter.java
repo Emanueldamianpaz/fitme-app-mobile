@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import ar.davinci.edu.R;
-import ar.davinci.edu.infraestructure.dto.ExerciseDTO;
+import ar.davinci.edu.infraestructure.dto.exercise_session.ExerciseDTO;
 
 public class ExerciseAdapter extends BaseAdapter {
 

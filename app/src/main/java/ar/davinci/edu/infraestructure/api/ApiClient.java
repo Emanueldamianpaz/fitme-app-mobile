@@ -4,13 +4,14 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 
-import java.util.Set;
-
 import ar.davinci.edu.infraestructure.api.userFit.UserFitService;
-import ar.davinci.edu.infraestructure.dto.ExerciseDTO;
-import ar.davinci.edu.infraestructure.dto.NutritionDTO;
-import ar.davinci.edu.infraestructure.model.ExerciseSession;
-import ar.davinci.edu.infraestructure.model.User;
+import ar.davinci.edu.infraestructure.dto.exercise_session.ExerciseDTO;
+import ar.davinci.edu.infraestructure.dto.exercise_session.NutritionDTO;
+import ar.davinci.edu.infraestructure.dto.scoring.TipDTO;
+import ar.davinci.edu.infraestructure.dto.users.UserInfoLightDTO;
+import ar.davinci.edu.infraestructure.dto.users.UserRoutineDTO;
+import ar.davinci.edu.infraestructure.dto.users.UserSessionDTO;
+import ar.davinci.edu.infraestructure.model.types.FitmeRoles;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,46 +24,76 @@ public class ApiClient {
     private UserFitService userFitService;
     private Context context;
 
-
     public ApiClient(Context context) {
         this.context = context;
         Gson jsonParser = new Gson();
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://fitme-app.herokuapp.com/fitme/api/")
+                // TODO Modificar esto
+                //.baseUrl("https://fitme-app.herokuapp.com/fitme/api/")
+                .baseUrl("http://192.168.0.9:4567/fitme/")
                 .addConverterFactory(GsonConverterFactory.create(jsonParser))
                 .build();
 
         userFitService = retrofit.create(UserFitService.class);
     }
 
-    public void getMyInfoFitSession(final OnSuccessCallback callback, Long id) {
-        Call<Set<ExerciseSession>> infoFitSession = userFitService.getExerciseSessions(id);
-        infoFitSession.enqueue(new Callback<Set<ExerciseSession>>() {
+
+    // -------------------------------------------------------------------------------- GET
+
+
+    public void getUserLight(final OnSuccessCallback callback, String tokenId) {
+        Call<UserInfoLightDTO> getUserLight = userFitService.getUserLight(tokenId);
+
+        getUserLight.enqueue(new Callback<UserInfoLightDTO>() {
             @Override
-            public void onResponse(Call<Set<ExerciseSession>> call, Response<Set<ExerciseSession>> response) {
+            public void onResponse(Call<UserInfoLightDTO> call, Response<UserInfoLightDTO> response) {
                 callback.execute(response.body());
             }
 
             @Override
-            public void onFailure(Call<Set<ExerciseSession>> call, Throwable throwable) {
+            public void onFailure(Call<UserInfoLightDTO> call, Throwable throwable) {
                 callback.error(throwable);
             }
         });
     }
 
-    public void getMyRoutines(final OnSuccessCallback callback, Long id) {
-        Call<User> infoFitSession = userFitService.getMyInfo(id);
-        infoFitSession.enqueue(new Callback<User>() {
+    public void getUserRoutines(final OnSuccessCallback callback, String tokenId) {
+        Call<UserRoutineDTO> getUserRoutines = userFitService.getUserRoutines(tokenId);
+
+        getUserRoutines.enqueue(new Callback<UserRoutineDTO>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<UserRoutineDTO> call, Response<UserRoutineDTO> response) {
                 callback.execute(response.body());
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable throwable) {
+            public void onFailure(Call<UserRoutineDTO> call, Throwable throwable) {
                 callback.error(throwable);
             }
         });
+    }
+
+    public void getUserTip(final OnSuccessCallback callback, String tokenId) {
+        Call<TipDTO> getUserTip = userFitService.getUserTip(tokenId);
+
+        getUserTip.enqueue(new Callback<TipDTO>() {
+            @Override
+            public void onResponse(Call<TipDTO> call, Response<TipDTO> response) {
+                callback.execute(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<TipDTO> call, Throwable throwable) {
+                callback.error(throwable);
+            }
+        });
+    }
+
+
+    // -------------------------------------------------------------------------------- POST
+
+    public Call<ResponseBody> createSession(String tokenId) {
+        return userFitService.createSession(new UserSessionDTO(tokenId, FitmeRoles.CLIENT.toString()), tokenId);
     }
 
     public void addExerciseSession(ExerciseDTO exercise, final OnSuccessCallback callback) {

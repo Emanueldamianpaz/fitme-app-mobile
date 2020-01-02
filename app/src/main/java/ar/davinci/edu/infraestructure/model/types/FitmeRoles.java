@@ -1,7 +1,6 @@
-package ar.davinci.edu.infraestructure.security;
+package ar.davinci.edu.infraestructure.model.types;
 
 public enum FitmeRoles {
-    ADMIN,
     READONLY,
     COACH,
     CLIENT

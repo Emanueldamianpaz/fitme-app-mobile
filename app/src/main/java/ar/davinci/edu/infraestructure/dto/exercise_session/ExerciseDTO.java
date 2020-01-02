@@ -1,4 +1,4 @@
-package ar.davinci.edu.infraestructure.dto;
+package ar.davinci.edu.infraestructure.dto.exercise_session;
 
 
 import android.location.Location;

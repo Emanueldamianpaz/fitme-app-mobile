@@ -1,4 +1,4 @@
-package ar.davinci.edu.infraestructure.model;
+package ar.davinci.edu.infraestructure.dto.users;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -10,11 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Data
 @Builder
-public class Routine {
+public class UserSessionDTO {
 
-    private Long id;
-    private String name;
-    private String description;
-    private RoutineTemplate routineTemplate;
-
+    private String token_id;
+    private String role;
 }
