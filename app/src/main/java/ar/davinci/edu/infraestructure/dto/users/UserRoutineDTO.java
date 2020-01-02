@@ -18,6 +18,6 @@ public class UserRoutineDTO {
 
     private Long id;
     private Scoring scoring;
-    private Set<Routine> routines;
-    
+    private Set<Routine> routine;
+
 }

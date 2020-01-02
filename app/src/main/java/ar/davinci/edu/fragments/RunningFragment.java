@@ -72,12 +72,12 @@ public class RunningFragment extends Fragment {
     private void setupCoordinates() {
         RunningSession runningSession = AnalyzerKML.getSessionRunning(getContext());
 
+        /* TODO Cargar sesiones de entrenamiento
         apiClient.addExerciseSession(
                 new ExerciseDTO(runningSession),
                 new OnSuccessCallback() {
                     @Override
                     public void execute(Object body) {
-                        //TODO Se posteo, hacer algo
                         Toast.makeText(getContext(), "Se posteó exitosamente!", Toast.LENGTH_LONG).show();
                     }
 
@@ -85,7 +85,7 @@ public class RunningFragment extends Fragment {
                     public void error(Object body) {
                         Toast.makeText(getContext(), "Error!", Toast.LENGTH_LONG).show();
                     }
-                });
+                });*/
     }
 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

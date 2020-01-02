@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import ar.davinci.edu.R;
 import ar.davinci.edu.infraestructure.model.Routine;
@@ -20,7 +22,10 @@ public class RoutineAdapter extends BaseAdapter {
     private RoutineAdapter() {
     }
 
-    public RoutineAdapter(Context context, List<Routine> routineList) {
+    public RoutineAdapter(Context context, Set<Routine> setRoutines) {
+        List<Routine> routineList = new ArrayList<>();
+        routineList.addAll(setRoutines);
+
         this.routineList = routineList;
         this.context = context;
     }

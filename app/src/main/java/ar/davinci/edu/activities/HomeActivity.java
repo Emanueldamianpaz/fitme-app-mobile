@@ -28,6 +28,7 @@ import ar.davinci.edu.fragments.RunningFragment;
 import ar.davinci.edu.infraestructure.FragmentMng;
 import ar.davinci.edu.infraestructure.api.ApiClient;
 import ar.davinci.edu.infraestructure.api.OnSuccessCallback;
+import ar.davinci.edu.infraestructure.dto.users.UserRoutineDTO;
 import ar.davinci.edu.infraestructure.model.User;
 import ar.davinci.edu.infraestructure.security.FitmeUser;
 import ar.davinci.edu.infraestructure.storage.SharedJWT;
@@ -58,19 +59,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         bootstrapping();
 
-        //    getMyRoutines();
+        getMyRoutines();
 
 
     }
 
     private void getMyRoutines() {
-        apiClient.getMyRoutines(
+        apiClient.getUserRoutines(
                 new OnSuccessCallback() {
                     @Override
                     public void execute(Object body) {
-                        User userInfo = (User) body;
-                        ListView routineList = (ListView) findViewById(R.id.listItemRoutine);
-                        routineList.setAdapter(new RoutineAdapter(getBaseContext(), userInfo.getUserRoutine().getRoutines()));
+                        UserRoutineDTO userRoutine = (UserRoutineDTO) body;
+                        ListView routineList = findViewById(R.id.listItemRoutine);
+                        routineList.setAdapter(new RoutineAdapter(getBaseContext(), userRoutine.getRoutine()));
                     }
 
                     @Override
@@ -78,17 +79,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         Toast.makeText(getBaseContext(), "Error!", Toast.LENGTH_LONG).show();
 
                     }
-                }, new Long(1));
+                }, SharedJWT.getJWT().toString(), user.getId());
     }
-
-
-
-
-
-
-
-
-
 
     private void bootstrapping() {
         Toolbar toolbar = findViewById(R.id.toolbar);

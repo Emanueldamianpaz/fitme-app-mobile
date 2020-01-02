@@ -15,24 +15,25 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface UserFitService {
 
 
     // -------------------------------------------------------------------------------- GET
 
-    @GET("user/:id/info/light")
-    Call<UserInfoLightDTO> getUserLight(@Header("Authorization") String token);
+    @GET("user/{id}/info/light")
+    Call<UserInfoLightDTO> getUserLight(@Header("Authorization") String token, @Path("id") String id);
 
 
-    @GET("user/:id/info/routines")
-    Call<UserRoutineDTO> getUserRoutines(@Header("Authorization") String token);
+    @GET("user/{id}/info/routines")
+    Call<UserRoutineDTO> getUserRoutines(@Header("Authorization") String token, @Path("id") String id);
 
-    @GET("user/:id/info/tip")
-    Call<TipDTO> getUserTip(@Header("Authorization") String token);
+    @GET("user/{id}/info/tip")
+    Call<TipDTO> getUserTip(@Header("Authorization") String token, @Path("id") String id);
 
-    @GET("api/exercise_session/:id/info")
-    Call<Set<ExerciseSession>> getExerciseSessions(Long id);
+    @GET("api/exercise_session/{id}/info")
+    Call<Set<ExerciseSession>> getExerciseSessions(@Path("id") String id);
 
 
     // -------------------------------------------------------------------------------- POST
@@ -41,11 +42,11 @@ public interface UserFitService {
     Call<ResponseBody> createSession(@Body UserSessionDTO userSession, @Header("Authorization") String token);
 
 
-    @POST("api/exercise_session/:id/exercise")
-    Call<ResponseBody> addExerciseSession(@Body ExerciseDTO exerciseSession, Long id);
+    @POST("api/exercise_session/{id}/exercise")
+    Call<ResponseBody> addExerciseSession(@Body ExerciseDTO exerciseSession, @Path("id") String id);
 
-    @POST("api/exercise_session/:id/nutrition")
-    Call<ResponseBody> addNutritionSession(@Body NutritionDTO nutritionSession, Long id);
+    @POST("api/exercise_session/{id}/nutrition")
+    Call<ResponseBody> addNutritionSession(@Body NutritionDTO nutritionSession, @Path("id") String id);
 
 }
 

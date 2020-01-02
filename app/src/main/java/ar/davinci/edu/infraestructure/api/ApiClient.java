@@ -41,8 +41,8 @@ public class ApiClient {
     // -------------------------------------------------------------------------------- GET
 
 
-    public void getUserLight(final OnSuccessCallback callback, String tokenId) {
-        Call<UserInfoLightDTO> getUserLight = userFitService.getUserLight(tokenId);
+    public void getUserLight(final OnSuccessCallback callback, String tokenId, String userId) {
+        Call<UserInfoLightDTO> getUserLight = userFitService.getUserLight(tokenId, userId);
 
         getUserLight.enqueue(new Callback<UserInfoLightDTO>() {
             @Override
@@ -57,8 +57,8 @@ public class ApiClient {
         });
     }
 
-    public void getUserRoutines(final OnSuccessCallback callback, String tokenId) {
-        Call<UserRoutineDTO> getUserRoutines = userFitService.getUserRoutines(tokenId);
+    public void getUserRoutines(final OnSuccessCallback callback, String tokenId, String userId) {
+        Call<UserRoutineDTO> getUserRoutines = userFitService.getUserRoutines(tokenId, userId);
 
         getUserRoutines.enqueue(new Callback<UserRoutineDTO>() {
             @Override
@@ -73,8 +73,8 @@ public class ApiClient {
         });
     }
 
-    public void getUserTip(final OnSuccessCallback callback, String tokenId) {
-        Call<TipDTO> getUserTip = userFitService.getUserTip(tokenId);
+    public void getUserTip(final OnSuccessCallback callback, String tokenId, String userId) {
+        Call<TipDTO> getUserTip = userFitService.getUserTip(tokenId, userId);
 
         getUserTip.enqueue(new Callback<TipDTO>() {
             @Override
@@ -96,9 +96,9 @@ public class ApiClient {
         return userFitService.createSession(new UserSessionDTO(tokenId, FitmeRoles.CLIENT.toString()), tokenId);
     }
 
-    public void addExerciseSession(ExerciseDTO exercise, final OnSuccessCallback callback) {
+    public void addExerciseSession(ExerciseDTO exercise, final OnSuccessCallback callback, String userId) {
 
-        Call<ResponseBody> infoFitSession = userFitService.addExerciseSession(exercise, exercise.getId());
+        Call<ResponseBody> infoFitSession = userFitService.addExerciseSession(exercise, userId);
         infoFitSession.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -112,9 +112,9 @@ public class ApiClient {
         });
     }
 
-    public void addNutritionSession(final OnSuccessCallback callback, Long id, NutritionDTO nutrition) {
+    public void addNutritionSession(final OnSuccessCallback callback, NutritionDTO nutrition, String userId) {
 
-        Call<ResponseBody> infoFitSession = userFitService.addNutritionSession(nutrition, id);
+        Call<ResponseBody> infoFitSession = userFitService.addNutritionSession(nutrition, userId);
         infoFitSession.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
