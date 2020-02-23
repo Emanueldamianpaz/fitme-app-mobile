@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"
@@ -27,10 +28,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBAJF-lhWIH_8kyXK6n2v9EItOGzymhyvk" />
 
-
         <activity android:name=".views.activities.HomeActivity" />
         <activity android:name=".views.activities.fitness.RunningActivity" />
-
         <activity
             android:name="com.auth0.android.provider.RedirectActivity"
             tools:node="replace">
@@ -47,9 +46,8 @@
             </intent-filter>
         </activity>
         <activity android:name="com.auth0.android.provider.WebAuthActivity" />
-
-
-        <activity android:name=".views.activities.fitness.WalkActivity"></activity>
+        <activity android:name=".views.activities.fitness.WalkActivity" />
+        <activity android:name=".views.activities.AccountActivity"></activity>
 
     </application>
 

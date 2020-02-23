@@ -1,31 +1,36 @@
 package ar.davinci.edu.views.activities.fitness;
 
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
-import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import ar.davinci.edu.R;
 import ar.davinci.edu.api.clients.ApiClient;
 import ar.davinci.edu.infraestructure.storage.PrefManager;
 import ar.davinci.edu.infraestructure.util.Helper;
-import ar.davinci.edu.model.UserFitnessSession;
+import ar.davinci.edu.views.activities.AccountActivity;
+import ar.davinci.edu.views.activities.HomeActivity;
+import ar.davinci.edu.views.activities.LoginActivity;
+import ar.davinci.edu.views.fragments.fitness.RunningFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import io.realm.Realm;
 
 
-public class RunningActivity extends AppCompatActivity {
+public class RunningActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    @BindView(R.id.messageLabel)
-    TextView mMessage;
-    @BindView(R.id.dailyDistanceData)
-    TextView mTotalDist;
-    @BindView(R.id.dailyTimeData)
-    TextView mTotalTime;
-    @BindView(R.id.dailyPaceData)
-    TextView mCurrentPace;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawer;
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
 
     final ApiClient apiClient = new ApiClient();
 
@@ -38,41 +43,63 @@ public class RunningActivity extends AppCompatActivity {
         setContentView(R.layout.activity_running);
         ButterKnife.bind(this);
 
-        Realm realm = Realm.getDefaultInstance();
-        String id = PrefManager.getID(PrefManager.USER_ID);
-        UserFitnessSession user = realm.where(UserFitnessSession.class).equalTo("id", id).findFirst();
-        if (user != null) {
-            setDailyStat(user);
-            showAchieveMilestone(user.getDistanceCovered());
+
+        setSupportActionBar(toolbar);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView.setNavigationItemSelectedListener(this);
+        Helper.changeFragments(this, new RunningFragment());
+
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.tip:
+                Log.i("navbar", "cliqueó tip");
+                break;
         }
+        return true;
     }
 
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
 
-    private void setDailyStat(UserFitnessSession user) {
-        String message = String.format(getString(R.string.message_label), user.getFirstName());
-        String dailyDist = String.format(getString(R.string.daily_dist_data), user.getDistanceCovered());
-        String dailyTime = String.format(getString(R.string.daily_time_data), Helper.secondToMinuteConverter(user.getTotalTimeWalk()));
-        String dailyPace = String.format(getString(R.string.daily_pace_data), user.getPace());
+            case R.id.home_fitme:
+                startActivity(Helper.getIntent(this, HomeActivity.class));
+                break;
 
-        mMessage.setText(message);
-        mTotalDist.setText(dailyDist);
-        mTotalTime.setText(dailyTime);
-        mCurrentPace.setText(dailyPace);
-    }
+            case R.id.begin_run:
+                startActivity(Helper.getIntent(this, RunningActivity.class));
+                break;
 
-    @OnClick(R.id.walkBtn)
-    public void goToWalkEvent(Button button) {
-        startActivity(Helper.getIntent(this, WalkActivity.class));
-    }
+            case R.id.close_session:
+                PrefManager.removeSession();
+                startActivity(Helper.getIntent(this, LoginActivity.class));
+                finish();
+                break;
 
-    private void showAchieveMilestone(float distanceCovered) {
-        int numberOfMilestones = Helper.getNumberOfMilestones(distanceCovered);
-        if (numberOfMilestones > 0) {
-            String title = getString(R.string.achievement_title);
-            String message = String.format(getString(R.string.achievement_message), numberOfMilestones);
-            Helper.displayMessageToUser(this, title, message).show();
+            case R.id.my_account:
+                startActivity(Helper.getIntent(this, AccountActivity.class));
+                break;
+
         }
-    }
 
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 
 }

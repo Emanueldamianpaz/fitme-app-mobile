@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".views.fragments.fitness.RunningFragment">
+
+
+    <TextView
+        android:id="@+id/messageLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#212121"
+        android:textStyle="bold"
+        tools:text="Hi username, stay healthy" />
+
+    <TextView
+        android:id="@+id/distanceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="@string/daily_distance_label"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#212121" />
+
+    <TextView
+        android:id="@+id/dailyDistanceData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="0.0 mi"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/timeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="@string/daily_time_label"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#212121" />
+
+    <TextView
+        android:id="@+id/dailyTimeData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="0.0 min" />
+
+    <TextView
+        android:id="@+id/paceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="@string/daily_pace_label"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#212121" />
+
+    <TextView
+        android:id="@+id/dailyPaceData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="0.3 mi/s" />
+
+    <Button
+        android:id="@+id/walkBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimary"
+        android:text="Walk"
+        android:textColor="@color/white_color" />
+
+</LinearLayout>

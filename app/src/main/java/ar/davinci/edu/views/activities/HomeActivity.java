@@ -1,5 +1,6 @@
 package ar.davinci.edu.views.activities;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,7 +15,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.auth0.android.jwt.JWT;
 import com.bumptech.glide.Glide;
@@ -75,6 +75,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
     private void getMyRoutines() {
+
+        ProgressDialog progressDialog = Helper.displayProgressDialog(HomeActivity.this, true, "Obteniendo rutinas");
+        progressDialog.show();
+
         apiClient.getUserRoutines(
                 new OnSuccessCallback() {
                     @Override
@@ -82,14 +86,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         UserRoutineDTO userRoutine = (UserRoutineDTO) body;
                         ListView routineList = findViewById(R.id.listItemRoutine);
                         routineList.setAdapter(new RoutineAdapter(HomeActivity.this, userRoutine.getRoutine()));
+
+                        progressDialog.dismiss();
                     }
 
                     @Override
                     public void error(Object body) {
-                        Toast.makeText(getBaseContext(), "Error!", Toast.LENGTH_LONG).show();
-
+                        progressDialog.dismiss();
+                        Helper.displayMessageToUser(HomeActivity.this, "Error inesperado", "Ha ocurrido un error").show();
                     }
                 }, SharedJWT.getJWT().toString(), user.getId());
+
+
     }
 
     private void bootstrapping() {
@@ -109,6 +117,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         lblEmail.setText(user.getEmail());
 
         ImageView imgUser = headerView.findViewById(R.id.imgUser);
+
         Glide.with(this)
                 .load(user.getPicture())
                 .apply(RequestOptions.circleCropTransform())
@@ -150,19 +159,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.close_session:
-                PrefManager.write(PrefManager.CREDENTIAL_FITME, "");
+                PrefManager.removeSession();
                 startActivity(Helper.getIntent(this, LoginActivity.class));
                 finish();
                 break;
 
             case R.id.my_account:
-                Log.i("de costado", "cliqueó my_account");
+                startActivity(Helper.getIntent(this, AccountActivity.class));
                 break;
 
         }
 
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

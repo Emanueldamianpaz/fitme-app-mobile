@@ -12,9 +12,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,12 +41,15 @@ import ar.davinci.edu.infraestructure.storage.PrefManager;
 import ar.davinci.edu.infraestructure.util.Helper;
 import ar.davinci.edu.model.UserFitnessSession;
 import ar.davinci.edu.service.LocationService;
+import ar.davinci.edu.views.activities.AccountActivity;
+import ar.davinci.edu.views.activities.HomeActivity;
+import ar.davinci.edu.views.activities.LoginActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.realm.Realm;
 
-public class WalkActivity extends FragmentActivity implements OnMapReadyCallback {
+public class WalkActivity extends FragmentActivity implements OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener {
 
     //private static final String TAG = WalkActivity.class.getSimpleName();
     private final static int MSG_UPDATE_TIME = 0;
@@ -50,6 +60,12 @@ public class WalkActivity extends FragmentActivity implements OnMapReadyCallback
     TextView mTimerTextView;
     @BindView(R.id.start_stop_walk_btn)
     Button mWalkBtn;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawer;
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
 
     private GoogleMap mGoogleMap;
     private LocationService mLocationService;
@@ -79,7 +95,6 @@ public class WalkActivity extends FragmentActivity implements OnMapReadyCallback
             isServiceBound = false;
         }
     };
-
 
     private BroadcastReceiver locationReceiver = new BroadcastReceiver() {
         @Override
@@ -301,4 +316,52 @@ public class WalkActivity extends FragmentActivity implements OnMapReadyCallback
     private void goToDispatchActivity() {
         startActivity(Helper.getIntent(this, DispatchActivity.class));
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.tip:
+                Log.i("navbar", "cliqueó tip");
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.home_fitme:
+                startActivity(Helper.getIntent(this, HomeActivity.class));
+                break;
+
+            case R.id.begin_run:
+                startActivity(Helper.getIntent(this, RunningActivity.class));
+                break;
+
+            case R.id.close_session:
+                PrefManager.removeSession();
+                startActivity(Helper.getIntent(this, LoginActivity.class));
+                finish();
+                break;
+
+            case R.id.my_account:
+                startActivity(Helper.getIntent(this, AccountActivity.class));
+                break;
+
+        }
+
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+
 }

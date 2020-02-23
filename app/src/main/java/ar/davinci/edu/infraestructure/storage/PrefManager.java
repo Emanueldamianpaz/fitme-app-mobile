@@ -59,6 +59,11 @@ public class PrefManager {
         prefsEditor.commit();
     }
 
+    public static void removeSession() {
+        SharedPreferences.Editor prefsEditor = PrefController.edit();
+        prefsEditor.putString(PrefManager.CREDENTIAL_FITME, "");
+        prefsEditor.commit();
+    }
     public static boolean read(String key, boolean defValue) {
         return PrefController.getBoolean(key, defValue);
     }

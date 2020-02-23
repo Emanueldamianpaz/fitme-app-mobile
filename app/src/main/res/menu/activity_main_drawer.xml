@@ -19,11 +19,7 @@
         android:icon="@drawable/runner"
         android:orderInCategory="100"
         android:title="Empezar a correr" />
-
-    <item
-        android:id="@+id/action_cancel_notification"
-        android:orderInCategory="100"
-        android:title="Cancelar notificacion" />
+    
     <item
         android:id="@+id/close_session"
         android:icon="@drawable/power"
