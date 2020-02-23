@@ -8,7 +8,7 @@ public class SharedJWT {
     }
 
     public static JWT getJWT() {
-        return new JWT(SharedPreferencesManager.read(SharedPreferencesManager.CREDENTIAL_FITME, null));
+        return new JWT(PrefManager.read(PrefManager.CREDENTIAL_FITME, null));
 
     }
 }

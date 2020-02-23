@@ -15,20 +15,22 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".activities.LoginActivity">
+        <activity android:name=".views.activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MapsActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBAJF-lhWIH_8kyXK6n2v9EItOGzymhyvk" />
 
-        <activity android:name=".activities.HomeActivity" />
+
+        <activity android:name=".views.activities.HomeActivity" />
+        <activity android:name=".views.activities.fitness.RunningActivity" />
+
         <activity
             android:name="com.auth0.android.provider.RedirectActivity"
             tools:node="replace">
@@ -45,6 +47,10 @@
             </intent-filter>
         </activity>
         <activity android:name="com.auth0.android.provider.WebAuthActivity" />
+
+
+        <activity android:name=".views.activities.fitness.WalkActivity"></activity>
+
     </application>
 
 </manifest>
