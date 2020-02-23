@@ -21,7 +21,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -39,7 +38,6 @@ import ar.davinci.edu.infraestructure.util.Helper;
 import ar.davinci.edu.model.UserFitnessSession;
 import ar.davinci.edu.service.LocationService;
 import ar.davinci.edu.views.activities.fitness.DispatchActivity;
-import ar.davinci.edu.views.activities.fitness.WalkActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -92,7 +90,6 @@ public class WalkFragment extends Fragment implements OnMapReadyCallback {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder binder) {
             //Log.e(TAG, "Service bound");
-
             isServiceBound = true;
             LocationService.LocalBinder localBinder = (LocationService.LocalBinder) binder;
             mLocationService = localBinder.getService();
@@ -151,13 +148,14 @@ public class WalkFragment extends Fragment implements OnMapReadyCallback {
             }
         }
         updateStopWalkUI();
-        //unbindService(mServiceConnection);
+        getContext().unbindService(mServiceConnection);
         isServiceBound = false;
         mRealm.close();
     }
 
     private void setUpMap() {
-        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map_fragment);
+        MapFragment mapFragment = (MapFragment) getActivity().getFragmentManager().findFragmentById(R.id.map_fragment);
+
         mapFragment.getMapAsync(this);
     }
 
@@ -234,13 +232,13 @@ public class WalkFragment extends Fragment implements OnMapReadyCallback {
 
     private void startLocationService() {
         Intent intent = new Intent(getContext(), LocationService.class);
-        startService(intent);
-        bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
+        getContext().startService(intent);
+        getContext().bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
     }
 
     private void stopLocationService() {
         Intent intentService = new Intent(getContext(), LocationService.class);
-        stopService(intentService);
+        getContext().stopService(intentService);
     }
 
     @Override

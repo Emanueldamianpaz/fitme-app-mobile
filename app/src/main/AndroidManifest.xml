@@ -49,6 +49,8 @@
         <activity android:name=".views.activities.fitness.WalkActivity" />
         <activity android:name=".views.activities.AccountActivity"></activity>
 
+        <service android:name=".service.LocationService" />
+
     </application>
 
 </manifest>
