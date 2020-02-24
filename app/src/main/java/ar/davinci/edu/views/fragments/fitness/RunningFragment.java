@@ -22,7 +22,7 @@ import io.realm.Realm;
 public class RunningFragment extends Fragment {
 
 
-    @BindView(R.id.messageLabel)
+    @BindView(R.id.lblMessage)
     TextView mMessage;
     @BindView(R.id.dailyDistanceData)
     TextView mTotalDist;
@@ -64,7 +64,7 @@ public class RunningFragment extends Fragment {
         mCurrentPace.setText(dailyPace);
     }
 
-    @OnClick(R.id.walkBtn)
+    @OnClick(R.id.btnWalk)
     public void goToWalkEvent(Button button) {
         startActivity(Helper.getIntent(getContext(), WalkActivity.class));
     }

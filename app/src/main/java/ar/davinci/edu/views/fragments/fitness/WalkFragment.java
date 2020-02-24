@@ -56,9 +56,9 @@ public class WalkFragment extends Fragment implements OnMapReadyCallback {
     //private static final String TAG = WalkActivity.class.getSimpleName();
     private final static int MSG_UPDATE_TIME = 0;
 
-    @BindView(R.id.text_view_distance)
+    @BindView(R.id.txtDistance)
     TextView mDistanceTextView;
-    @BindView(R.id.text_view_time)
+    @BindView(R.id.txtTime)
     TextView mTimerTextView;
     @BindView(R.id.start_stop_walk_btn)
     Button mWalkBtn;

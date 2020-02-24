@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:id="@+id/messageLabel"
+        android:id="@+id/lblMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -19,7 +19,7 @@
         tools:text="@string/message_label" />
 
     <TextView
-        android:id="@+id/distanceLabel"
+        android:id="@+id/lblDistance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -38,7 +38,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/timeLabel"
+        android:id="@+id/lblTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -58,7 +58,7 @@
         tools:text="0.0 min" />
 
     <TextView
-        android:id="@+id/paceLabel"
+        android:id="@+id/lblPace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -77,7 +77,7 @@
         tools:text="0.3 mi/s" />
 
     <Button
-        android:id="@+id/walkBtn"
+        android:id="@+id/btnWalk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
