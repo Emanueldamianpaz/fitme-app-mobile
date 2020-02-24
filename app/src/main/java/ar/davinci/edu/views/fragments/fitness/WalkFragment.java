@@ -86,10 +86,10 @@ public class WalkFragment extends Fragment implements OnMapReadyCallback {
         setUpMap();
 
 
-        if (ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+        if (ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         }
-        
+
         return v;
     }
 
@@ -208,6 +208,7 @@ public class WalkFragment extends Fragment implements OnMapReadyCallback {
             public void onClick(DialogInterface dialogInterface, int i) {
 
                 UserFitnessSession user = mRealm.where(UserFitnessSession.class).equalTo("id", PrefManager.getID(PrefManager.USER_ID)).findFirst();
+                // TODO Realizar el posteo al backend de la sesión de ejercicio
                 if (user != null) {
                     mRealm.beginTransaction();
                     user.updateDistanceCovered(distanceWalked);

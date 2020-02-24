@@ -74,7 +74,6 @@ public class LocationProvider implements GoogleApiClient.ConnectionCallbacks,
     @Override
     public void onConnected(Bundle bundle) {
 
-
             Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
             if (location != null) {
@@ -82,7 +81,6 @@ public class LocationProvider implements GoogleApiClient.ConnectionCallbacks,
             }
 
             startPeriodicUpdates();
-
 
     }
 
