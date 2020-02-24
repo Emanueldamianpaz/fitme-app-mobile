@@ -5,12 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".views.fragments.ExerciseFragment">
 
-
     <ListView
         android:id="@+id/listExercise"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/divider"
-        android:layout_margin="10dp" />
+        android:layout_margin="@dimen/activity_horizontal_margin" />
 
 </RelativeLayout>

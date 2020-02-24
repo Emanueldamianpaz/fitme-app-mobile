@@ -7,7 +7,8 @@
     <string name="my_account">Cuenta</string>
     <string name="message">Mensajes</string>
     <string name="home">Inicio</string>
-
+    <string name="shrug">¯\_(ツ)_/¯</string>
+    <string name="no_results">Parece que está vacio</string>
     <string name="com_auth0_client_id">mWdxl1wxhy1SktUHwOJC98zGllF3WqnQ</string>
     <string name="com_auth0_domain">fitme.auth0.com</string>
 

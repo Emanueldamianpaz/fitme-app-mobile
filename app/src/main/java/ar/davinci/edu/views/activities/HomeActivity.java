@@ -1,6 +1,7 @@
 package ar.davinci.edu.views.activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,9 +10,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -69,8 +72,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     @Override
                     public void execute(Object body) {
                         UserRoutineDTO userRoutine = (UserRoutineDTO) body;
-                        ListView routineList = findViewById(R.id.listItemRoutine);
-                        routineList.setAdapter(new RoutineAdapter(HomeActivity.this, userRoutine.getRoutine()));
+
+                        if (userRoutine.getRoutine().size() > 0) {
+                            ListView routineList = findViewById(R.id.listItemRoutine);
+                            routineList.setAdapter(new RoutineAdapter(HomeActivity.this, userRoutine.getRoutine()));
+                        } else {
+                            LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                            ViewGroup parent = findViewById(R.id.fragmentNoResult);
+                            inflater.inflate(R.layout.fragment_no_result, parent);
+                        }
 
                         progressDialog.dismiss();
                     }
