@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.auth0.android.jwt.JWT;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
@@ -53,18 +52,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
 
-        JWT payload = SharedJWT.getJWT();
-
-        user = FitmeUser.builder()
-                .id(payload.getSubject())
-                .name(payload.getClaim("given_name").asString())
-                .last_name(payload.getClaim("family_name").asString())
-                .picture(payload.getClaim("picture").asString())
-                .gender(payload.getClaim("gender").asString())
-                .nickname(payload.getClaim("nickname").asString())
-                .email(payload.getClaim("email").asString())
-                .build();
-
+        user = SharedJWT.getUserFromSharedP();
 
         bootstrapping();
 

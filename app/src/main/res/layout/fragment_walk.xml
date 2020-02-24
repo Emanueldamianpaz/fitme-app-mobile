@@ -40,7 +40,7 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/text_view_distance_label"
             android:padding="@dimen/label_padding"
-            android:text="0.0 mi"
+            android:text="0.0 metros"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView

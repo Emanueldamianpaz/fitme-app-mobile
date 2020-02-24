@@ -278,7 +278,7 @@ public class WalkFragment extends Fragment implements OnMapReadyCallback {
     private void initializeLocationMarker(LatLng latLngMarker) {
         MarkerOptions options = new MarkerOptions()
                 .position(latLngMarker)
-                .title("I am here!");
+                .title("Tu ubication");
         mLocationMarker = mGoogleMap.addMarker(options);
     }
 
