@@ -28,6 +28,7 @@ public class LocationProvider implements GoogleApiClient.ConnectionCallbacks,
 
     public interface LocationCallback {
         void handleInitialLocation(Location location);
+
         void handleNewLocation(Location location);
     }
 
@@ -43,7 +44,7 @@ public class LocationProvider implements GoogleApiClient.ConnectionCallbacks,
 
         mLocationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                .setInterval(10 * 1000)
+                .setInterval(15 * 1000)
                 .setFastestInterval(5 * 1000);
 
         mContext = context;
@@ -61,7 +62,7 @@ public class LocationProvider implements GoogleApiClient.ConnectionCallbacks,
         }
     }
 
-    public void changeSetting(int priority, long setInterval, long fastInterval){
+    public void changeSetting(int priority, long setInterval, long fastInterval) {
 
         mLocationRequest.setPriority(priority);
         mLocationRequest.setInterval(setInterval);
@@ -70,13 +71,19 @@ public class LocationProvider implements GoogleApiClient.ConnectionCallbacks,
     }
 
 
-
     @Override
     public void onConnected(Bundle bundle) {
 
-        Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        mLocationCallback.handleInitialLocation(location);
-        startPeriodicUpdates();
+
+            Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
+            if (location != null) {
+                mLocationCallback.handleInitialLocation(location);
+            }
+
+            startPeriodicUpdates();
+
+
     }
 
     private void startPeriodicUpdates() {
@@ -95,7 +102,7 @@ public class LocationProvider implements GoogleApiClient.ConnectionCallbacks,
 
         if (connectionResult.hasResolution() && mContext instanceof Activity) {
             try {
-                Activity activity = (Activity)mContext;
+                Activity activity = (Activity) mContext;
                 connectionResult.startResolutionForResult(activity, CONNECTION_FAILURE_RESOLUTION_REQUEST);
             } catch (IntentSender.SendIntentException e) {
                 e.printStackTrace();
