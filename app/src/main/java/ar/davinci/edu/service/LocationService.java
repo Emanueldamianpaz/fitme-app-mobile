@@ -167,8 +167,8 @@ public class LocationService extends Service implements LocationProvider.Locatio
 
     private Notification createNotification() {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                .setContentTitle("Keep Walking")
-                .setContentText("Tap to return to walk activity")
+                .setContentTitle("Siga caminando")
+                .setContentText("Presione para retomar actividad")
                 .setSmallIcon(R.mipmap.ic_launcher);
 
         Intent resultIntent = new Intent(this, DispatchActivity.class);

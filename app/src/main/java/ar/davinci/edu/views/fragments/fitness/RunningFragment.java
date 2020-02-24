@@ -47,9 +47,7 @@ public class RunningFragment extends Fragment {
         UserFitnessSession user = realm.where(UserFitnessSession.class).equalTo("id", id).findFirst();
         if (user != null) {
             setDailyStat(user);
-            showAchieveMilestone(user.getDistanceCovered());
         }
-
 
         return v;
     }
@@ -71,13 +69,5 @@ public class RunningFragment extends Fragment {
         startActivity(Helper.getIntent(getContext(), WalkActivity.class));
     }
 
-    private void showAchieveMilestone(float distanceCovered) {
-        int numberOfMilestones = Helper.getNumberOfMilestones(distanceCovered);
-        if (numberOfMilestones > 0) {
-            String title = getString(R.string.achievement_title);
-            String message = String.format(getString(R.string.achievement_message), numberOfMilestones);
-            Helper.displayMessageToUser(getContext(), title, message).show();
-        }
-    }
 
 }

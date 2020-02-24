@@ -16,7 +16,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#212121"
         android:textStyle="bold"
-        tools:text="Hi username, stay healthy" />
+        tools:text="@string/message_label" />
 
     <TextView
         android:id="@+id/distanceLabel"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:text="0.0 mi"
+        android:text="0.0 metros"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -83,7 +83,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@color/colorPrimary"
-        android:text="Walk"
+        android:text="@string/start_walk"
         android:textColor="@color/white_color" />
 
 </LinearLayout>

@@ -48,10 +48,6 @@ public class Helper {
     }
 
 
-    public static int getNumberOfMilestones(float meter) {
-        return (int) meter / 305; // 1000 feet -> 304.8
-    }
-
     public static float calculatePace(long time, float distance) {
         return secondToMinuteConverter(time) / distance; // 1000 feet -> 304.8
     }

@@ -20,6 +20,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -117,11 +118,10 @@ public class WalkFragment extends Fragment implements OnMapReadyCallback {
     private BroadcastReceiver locationReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-
             int resultCode = intent.getIntExtra(Helper.INTENT_EXTRA_RESULT_CODE, RESULT_CANCELED);
 
             if (resultCode == RESULT_OK) {
-                Helper.displayMessageToUser(getContext(), "New marker", "New marker").show();
+                Log.i("New marker", "New position register");
                 Location userLocation = intent.getParcelableExtra(Helper.INTENT_USER_LAT_LNG);
                 LatLng latLng = getLatLng(userLocation);
                 updateUserMarkerLocation(latLng);
