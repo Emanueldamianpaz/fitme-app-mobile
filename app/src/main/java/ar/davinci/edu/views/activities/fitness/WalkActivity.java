@@ -105,7 +105,7 @@ public class WalkActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.begin_run:
-                startActivity(Helper.getIntent(this, RunningActivity.class));
+                startActivity(Helper.getIntent(this, RunningSessionActivity.class));
                 break;
 
             case R.id.close_session:

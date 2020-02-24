@@ -18,7 +18,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
 import ar.davinci.edu.R;
-import ar.davinci.edu.api.clients.ApiClient;
 import ar.davinci.edu.infraestructure.security.FitmeUser;
 import ar.davinci.edu.infraestructure.storage.PrefManager;
 import ar.davinci.edu.infraestructure.storage.SharedJWT;
@@ -31,7 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class RunningActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class RunningSessionActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -42,15 +41,13 @@ public class RunningActivity extends AppCompatActivity implements NavigationView
 
     private FitmeUser user;
 
-    final ApiClient apiClient = new ApiClient();
-
-    public RunningActivity() {
+    public RunningSessionActivity() {
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_running);
+        setContentView(R.layout.activity_running_session);
         bootstrapping();
 
     }
@@ -112,7 +109,7 @@ public class RunningActivity extends AppCompatActivity implements NavigationView
                 break;
 
             case R.id.begin_run:
-                startActivity(Helper.getIntent(this, RunningActivity.class));
+                startActivity(Helper.getIntent(this, RunningSessionActivity.class));
                 break;
 
             case R.id.close_session:

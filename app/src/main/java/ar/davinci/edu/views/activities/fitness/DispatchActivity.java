@@ -16,7 +16,7 @@ public class DispatchActivity extends AppCompatActivity {
         if (PrefManager.isUserWalking()) {
             startActivity(Helper.getIntent(this, WalkActivity.class));
         } else {
-            startActivity(Helper.getIntent(this, RunningActivity.class));
+            startActivity(Helper.getIntent(this, RunningSessionActivity.class));
         }
 
 

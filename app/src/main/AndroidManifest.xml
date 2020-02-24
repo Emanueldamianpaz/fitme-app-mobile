@@ -29,7 +29,7 @@
             android:value="AIzaSyBAJF-lhWIH_8kyXK6n2v9EItOGzymhyvk" />
 
         <activity android:name=".views.activities.HomeActivity" />
-        <activity android:name=".views.activities.fitness.RunningActivity" />
+        <activity android:name=".views.activities.fitness.RunningSessionActivity" />
         <activity
             android:name="com.auth0.android.provider.RedirectActivity"
             tools:node="replace">

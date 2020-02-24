@@ -27,7 +27,7 @@ import ar.davinci.edu.infraestructure.security.FitmeUser;
 import ar.davinci.edu.infraestructure.storage.PrefManager;
 import ar.davinci.edu.infraestructure.storage.SharedJWT;
 import ar.davinci.edu.infraestructure.util.Helper;
-import ar.davinci.edu.views.activities.fitness.RunningActivity;
+import ar.davinci.edu.views.activities.fitness.RunningSessionActivity;
 import ar.davinci.edu.views.adapters.RoutineAdapter;
 import ar.davinci.edu.views.fragments.HomeFragment;
 import butterknife.BindView;
@@ -57,10 +57,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         bootstrapping();
 
         getMyRoutines();
-
-
     }
-
 
     private void getMyRoutines() {
 
@@ -143,7 +140,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.begin_run:
-                startActivity(Helper.getIntent(this, RunningActivity.class));
+                startActivity(Helper.getIntent(this, RunningSessionActivity.class));
                 break;
 
             case R.id.close_session:
