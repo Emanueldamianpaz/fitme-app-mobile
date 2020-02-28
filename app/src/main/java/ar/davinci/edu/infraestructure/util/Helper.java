@@ -38,7 +38,8 @@ public class Helper {
     }
 
     public static void changeFragments(AppCompatActivity context, Fragment fragment) {
-        context.getSupportFragmentManager().beginTransaction()
+        context.getSupportFragmentManager()
+                .beginTransaction()
                 .replace(R.id.fragmentMain, fragment)
                 .commit();
     }

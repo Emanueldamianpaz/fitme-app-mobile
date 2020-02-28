@@ -28,7 +28,6 @@
 
             <FrameLayout
                 android:id="@+id/fragmentMain"
-                android:name="ar.davinci.edu.fragments.HomeFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:layout="@layout/fragment_home" />

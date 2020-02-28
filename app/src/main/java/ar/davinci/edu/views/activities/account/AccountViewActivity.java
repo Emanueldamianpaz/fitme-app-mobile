@@ -1,4 +1,4 @@
-package ar.davinci.edu.views.activities.fitness;
+package ar.davinci.edu.views.activities.account;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -22,15 +22,14 @@ import ar.davinci.edu.infraestructure.security.FitmeUser;
 import ar.davinci.edu.infraestructure.storage.PrefManager;
 import ar.davinci.edu.infraestructure.storage.SharedJWT;
 import ar.davinci.edu.infraestructure.util.Helper;
-import ar.davinci.edu.views.activities.account.AccountViewActivity;
 import ar.davinci.edu.views.activities.HomeActivity;
 import ar.davinci.edu.views.activities.LoginActivity;
-import ar.davinci.edu.views.fragments.fitness.RunningFragment;
+import ar.davinci.edu.views.activities.fitness.RunningSessionActivity;
+import ar.davinci.edu.views.fragments.account.AccountViewFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
-public class RunningSessionActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class AccountViewActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -38,18 +37,13 @@ public class RunningSessionActivity extends AppCompatActivity implements Navigat
     DrawerLayout drawer;
     @BindView(R.id.nav_view)
     NavigationView navigationView;
-
     private FitmeUser user;
-
-    public RunningSessionActivity() {
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_running_session);
+        setContentView(R.layout.activity_account_view);
         bootstrapping();
-
     }
 
     private void bootstrapping() {
@@ -79,7 +73,7 @@ public class RunningSessionActivity extends AppCompatActivity implements Navigat
                 .apply(RequestOptions.circleCropTransform())
                 .into(imgUser);
 
-        Helper.changeFragments(this, new RunningFragment());
+        Helper.changeFragments(this, new AccountViewFragment());
     }
 
     @Override
@@ -127,5 +121,4 @@ public class RunningSessionActivity extends AppCompatActivity implements Navigat
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 }

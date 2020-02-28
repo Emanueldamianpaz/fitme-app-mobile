@@ -6,8 +6,12 @@
     <string name="close_sesion">Cerrar sesión</string>
     <string name="my_account">Cuenta</string>
     <string name="message">Mensajes</string>
+    <string name="edit">Editar</string>
+    <string name="save">Guardar</string>
+
     <string name="home">Inicio</string>
     <string name="shrug">¯\_(ツ)_/¯</string>
+    <string name="no_info">Sin información</string>
     <string name="no_results">Parece que está vacio</string>
     <string name="com_auth0_client_id">mWdxl1wxhy1SktUHwOJC98zGllF3WqnQ</string>
     <string name="com_auth0_domain">fitme.auth0.com</string>
@@ -21,6 +25,20 @@
     <string name="daily_distance_label">Distancia caminada</string>
     <string name="daily_time_label">Total de tiempo</string>
     <string name="daily_pace_label">Pasos</string>
+
+    <string name="initial_weight_label_interpolation">Peso inicial: %s</string>
+    <string name="current_fat_label_interpolation">Peso actual: %s</string>
+    <string name="frecuency_exercise_label_interpolation">Frecuencia de ejercicio: %s</string>
+    <string name="height_label_interpolation">Altura: %s</string>
+    <string name="goal_label_interpolation">Objetivo: %s</string>
+
+
+    <string name="initial_weight_label">Peso inicial</string>
+    <string name="current_fat_label">Peso actual</string>
+    <string name="frecuency_exercise_label">Frecuencia de ejercicio</string>
+    <string name="height_label">Altura</string>
+    <string name="goal_label">Objetivo</string>
+
 
     <string name="message_label">Hola %s!</string>
     <string name="daily_dist_data">%.1f metros</string>

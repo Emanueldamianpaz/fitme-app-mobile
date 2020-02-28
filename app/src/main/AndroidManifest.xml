@@ -48,7 +48,8 @@
         <activity android:name="com.auth0.android.provider.WebAuthActivity" />
         <activity android:name=".views.activities.fitness.WalkActivity" />
         <activity android:name=".views.activities.fitness.DispatchActivity"></activity>
-        <activity android:name=".views.activities.AccountActivity"></activity>
+        <activity android:name=".views.activities.account.AccountViewActivity"></activity>
+        <activity android:name=".views.activities.account.AccountEditActivity"></activity>
 
 
         <service android:name=".service.LocationService" />

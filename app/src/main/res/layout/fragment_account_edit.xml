@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".views.fragments.account.AccountEditFragment">
+
+
+    <TextView
+        android:id="@+id/lblUsername"
+        android:layout_width="159dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/heavy_margin"
+        android:textColor="#212121"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:text="@string/message_label" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/light_margin">
+
+        <EditText
+            android:id="@+id/editInitialWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:hint="@string/initial_weight_label"
+            android:textColor="#212121"></EditText>
+
+
+        <EditText
+            android:id="@+id/editCurrentFat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:hint="@string/current_fat_label"
+            android:textColor="#212121"></EditText>
+
+        <EditText
+            android:id="@+id/editFrecuencyExercise"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:hint="@string/frecuency_exercise_label"
+            android:textColor="#212121"></EditText>
+
+        <EditText
+            android:id="@+id/editHeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:hint="@string/height_label"
+            android:textColor="#212121"></EditText>
+
+        <EditText
+            android:id="@+id/editGoal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:hint="@string/goal_label"
+            android:textColor="#212121"></EditText>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/save"
+        android:textColor="@color/white_color" />
+
+</LinearLayout>
