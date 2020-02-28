@@ -8,15 +8,15 @@
 
 
     <TextView
-        android:id="@+id/lblUsername"
-        android:layout_width="159dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="@dimen/heavy_margin"
+        android:textAlignment="center"
         android:textColor="#212121"
         android:textSize="30sp"
         android:textStyle="bold"
-        tools:text="@string/message_label" />
+        tools:text="@string/form_edit" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -78,9 +78,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_margin="@dimen/heavy_margin"
         android:background="@color/colorPrimary"
         android:text="@string/save"
         android:textColor="@color/white_color" />
+
+    <ImageView
+        android:layout_width="295dp"
+        android:layout_height="202dp"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/light_margin"
+        android:src="@drawable/running_photo_1"></ImageView>
 
 </LinearLayout>

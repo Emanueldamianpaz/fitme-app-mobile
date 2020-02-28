@@ -76,27 +76,27 @@ public class AccountViewFragment extends Fragment {
                         UserInfoDTO userInfo = userInfoLight.getUserInfo();
                         String message_label = String.format(getString(R.string.message_label), user.getName());
 
-                        String initial_weight_label = getString(R.string.no_info);
+                        String initial_weight_label = String.format(getString(R.string.initial_weight_label_interpolation), getString(R.string.no_info));
                         if (userInfo.getInitialWeight() != null) {
                             initial_weight_label = String.format(getString(R.string.initial_weight_label_interpolation), userInfo.getInitialWeight().toString());
                         }
 
-                        String current_fat_label = getString(R.string.no_info);
+                        String current_fat_label = String.format(getString(R.string.current_fat_label_interpolation), getString(R.string.no_info));
                         if (userInfo.getCurrentFat() != null) {
                             current_fat_label = String.format(getString(R.string.current_fat_label_interpolation), userInfo.getCurrentFat().toString());
                         }
 
-                        String frecuency_exercise_label = getString(R.string.no_info);
+                        String frecuency_exercise_label = String.format(getString(R.string.frecuency_exercise_label_interpolation), getString(R.string.no_info));
                         if (userInfo.getFrecuencyExercise() != null) {
                             frecuency_exercise_label = String.format(getString(R.string.frecuency_exercise_label_interpolation), userInfo.getFrecuencyExercise());
                         }
 
-                        String height_label = getString(R.string.no_info);
+                        String height_label = String.format(getString(R.string.height_label_interpolation), getString(R.string.no_info));
                         if (userInfo.getHeight() != null) {
                             height_label = String.format(getString(R.string.height_label_interpolation), userInfo.getHeight());
                         }
 
-                        String goal_label = getString(R.string.no_info);
+                        String goal_label = String.format(getString(R.string.goal_label_interpolation), getString(R.string.no_info));
 
 
                         Glide.with(getContext())
