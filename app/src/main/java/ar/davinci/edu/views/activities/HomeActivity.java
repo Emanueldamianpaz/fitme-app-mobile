@@ -1,6 +1,5 @@
 package ar.davinci.edu.views.activities;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -24,7 +23,6 @@ import com.bumptech.glide.request.RequestOptions;
 
 import ar.davinci.edu.R;
 import ar.davinci.edu.api.clients.ApiClient;
-import ar.davinci.edu.api.clients.OnSuccessCallback;
 import ar.davinci.edu.api.dto.users.UserRoutineDTO;
 import ar.davinci.edu.infraestructure.security.FitmeUser;
 import ar.davinci.edu.infraestructure.storage.PrefManager;
@@ -64,32 +62,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     private void getMyRoutines() {
 
-        ProgressDialog progressDialog = Helper.displayProgressDialog(HomeActivity.this, true, "Obteniendo rutinas");
-        progressDialog.show();
-
         ApiClient.getUserRoutines(
-                new OnSuccessCallback() {
-                    @Override
-                    public void execute(Object body) {
-                        UserRoutineDTO userRoutine = (UserRoutineDTO) body;
+                body -> {
+                    UserRoutineDTO userRoutine = (UserRoutineDTO) body;
 
-                        if (userRoutine.getRoutine().size() > 0) {
-                            ListView routineList = findViewById(R.id.listItemRoutine);
-                            routineList.setAdapter(new RoutineAdapter(HomeActivity.this, userRoutine.getRoutine()));
-                        } else {
-                            LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                            ViewGroup parent = findViewById(R.id.fragmentNoResult);
-                            inflater.inflate(R.layout.fragment_no_result, parent);
-                        }
-
-                        progressDialog.dismiss();
+                    if (userRoutine.getRoutine().size() > 0) {
+                        ListView routineList = findViewById(R.id.listItemRoutine);
+                        routineList.setAdapter(new RoutineAdapter(HomeActivity.this, userRoutine.getRoutine()));
+                    } else {
+                        LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        ViewGroup parent = findViewById(R.id.fragmentNoResult);
+                        inflater.inflate(R.layout.fragment_no_result, parent);
                     }
 
-                    @Override
-                    public void error(Object body) {
-                        progressDialog.dismiss();
-                        Helper.displayMessageToUser(HomeActivity.this, "Error inesperado", "Ha ocurrido un error").show();
-                    }
                 },
                 getBaseContext()
         );

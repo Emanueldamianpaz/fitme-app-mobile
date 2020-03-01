@@ -14,7 +14,6 @@ import com.bumptech.glide.request.RequestOptions;
 
 import ar.davinci.edu.R;
 import ar.davinci.edu.api.clients.ApiClient;
-import ar.davinci.edu.api.clients.OnSuccessCallback;
 import ar.davinci.edu.api.dto.users.UserInfoDTO;
 import ar.davinci.edu.api.dto.users.UserInfoLightDTO;
 import ar.davinci.edu.infraestructure.security.FitmeUser;
@@ -62,53 +61,46 @@ public class AccountViewFragment extends Fragment {
 
     private void bootstraping() {
         ApiClient.getUserLight(
-                new OnSuccessCallback() {
-                    @Override
-                    public void execute(Object body) {
-                        UserInfoLightDTO userInfoLight = (UserInfoLightDTO) body;
+                body -> {
+                    UserInfoLightDTO userInfoLight = (UserInfoLightDTO) body;
 
-                        UserInfoDTO userInfo = userInfoLight.getUserInfo();
-                        String message_label = String.format(getString(R.string.message_label), user.getName());
+                    UserInfoDTO userInfo = userInfoLight.getUserInfo();
+                    String message_label = String.format(getString(R.string.message_label), user.getName());
 
-                        String initial_weight_label = String.format(getString(R.string.initial_weight_label_interpolation), getString(R.string.no_info));
-                        if (userInfo.getInitialWeight() != null) {
-                            initial_weight_label = String.format(getString(R.string.initial_weight_label_interpolation), userInfo.getInitialWeight().toString());
-                        }
-
-                        String current_fat_label = String.format(getString(R.string.current_fat_label_interpolation), getString(R.string.no_info));
-                        if (userInfo.getCurrentFat() != null) {
-                            current_fat_label = String.format(getString(R.string.current_fat_label_interpolation), userInfo.getCurrentFat().toString());
-                        }
-
-                        String frecuency_exercise_label = String.format(getString(R.string.frecuency_exercise_label_interpolation), getString(R.string.no_info));
-                        if (userInfo.getFrecuencyExercise() != null) {
-                            frecuency_exercise_label = String.format(getString(R.string.frecuency_exercise_label_interpolation), userInfo.getFrecuencyExercise());
-                        }
-
-                        String height_label = String.format(getString(R.string.height_label_interpolation), getString(R.string.no_info));
-                        if (userInfo.getHeight() != null) {
-                            height_label = String.format(getString(R.string.height_label_interpolation), userInfo.getHeight());
-                        }
-
-                        String goal_label = String.format(getString(R.string.goal_label_interpolation), getString(R.string.no_info));
-
-
-                        Glide.with(getContext())
-                                .load(user.getPicture())
-                                .apply(RequestOptions.circleCropTransform())
-                                .into(imgPortrait);
-
-                        lblUsername.setText(message_label);
-                        lblInitialWeight.setText(initial_weight_label);
-                        lblCurrentFat.setText(current_fat_label);
-                        lblFrecuencyExercise.setText(frecuency_exercise_label);
-                        lblHeight.setText(height_label);
-                        lblGoal.setText(goal_label);
+                    String initial_weight_label = String.format(getString(R.string.initial_weight_label_interpolation), getString(R.string.no_info));
+                    if (userInfo.getInitialWeight() != null) {
+                        initial_weight_label = String.format(getString(R.string.initial_weight_label_interpolation), userInfo.getInitialWeight().toString());
                     }
 
-                    @Override
-                    public void error(Object body) {
+                    String current_fat_label = String.format(getString(R.string.current_fat_label_interpolation), getString(R.string.no_info));
+                    if (userInfo.getCurrentFat() != null) {
+                        current_fat_label = String.format(getString(R.string.current_fat_label_interpolation), userInfo.getCurrentFat().toString());
                     }
+
+                    String frecuency_exercise_label = String.format(getString(R.string.frecuency_exercise_label_interpolation), getString(R.string.no_info));
+                    if (userInfo.getFrecuencyExercise() != null) {
+                        frecuency_exercise_label = String.format(getString(R.string.frecuency_exercise_label_interpolation), userInfo.getFrecuencyExercise());
+                    }
+
+                    String height_label = String.format(getString(R.string.height_label_interpolation), getString(R.string.no_info));
+                    if (userInfo.getHeight() != null) {
+                        height_label = String.format(getString(R.string.height_label_interpolation), userInfo.getHeight());
+                    }
+
+                    String goal_label = String.format(getString(R.string.goal_label_interpolation), getString(R.string.no_info));
+
+
+                    Glide.with(getContext())
+                            .load(user.getPicture())
+                            .apply(RequestOptions.circleCropTransform())
+                            .into(imgPortrait);
+
+                    lblUsername.setText(message_label);
+                    lblInitialWeight.setText(initial_weight_label);
+                    lblCurrentFat.setText(current_fat_label);
+                    lblFrecuencyExercise.setText(frecuency_exercise_label);
+                    lblHeight.setText(height_label);
+                    lblGoal.setText(goal_label);
                 },
                 getContext()
         );

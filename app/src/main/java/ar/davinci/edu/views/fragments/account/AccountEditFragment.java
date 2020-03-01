@@ -1,8 +1,8 @@
 package ar.davinci.edu.views.fragments.account;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +10,6 @@ import android.widget.EditText;
 
 import ar.davinci.edu.R;
 import ar.davinci.edu.api.clients.ApiClient;
-import ar.davinci.edu.api.clients.OnSuccessCallback;
 import ar.davinci.edu.api.dto.users.UserInfoDTO;
 import ar.davinci.edu.infraestructure.util.Helper;
 import ar.davinci.edu.views.activities.account.AccountViewActivity;
@@ -59,23 +58,10 @@ public class AccountEditFragment extends Fragment {
                 frecuencyExercise
         );
 
-        ProgressDialog progressDialog = Helper.displayProgressDialog(getContext(), true, "Actualizando datos...");
-        progressDialog.show();
-
         ApiClient.updateUserInfo(
                 userInfoToUpdate,
-                new OnSuccessCallback() {
-                    @Override
-                    public void execute(Object body) {
-                        progressDialog.dismiss();
-                    }
-
-                    @Override
-                    public void error(Object body) {
-                        progressDialog.dismiss();
-                        Helper.displayMessageToUser(getContext(), "Error inesperado", "Ha ocurrido un error").show();
-                    }
-                }
+                body -> Log.i("", ""),
+                getContext()
         );
         startActivity(Helper.getIntent(getContext(), AccountViewActivity.class));
     }

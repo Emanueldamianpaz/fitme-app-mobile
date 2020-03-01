@@ -1,4 +1,5 @@
 <resources>
+    <!-- ...................................................................... Commons -->
     <string name="app_name">FitMe</string>
     <string name="title_activity_maps">Mapa</string>
     <string name="navigation_drawer_open" />
@@ -8,48 +9,57 @@
     <string name="message">Mensajes</string>
     <string name="edit">Editar</string>
     <string name="save">Guardar</string>
-
     <string name="home">Inicio</string>
     <string name="shrug">¯\_(ツ)_/¯</string>
     <string name="no_info">Sin información</string>
     <string name="no_results">Parece que está vacio</string>
-    <string name="com_auth0_client_id">mWdxl1wxhy1SktUHwOJC98zGllF3WqnQ</string>
-    <string name="com_auth0_domain">fitme.auth0.com</string>
-
-
     <string name="distance_label">Distancia:</string>
     <string name="time_label">Tiempo:</string>
     <string name="start_walk">Comenzar a caminar</string>
     <string name="stop_walk">Parar</string>
-
     <string name="daily_distance_label">Distancia caminada</string>
     <string name="daily_time_label">Total de tiempo</string>
     <string name="daily_pace_label">Pasos</string>
-
-    <string name="initial_weight_label_interpolation">Peso inicial: %s</string>
-    <string name="current_fat_label_interpolation">Peso actual: %s</string>
-    <string name="frecuency_exercise_label_interpolation">Frecuencia de ejercicio: %s</string>
-    <string name="height_label_interpolation">Altura: %s</string>
-    <string name="goal_label_interpolation">Objetivo: %s</string>
-
-
     <string name="initial_weight_label">Peso inicial</string>
     <string name="current_fat_label">Peso actual</string>
     <string name="frecuency_exercise_label">Frecuencia de ejercicio</string>
     <string name="height_label">Altura</string>
     <string name="goal_label">Objetivo</string>
-
-
-    <string name="message_label">Hola %s!</string>
-    <string name="daily_dist_data">%.1f metros</string>
-    <string name="daily_time_data">%d min</string>
-    <string name="daily_pace_data">%.1f min/metros</string>
-
     <string name="save_walk_data_title">Caminata</string>
     <string name="save_walk_data_message">Guardar registro de caminata</string>
     <string name="dismiss_walk_data">Cerrar</string>
     <string name="save_walk_data">Guardar entrenamiento</string>
     <string name="form_edit">Editar datos</string>
-
     <string name="my_location">Mi ubicación</string>
+
+    <!-- ...................................................................... Authentication keys -->
+    <string name="com_auth0_client_id">mWdxl1wxhy1SktUHwOJC98zGllF3WqnQ</string>
+    <string name="com_auth0_domain">fitme.auth0.com</string>
+
+    <!-- ...................................................................... Interpolation -->
+    <string name="initial_weight_label_interpolation">Peso inicial: %s</string>
+    <string name="current_fat_label_interpolation">Peso actual: %s</string>
+    <string name="frecuency_exercise_label_interpolation">Frecuencia de ejercicio: %s</string>
+    <string name="height_label_interpolation">Altura: %s</string>
+    <string name="goal_label_interpolation">Objetivo: %s</string>
+    <string name="message_label">Hola %s!</string>
+    <string name="daily_dist_data">%.1f metros</string>
+    <string name="daily_time_data">%d min</string>
+    <string name="daily_pace_data">%.1f min/metros</string>
+
+
+    <!-- ...................................................................... Async messages -->
+    <string name="obtaining_user_info">Obteniendo informacion del usuario</string>
+    <string name="obtaining_routines">Obteniendo rutinas</string>
+    <string name="obtaining_exercise_running">Obteniendo entrenamientos</string>
+    <string name="saving_running_session">Guardando entrenamiento</string>
+    <string name="updating_user_info">Actualizando datos del usuario</string>
+
+    <string name="obtaining_kilometers_runned">Obteniendo kilometros recorridos</string>
+
+
+    <!-- ...................................................................... Error messages -->
+    <string name="unexpected_error">Error inesperado</string>
+    <string name="has_ocurried_an_error">Ha ocurrido un error. Intente nuevamente</string>
+
 </resources>

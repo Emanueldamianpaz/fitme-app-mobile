@@ -53,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
 
                         try {
                             createSession.execute();
-
                             PrefManager.write(PrefManager.CREDENTIAL_FITME, gson.toJson(idToken));
                             startActivity(Helper.getIntent(getBaseContext(), HomeActivity.class));
                         } catch (Exception ex) {

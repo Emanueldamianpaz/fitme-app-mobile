@@ -2,7 +2,6 @@ package ar.davinci.edu.views.fragments.fitness;
 
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -40,7 +39,6 @@ import java.lang.ref.WeakReference;
 
 import ar.davinci.edu.R;
 import ar.davinci.edu.api.clients.ApiClient;
-import ar.davinci.edu.api.clients.OnSuccessCallback;
 import ar.davinci.edu.infraestructure.storage.PrefManager;
 import ar.davinci.edu.infraestructure.util.Helper;
 import ar.davinci.edu.model.fitness.RunningSession;
@@ -217,23 +215,13 @@ public class WalkFragment extends Fragment implements OnMapReadyCallback {
                         speedAvg
                 );
 
-                ProgressDialog progressDialog = Helper.displayProgressDialog(getContext(), true, "Guardando entrenamiento...");
-                progressDialog.show();
 
                 ApiClient.addExerciseSession(
                         runningSession,
-                        new OnSuccessCallback() {
-                            @Override
-                            public void execute(Object body) {
-                                progressDialog.dismiss();
-                            }
-
-                            @Override
-                            public void error(Object body) {
-                                progressDialog.dismiss();
-                                Helper.displayMessageToUser(getContext(), "Error inesperado", "Ha ocurrido un error").show();
-                            }
-                        }
+                        body -> {
+                            Log.i("", "");
+                        },
+                        getContext()
                 );
 
                 goToDispatchActivity();
