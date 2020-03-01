@@ -13,10 +13,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="@dimen/heavy_margin"
+        android:text="@string/message_label"
+        android:textAlignment="center"
         android:textColor="#212121"
         android:textSize="30sp"
-        android:textStyle="bold"
-        tools:text="@string/message_label" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/lblDistance"

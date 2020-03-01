@@ -8,15 +8,16 @@
 
 
     <TextView
+        android:id="@+id/lblEditInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="@dimen/heavy_margin"
+        android:text="@string/form_edit"
         android:textAlignment="center"
         android:textColor="#212121"
         android:textSize="30sp"
-        android:textStyle="bold"
-        tools:text="@string/form_edit" />
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +32,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:hint="@string/initial_weight_label"
-            android:textColor="#212121"></EditText>
+            android:textColor="#212121" />
 
 
         <EditText
@@ -41,7 +42,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:hint="@string/current_fat_label"
-            android:textColor="#212121"></EditText>
+            android:textColor="#212121" />
 
         <EditText
             android:id="@+id/editFrecuencyExercise"
@@ -50,7 +51,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:hint="@string/frecuency_exercise_label"
-            android:textColor="#212121"></EditText>
+            android:textColor="#212121" />
 
         <EditText
             android:id="@+id/editHeight"
@@ -59,7 +60,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:hint="@string/height_label"
-            android:textColor="#212121"></EditText>
+            android:textColor="#212121" />
 
         <EditText
             android:id="@+id/editGoal"
@@ -68,7 +69,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:hint="@string/goal_label"
-            android:textColor="#212121"></EditText>
+            android:textColor="#212121" />
 
 
     </LinearLayout>
@@ -88,6 +89,6 @@
         android:layout_height="202dp"
         android:layout_gravity="center"
         android:layout_margin="@dimen/light_margin"
-        android:src="@drawable/running_photo_1"></ImageView>
+        android:src="@drawable/running_photo_1" />
 
 </LinearLayout>
