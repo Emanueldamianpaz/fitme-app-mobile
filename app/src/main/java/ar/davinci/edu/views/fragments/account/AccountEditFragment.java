@@ -1,14 +1,18 @@
 package ar.davinci.edu.views.fragments.account;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 
 import ar.davinci.edu.R;
+import ar.davinci.edu.api.clients.ApiClient;
+import ar.davinci.edu.api.clients.OnSuccessCallback;
+import ar.davinci.edu.api.dto.users.UserInfoDTO;
+import ar.davinci.edu.infraestructure.storage.SharedJWT;
 import ar.davinci.edu.infraestructure.util.Helper;
 import ar.davinci.edu.views.activities.account.AccountViewActivity;
 import butterknife.BindView;
@@ -39,17 +43,36 @@ public class AccountEditFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_account_edit, container, false);
         ButterKnife.bind(this, v);
 
-        bootstraping();
         return v;
     }
-
-    private void bootstraping() {
-
-
-    }
-
+    
     @OnClick(R.id.btnSave)
-    public void saveEdit(Button button) {
+    public void saveEdit() {
+        Double initialWeight = Double.parseDouble(editInitialWeight.getText().toString());
+        String height = editHeight.getText().toString();
+        Double currentFat = Double.parseDouble(editCurrentFat.getText().toString());
+        String frecuencyExercise = editFrecuencyExercise.getText().toString();
+
+        UserInfoDTO userInfoToUpdate = new UserInfoDTO(initialWeight, height, currentFat, frecuencyExercise);
+        String userId = SharedJWT.getUserFromSharedP().getId();
+
+        ProgressDialog progressDialog = Helper.displayProgressDialog(getContext(), true, "Actualizando datos...");
+        progressDialog.show();
+
+        ApiClient.updateUserInfo(userInfoToUpdate, userId,
+                new OnSuccessCallback() {
+                    @Override
+                    public void execute(Object body) {
+                        progressDialog.dismiss();
+                    }
+
+                    @Override
+                    public void error(Object body) {
+                        progressDialog.dismiss();
+                        Helper.displayMessageToUser(getContext(), "Error inesperado", "Ha ocurrido un error").show();
+                    }
+                }, SharedJWT.getJWT().toString()
+        );
         startActivity(Helper.getIntent(getContext(), AccountViewActivity.class));
     }
 }

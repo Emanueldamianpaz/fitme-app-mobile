@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import ar.davinci.edu.api.clients.userFit.UserFitService;
 import ar.davinci.edu.api.dto.exercise_session.NutritionDTO;
 import ar.davinci.edu.api.dto.scoring.TipDTO;
+import ar.davinci.edu.api.dto.users.UserInfoDTO;
 import ar.davinci.edu.api.dto.users.UserInfoLightDTO;
 import ar.davinci.edu.api.dto.users.UserRoutineDTO;
 import ar.davinci.edu.api.dto.users.UserSessionDTO;
@@ -77,7 +78,6 @@ public class ApiClient {
         });
     }
 
-
     // -------------------------------------------------------------------------------- POST
 
     public static Call<ResponseBody> createSession(String tokenId) {
@@ -116,5 +116,21 @@ public class ApiClient {
         });
     }
 
+    // -------------------------------------------------------------------------------- POST
+
+    public static void updateUserInfo(UserInfoDTO userInfoPatch, String userId, final OnSuccessCallback callback, String tokenId) {
+        Call<ResponseBody> userInfoRequest = userFitService.updateUserInfo(userInfoPatch, userId);
+        userInfoRequest.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                callback.execute(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable throwable) {
+                callback.error(throwable);
+            }
+        });
+    }
 
 }

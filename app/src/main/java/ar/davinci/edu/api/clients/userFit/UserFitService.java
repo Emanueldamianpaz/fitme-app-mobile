@@ -4,6 +4,7 @@ import java.util.Set;
 
 import ar.davinci.edu.api.dto.exercise_session.NutritionDTO;
 import ar.davinci.edu.api.dto.scoring.TipDTO;
+import ar.davinci.edu.api.dto.users.UserInfoDTO;
 import ar.davinci.edu.api.dto.users.UserInfoLightDTO;
 import ar.davinci.edu.api.dto.users.UserRoutineDTO;
 import ar.davinci.edu.api.dto.users.UserSessionDTO;
@@ -14,6 +15,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -47,6 +49,12 @@ public interface UserFitService {
 
     @POST("api/exercise_session/{id_user}/nutrition")
     Call<ResponseBody> addNutritionSession(@Body NutritionDTO nutritionSession, @Path("id_user") String id);
+
+    // -------------------------------------------------------------------------------- PATCH
+
+    @PATCH("user/{id}/info/")
+    Call<ResponseBody> updateUserInfo(@Body UserInfoDTO userInfo, @Header("Authorization") String token);
+
 
 }
 
