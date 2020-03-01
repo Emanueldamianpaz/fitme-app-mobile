@@ -48,7 +48,7 @@
     <string name="save_walk_data_title">Caminata</string>
     <string name="save_walk_data_message">Guardar registro de caminata</string>
     <string name="dismiss_walk_data">Cerrar</string>
-    <string name="save_walk_data">Guardar</string>
+    <string name="save_walk_data">Guardar entrenamiento</string>
     <string name="form_edit">Editar datos</string>
 
     <string name="my_location">Mi ubicación</string>

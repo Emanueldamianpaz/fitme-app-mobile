@@ -2,13 +2,13 @@ package ar.davinci.edu.api.clients.userFit;
 
 import java.util.Set;
 
-import ar.davinci.edu.api.dto.exercise_session.ExerciseDTO;
 import ar.davinci.edu.api.dto.exercise_session.NutritionDTO;
 import ar.davinci.edu.api.dto.scoring.TipDTO;
 import ar.davinci.edu.api.dto.users.UserInfoLightDTO;
 import ar.davinci.edu.api.dto.users.UserRoutineDTO;
 import ar.davinci.edu.api.dto.users.UserSessionDTO;
 import ar.davinci.edu.model.ExerciseSession;
+import ar.davinci.edu.model.fitness.RunningSession;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -42,11 +42,11 @@ public interface UserFitService {
     Call<ResponseBody> createSession(@Body UserSessionDTO userSession, @Header("Authorization") String token);
 
 
-    @POST("api/exercise_session/{id}/exercise")
-    Call<ResponseBody> addExerciseSession(@Body ExerciseDTO exerciseSession, @Path("id") String id);
+    @POST("api/exercise_session/{id_user}/exercise")
+    Call<ResponseBody> addExerciseSession(@Body RunningSession exerciseSession, @Path("id_user") String id);
 
-    @POST("api/exercise_session/{id}/nutrition")
-    Call<ResponseBody> addNutritionSession(@Body NutritionDTO nutritionSession, @Path("id") String id);
+    @POST("api/exercise_session/{id_user}/nutrition")
+    Call<ResponseBody> addNutritionSession(@Body NutritionDTO nutritionSession, @Path("id_user") String id);
 
 }
 

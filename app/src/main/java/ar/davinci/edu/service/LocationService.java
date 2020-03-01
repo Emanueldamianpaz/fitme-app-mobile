@@ -27,7 +27,8 @@ public class LocationService extends Service implements LocationProvider.Locatio
     private Location mPreviousLocation;
     private boolean isBroadcastAllow;
     private float mDistanceCovered;
-
+    private int sizeSample;
+    private float mSpeedAvg;
     private long startTime;
 
     private IBinder mIBinder = new LocalBinder();
@@ -39,7 +40,9 @@ public class LocationService extends Service implements LocationProvider.Locatio
         mLocationProvider = new LocationProvider(this, this);
         mLocationProvider.connect();
         isUserWalking = false;
+        mSpeedAvg = 0;
         startTime = 0;
+        sizeSample = 0;
     }
 
     @Override
@@ -66,10 +69,13 @@ public class LocationService extends Service implements LocationProvider.Locatio
         broadCastLocation(mCurrentLocation);
     }
 
-    // Assume this algorithm calculates precise distance
     private void calculateDistance() {
         if (isUserWalking) {
             float distanceDiff = mPreviousLocation.distanceTo(mCurrentLocation); // Return meter unit
+
+            mSpeedAvg = mSpeedAvg + mCurrentLocation.getSpeed(); // meters/seconds
+            sizeSample = sizeSample + 1;
+
             mDistanceCovered = mDistanceCovered + distanceDiff;
             mPreviousLocation = mCurrentLocation;
         }
@@ -121,6 +127,10 @@ public class LocationService extends Service implements LocationProvider.Locatio
         return (System.currentTimeMillis() - startTime) / 1000;
     }
 
+    public float speedAvg() {
+        return mSpeedAvg / sizeSample;
+    }
+
     public float distanceCovered() {
         return mDistanceCovered;
     }
@@ -134,6 +144,8 @@ public class LocationService extends Service implements LocationProvider.Locatio
             startTime = System.currentTimeMillis();
             mPreviousLocation = mCurrentLocation;
             mDistanceCovered = 0;
+            mSpeedAvg = 0;
+            sizeSample = 0;
             isUserWalking = true;
         }
     }

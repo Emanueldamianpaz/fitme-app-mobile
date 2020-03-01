@@ -2,6 +2,7 @@ package ar.davinci.edu.views.fragments.fitness;
 
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -38,9 +39,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.lang.ref.WeakReference;
 
 import ar.davinci.edu.R;
+import ar.davinci.edu.api.clients.ApiClient;
+import ar.davinci.edu.api.clients.OnSuccessCallback;
 import ar.davinci.edu.infraestructure.storage.PrefManager;
+import ar.davinci.edu.infraestructure.storage.SharedJWT;
 import ar.davinci.edu.infraestructure.util.Helper;
-import ar.davinci.edu.model.UserFitnessSession;
+import ar.davinci.edu.model.fitness.RunningSession;
 import ar.davinci.edu.service.LocationService;
 import ar.davinci.edu.views.activities.fitness.DispatchActivity;
 import butterknife.BindView;
@@ -177,7 +181,8 @@ public class WalkFragment extends Fragment implements OnMapReadyCallback {
             stopWalkService();
             updateStopWalkUI();
             updateWalkPref(false);
-            saveWalkData(mLocationService.distanceCovered(), mLocationService.elapsedTime());
+
+            saveWalkData(mLocationService.distanceCovered(), mLocationService.elapsedTime(), mLocationService.speedAvg());
         }
     }
 
@@ -192,7 +197,7 @@ public class WalkFragment extends Fragment implements OnMapReadyCallback {
         mLocationService.stopNotification();
     }
 
-    private void saveWalkData(final float distanceWalked, final long timeWalked) {
+    private void saveWalkData(final float distanceWalked, final long timeWalked, final float speedAvg) {
         AlertDialog.Builder saveBuilder = new AlertDialog.Builder(getContext());
         saveBuilder.setTitle(getString(R.string.save_walk_data_title));
         saveBuilder.setMessage(getString(R.string.save_walk_data_message));
@@ -206,19 +211,38 @@ public class WalkFragment extends Fragment implements OnMapReadyCallback {
         saveBuilder.setPositiveButton(getString(R.string.save_walk_data), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                RunningSession session = new RunningSession();
+                String userId = SharedJWT.getUserFromSharedP().getId();
 
-                UserFitnessSession user = mRealm.where(UserFitnessSession.class).equalTo("id", PrefManager.getID(PrefManager.USER_ID)).findFirst();
-                // TODO Realizar el posteo al backend de la sesión de ejercicio
-                if (user != null) {
-                    mRealm.beginTransaction();
-                    user.updateDistanceCovered(distanceWalked);
-                    user.updateTotalTimeWalk(timeWalked);
-                    user.setPace(Helper.calculatePace(timeWalked, distanceWalked));
-                    mRealm.commitTransaction();
-                    goToDispatchActivity();
-                }
+                session.setDistanceCovered(distanceWalked);
+                session.setTotalTimeWalk(timeWalked);
+                session.setPace(Helper.calculatePace(timeWalked, distanceWalked));
+                session.setSpeedAvg(speedAvg);
+
+                ProgressDialog progressDialog = Helper.displayProgressDialog(getContext(), true, "Guardando entrenamiento...");
+                progressDialog.show();
+
+                ApiClient.addExerciseSession(
+                        session,
+                        userId,
+                        new OnSuccessCallback() {
+                            @Override
+                            public void execute(Object body) {
+                                progressDialog.dismiss();
+                            }
+
+                            @Override
+                            public void error(Object body) {
+                                progressDialog.dismiss();
+                                Helper.displayMessageToUser(getContext(), "Error inesperado", "Ha ocurrido un error").show();
+                            }
+                        }, SharedJWT.getJWT().toString()
+                );
+
+                goToDispatchActivity();
             }
         });
+
         saveBuilder.setCancelable(false);
         saveBuilder.create().show();
     }
