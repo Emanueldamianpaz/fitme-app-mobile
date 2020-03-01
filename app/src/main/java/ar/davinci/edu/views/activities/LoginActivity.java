@@ -27,7 +27,6 @@ import retrofit2.Call;
 public class LoginActivity extends AppCompatActivity {
     private Auth0 account;
     private Gson gson;
-    final ApiClient apiClient = new ApiClient();
 
     @OnClick(R.id.btnLogin)
     public void login() {
@@ -50,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(@NonNull Credentials credentials) {
                         String idToken = credentials.getIdToken();
-                        Call<ResponseBody> createSession = apiClient.createSession(idToken);
+                        Call<ResponseBody> createSession = ApiClient.createSession(idToken);
 
                         try {
                             createSession.execute();

@@ -43,7 +43,6 @@ public class AccountViewFragment extends Fragment {
     @BindView(R.id.lblGoal)
     TextView lblGoal;
 
-    final ApiClient apiClient = new ApiClient();
     private FitmeUser user;
 
     public AccountViewFragment() {
@@ -67,7 +66,7 @@ public class AccountViewFragment extends Fragment {
         ProgressDialog progressDialog = Helper.displayProgressDialog(getContext(), true, "Obteniendo informacion del usuario");
         progressDialog.show();
 
-        apiClient.getUserLight(
+        ApiClient.getUserLight(
                 new OnSuccessCallback() {
                     @Override
                     public void execute(Object body) {

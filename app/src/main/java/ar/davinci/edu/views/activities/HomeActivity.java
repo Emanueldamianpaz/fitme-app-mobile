@@ -40,7 +40,6 @@ import butterknife.ButterKnife;
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FitmeUser user;
-    final ApiClient apiClient = new ApiClient();
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -68,7 +67,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         ProgressDialog progressDialog = Helper.displayProgressDialog(HomeActivity.this, true, "Obteniendo rutinas");
         progressDialog.show();
 
-        apiClient.getUserRoutines(
+        ApiClient.getUserRoutines(
                 new OnSuccessCallback() {
                     @Override
                     public void execute(Object body) {
