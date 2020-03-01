@@ -42,7 +42,6 @@ import ar.davinci.edu.R;
 import ar.davinci.edu.api.clients.ApiClient;
 import ar.davinci.edu.api.clients.OnSuccessCallback;
 import ar.davinci.edu.infraestructure.storage.PrefManager;
-import ar.davinci.edu.infraestructure.storage.SharedJWT;
 import ar.davinci.edu.infraestructure.util.Helper;
 import ar.davinci.edu.model.fitness.RunningSession;
 import ar.davinci.edu.service.LocationService;
@@ -211,20 +210,18 @@ public class WalkFragment extends Fragment implements OnMapReadyCallback {
         saveBuilder.setPositiveButton(getString(R.string.save_walk_data), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                RunningSession session = new RunningSession();
-                String userId = SharedJWT.getUserFromSharedP().getId();
-
-                session.setDistanceCovered(distanceWalked);
-                session.setTotalTimeWalk(timeWalked);
-                session.setPace(Helper.calculatePace(timeWalked, distanceWalked));
-                session.setSpeedAvg(speedAvg);
+                RunningSession runningSession = new RunningSession(
+                        timeWalked,
+                        distanceWalked,
+                        Helper.calculatePace(timeWalked, distanceWalked),
+                        speedAvg
+                );
 
                 ProgressDialog progressDialog = Helper.displayProgressDialog(getContext(), true, "Guardando entrenamiento...");
                 progressDialog.show();
 
                 ApiClient.addExerciseSession(
-                        session,
-                        userId,
+                        runningSession,
                         new OnSuccessCallback() {
                             @Override
                             public void execute(Object body) {
@@ -236,7 +233,7 @@ public class WalkFragment extends Fragment implements OnMapReadyCallback {
                                 progressDialog.dismiss();
                                 Helper.displayMessageToUser(getContext(), "Error inesperado", "Ha ocurrido un error").show();
                             }
-                        }, SharedJWT.getJWT().toString()
+                        }
                 );
 
                 goToDispatchActivity();

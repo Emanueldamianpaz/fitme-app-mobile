@@ -1,6 +1,5 @@
 package ar.davinci.edu.views.fragments.account;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -62,10 +61,6 @@ public class AccountViewFragment extends Fragment {
     }
 
     private void bootstraping() {
-
-        ProgressDialog progressDialog = Helper.displayProgressDialog(getContext(), true, "Obteniendo informacion del usuario");
-        progressDialog.show();
-
         ApiClient.getUserLight(
                 new OnSuccessCallback() {
                     @Override
@@ -109,15 +104,14 @@ public class AccountViewFragment extends Fragment {
                         lblFrecuencyExercise.setText(frecuency_exercise_label);
                         lblHeight.setText(height_label);
                         lblGoal.setText(goal_label);
-                        progressDialog.dismiss();
                     }
 
                     @Override
                     public void error(Object body) {
-                        progressDialog.dismiss();
-                        Helper.displayMessageToUser(getContext(), "Error inesperado", "Ha ocurrido un error").show();
                     }
-                }, SharedJWT.getJWT().toString(), user.getId());
+                },
+                getContext()
+        );
 
 
     }

@@ -90,7 +90,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         progressDialog.dismiss();
                         Helper.displayMessageToUser(HomeActivity.this, "Error inesperado", "Ha ocurrido un error").show();
                     }
-                }, SharedJWT.getJWT().toString(), user.getId());
+                },
+                getBaseContext()
+        );
 
 
     }

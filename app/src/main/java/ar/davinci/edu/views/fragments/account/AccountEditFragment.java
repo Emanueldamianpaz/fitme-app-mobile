@@ -12,7 +12,6 @@ import ar.davinci.edu.R;
 import ar.davinci.edu.api.clients.ApiClient;
 import ar.davinci.edu.api.clients.OnSuccessCallback;
 import ar.davinci.edu.api.dto.users.UserInfoDTO;
-import ar.davinci.edu.infraestructure.storage.SharedJWT;
 import ar.davinci.edu.infraestructure.util.Helper;
 import ar.davinci.edu.views.activities.account.AccountViewActivity;
 import butterknife.BindView;
@@ -45,7 +44,7 @@ public class AccountEditFragment extends Fragment {
 
         return v;
     }
-    
+
     @OnClick(R.id.btnSave)
     public void saveEdit() {
         Double initialWeight = Double.parseDouble(editInitialWeight.getText().toString());
@@ -53,13 +52,18 @@ public class AccountEditFragment extends Fragment {
         Double currentFat = Double.parseDouble(editCurrentFat.getText().toString());
         String frecuencyExercise = editFrecuencyExercise.getText().toString();
 
-        UserInfoDTO userInfoToUpdate = new UserInfoDTO(initialWeight, height, currentFat, frecuencyExercise);
-        String userId = SharedJWT.getUserFromSharedP().getId();
+        UserInfoDTO userInfoToUpdate = new UserInfoDTO(
+                initialWeight,
+                height,
+                currentFat,
+                frecuencyExercise
+        );
 
         ProgressDialog progressDialog = Helper.displayProgressDialog(getContext(), true, "Actualizando datos...");
         progressDialog.show();
 
-        ApiClient.updateUserInfo(userInfoToUpdate, userId,
+        ApiClient.updateUserInfo(
+                userInfoToUpdate,
                 new OnSuccessCallback() {
                     @Override
                     public void execute(Object body) {
@@ -71,7 +75,7 @@ public class AccountEditFragment extends Fragment {
                         progressDialog.dismiss();
                         Helper.displayMessageToUser(getContext(), "Error inesperado", "Ha ocurrido un error").show();
                     }
-                }, SharedJWT.getJWT().toString()
+                }
         );
         startActivity(Helper.getIntent(getContext(), AccountViewActivity.class));
     }
