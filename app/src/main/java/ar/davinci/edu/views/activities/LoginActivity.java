@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import ar.davinci.edu.R;
-import ar.davinci.edu.clients.apis.userInfo.UserApi;
+import ar.davinci.edu.clients.apis.UserApi;
 import ar.davinci.edu.infraestructure.storage.PrefManager;
 import ar.davinci.edu.infraestructure.util.Helper;
 import butterknife.ButterKnife;

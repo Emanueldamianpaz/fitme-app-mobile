@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import ar.davinci.edu.R;
-import ar.davinci.edu.clients.apis.userInfo.UserInfoApi;
+import ar.davinci.edu.clients.apis.UserInfoApi;
 import ar.davinci.edu.domain.dto.fitme.user.UserInfoRequestDTO;
 import ar.davinci.edu.domain.model.user.detail.UserGoal;
 import ar.davinci.edu.domain.model.user.detail.UserInfo;

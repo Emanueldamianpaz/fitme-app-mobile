@@ -38,7 +38,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.lang.ref.WeakReference;
 
 import ar.davinci.edu.R;
-import ar.davinci.edu.clients.apis.userInfo.TrainningSessionApi;
+import ar.davinci.edu.clients.apis.TrainningSessionApi;
 import ar.davinci.edu.domain.model.training.detail.ExerciseRunningSession;
 import ar.davinci.edu.domain.model.training.detail.RunningSession;
 import ar.davinci.edu.domain.types.ScoringType;

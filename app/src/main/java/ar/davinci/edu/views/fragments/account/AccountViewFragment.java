@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
 import ar.davinci.edu.R;
-import ar.davinci.edu.clients.apis.userInfo.UserApi;
+import ar.davinci.edu.clients.apis.UserApi;
 import ar.davinci.edu.domain.dto.fitme.user.UserInfoLightRequestDTO;
 import ar.davinci.edu.domain.dto.fitme.user.UserInfoRequestDTO;
 import ar.davinci.edu.infraestructure.security.FitmeUser;

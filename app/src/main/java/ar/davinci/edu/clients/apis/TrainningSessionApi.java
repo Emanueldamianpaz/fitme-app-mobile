@@ -1,4 +1,4 @@
-package ar.davinci.edu.clients.apis.userInfo;
+package ar.davinci.edu.clients.apis;
 
 import android.content.Context;
 

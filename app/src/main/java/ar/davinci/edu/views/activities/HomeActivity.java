@@ -24,7 +24,7 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.List;
 
 import ar.davinci.edu.R;
-import ar.davinci.edu.clients.apis.userInfo.UserRoutineApi;
+import ar.davinci.edu.clients.apis.UserRoutineApi;
 import ar.davinci.edu.domain.model.user.detail.UserRoutine;
 import ar.davinci.edu.infraestructure.security.FitmeUser;
 import ar.davinci.edu.infraestructure.storage.PrefManager;
