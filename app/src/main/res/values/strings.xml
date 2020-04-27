@@ -49,10 +49,18 @@
 
 
     <!-- ...................................................................... Async messages -->
+    <string name="creating_session">Iniciando sesión</string>
+    <string name="creating_user_experiences">Creando experiencia</string>
+
     <string name="obtaining_user_info">Obteniendo informacion del usuario</string>
     <string name="obtaining_routines">Obteniendo rutinas</string>
+    <string name="obtaining_user_experiences">Obteniendo experiencias</string>
+    <string name="obtaining_routine_detail">Obteniendo detalle de la rutina</string>
+
     <string name="obtaining_exercise_running">Obteniendo entrenamientos</string>
     <string name="saving_running_session">Guardando entrenamiento</string>
+    <string name="saving_nutrition_session">Guardando comida</string>
+
     <string name="updating_user_info">Actualizando datos del usuario</string>
 
     <string name="obtaining_kilometers_runned">Obteniendo kilometros recorridos</string>

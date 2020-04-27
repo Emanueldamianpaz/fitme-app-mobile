@@ -12,29 +12,23 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import ar.davinci.edu.R;
+import ar.davinci.edu.domain.model.user.detail.UserRoutine;
 import ar.davinci.edu.infraestructure.util.Helper;
-import ar.davinci.edu.model.Routine;
 import ar.davinci.edu.views.fragments.ExerciseFragment;
 import ar.davinci.edu.views.fragments.NutritionFragment;
 
 public class RoutineAdapter extends BaseAdapter {
 
     private AppCompatActivity context;
-    private List<Routine> routineList;
+    private List<UserRoutine> routineList;
     private Gson gson;
 
-    public RoutineAdapter(AppCompatActivity context, Set<Routine> setRoutines) {
-        List<Routine> routineList = new ArrayList<>();
-        routineList.addAll(setRoutines);
-
+    public RoutineAdapter(AppCompatActivity context, List<UserRoutine> setRoutines) {
         gson = new GsonBuilder().create();
-
-        this.routineList = routineList;
+        this.routineList = setRoutines;
         this.context = context;
     }
 
@@ -61,17 +55,17 @@ public class RoutineAdapter extends BaseAdapter {
         Button btnExercise = routineView.findViewById(R.id.btnExercise);
         Button btnNutrition = routineView.findViewById(R.id.btnNutrition);
 
-        Routine routine = routineList.get(i);
+        UserRoutine routine = routineList.get(i);
 
-        lblName.setText(routine.getName());
-        lblDescription.setText(routine.getDescription());
+        lblName.setText(routine.getRoutineTemplate().getName());
+        lblDescription.setText(routine.getRoutineTemplate().getDescription());
 
         Bundle args = new Bundle();
         ExerciseFragment exerciseFragment = new ExerciseFragment();
         NutritionFragment nutritionFragment = new NutritionFragment();
 
-        args.putString("exercise", gson.toJson(routine.getRoutineTemplate().getExercises()));
-        args.putString("nutrition", gson.toJson(routine.getRoutineTemplate().getNutritions()));
+        args.putString("exercise", gson.toJson(routine.getRoutineTemplate().getWorkoutExercises()));
+        args.putString("nutrition", gson.toJson(routine.getRoutineTemplate().getMealNutritions()));
 
         exerciseFragment.setArguments(args);
         nutritionFragment.setArguments(args);

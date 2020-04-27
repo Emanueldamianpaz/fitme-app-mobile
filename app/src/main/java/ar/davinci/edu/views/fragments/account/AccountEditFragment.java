@@ -9,8 +9,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import ar.davinci.edu.R;
-import ar.davinci.edu.api.clients.ApiClient;
-import ar.davinci.edu.api.dto.users.UserInfoDTO;
+import ar.davinci.edu.clients.apis.userInfo.UserInfoApi;
+import ar.davinci.edu.domain.dto.fitme.user.UserInfoRequestDTO;
+import ar.davinci.edu.domain.model.user.detail.UserGoal;
+import ar.davinci.edu.domain.model.user.detail.UserInfo;
+import ar.davinci.edu.infraestructure.storage.SharedJWT;
 import ar.davinci.edu.infraestructure.util.Helper;
 import ar.davinci.edu.views.activities.account.AccountViewActivity;
 import butterknife.BindView;
@@ -20,7 +23,6 @@ import butterknife.OnClick;
 
 public class AccountEditFragment extends Fragment {
 
-
     @BindView(R.id.editInitialWeight)
     EditText editInitialWeight;
     @BindView(R.id.editCurrentFat)
@@ -29,7 +31,6 @@ public class AccountEditFragment extends Fragment {
     EditText editFrecuencyExercise;
     @BindView(R.id.editHeight)
     EditText editHeight;
-
 
     public AccountEditFragment() {
     }
@@ -51,18 +52,21 @@ public class AccountEditFragment extends Fragment {
         Double currentFat = Double.parseDouble(editCurrentFat.getText().toString());
         String frecuencyExercise = editFrecuencyExercise.getText().toString();
 
-        UserInfoDTO userInfoToUpdate = new UserInfoDTO(
-                initialWeight,
+        // TODO Agregar campos de goalType en el form
+
+        UserInfoRequestDTO userInfoReq = new UserInfoRequestDTO(initialWeight,
                 height,
                 currentFat,
-                frecuencyExercise
+                frecuencyExercise,
+                new UserGoal(SharedJWT.getJWT().toString())
         );
 
-        ApiClient.updateUserInfo(
-                userInfoToUpdate,
+        UserInfoApi.updateUserInfo(
                 body -> Log.i("", ""),
-                getContext()
+                getContext(),
+                new UserInfo(userInfoReq)
         );
+
         startActivity(Helper.getIntent(getContext(), AccountViewActivity.class));
     }
 }

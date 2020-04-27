@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import ar.davinci.edu.R;
-import ar.davinci.edu.api.clients.ApiClient;
+import ar.davinci.edu.clients.apis.userInfo.UserApi;
 import ar.davinci.edu.infraestructure.storage.PrefManager;
 import ar.davinci.edu.infraestructure.util.Helper;
 import butterknife.ButterKnife;
@@ -49,8 +49,8 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(@NonNull Credentials credentials) {
                         String idToken = credentials.getIdToken();
-                        Call<ResponseBody> createSession = ApiClient.createSession(idToken);
 
+                        Call<ResponseBody> createSession = UserApi.createSession(idToken);
                         try {
                             createSession.execute();
                             PrefManager.write(PrefManager.CREDENTIAL_FITME, gson.toJson(idToken));

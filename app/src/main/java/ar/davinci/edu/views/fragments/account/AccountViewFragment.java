@@ -13,9 +13,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
 import ar.davinci.edu.R;
-import ar.davinci.edu.api.clients.ApiClient;
-import ar.davinci.edu.api.dto.users.UserInfoDTO;
-import ar.davinci.edu.api.dto.users.UserInfoLightDTO;
+import ar.davinci.edu.clients.apis.userInfo.UserApi;
+import ar.davinci.edu.domain.dto.fitme.user.UserInfoLightRequestDTO;
+import ar.davinci.edu.domain.dto.fitme.user.UserInfoRequestDTO;
 import ar.davinci.edu.infraestructure.security.FitmeUser;
 import ar.davinci.edu.infraestructure.storage.SharedJWT;
 import ar.davinci.edu.infraestructure.util.Helper;
@@ -60,11 +60,11 @@ public class AccountViewFragment extends Fragment {
     }
 
     private void bootstraping() {
-        ApiClient.getUserLight(
-                body -> {
-                    UserInfoLightDTO userInfoLight = (UserInfoLightDTO) body;
 
-                    UserInfoDTO userInfo = userInfoLight.getUserInfo();
+        UserApi.getUserLight(body -> {
+                    UserInfoLightRequestDTO userInfoLight = (UserInfoLightRequestDTO) body;
+
+                    UserInfoRequestDTO userInfo = userInfoLight.getUserInfo();
                     String message_label = String.format(getString(R.string.message_label), user.getName());
 
                     String initial_weight_label = String.format(getString(R.string.initial_weight_label_interpolation), getString(R.string.no_info));
@@ -102,8 +102,7 @@ public class AccountViewFragment extends Fragment {
                     lblHeight.setText(height_label);
                     lblGoal.setText(goal_label);
                 },
-                getContext()
-        );
+                getContext());
 
 
     }

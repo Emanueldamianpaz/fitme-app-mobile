@@ -21,9 +21,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.util.List;
+
 import ar.davinci.edu.R;
-import ar.davinci.edu.api.clients.ApiClient;
-import ar.davinci.edu.api.dto.users.UserRoutineDTO;
+import ar.davinci.edu.clients.apis.userInfo.UserRoutineApi;
+import ar.davinci.edu.domain.model.user.detail.UserRoutine;
 import ar.davinci.edu.infraestructure.security.FitmeUser;
 import ar.davinci.edu.infraestructure.storage.PrefManager;
 import ar.davinci.edu.infraestructure.storage.SharedJWT;
@@ -61,25 +63,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void getMyRoutines() {
-
-        ApiClient.getUserRoutines(
+        UserRoutineApi.getListUserRoutines(
                 body -> {
-                    UserRoutineDTO userRoutine = (UserRoutineDTO) body;
+                    List<UserRoutine> userRoutine = (List<UserRoutine>) body;
 
-                    if (userRoutine.getRoutine().size() > 0) {
+                    if (userRoutine.size() > 0) {
                         ListView routineList = findViewById(R.id.listItemRoutine);
-                        routineList.setAdapter(new RoutineAdapter(HomeActivity.this, userRoutine.getRoutine()));
+                        routineList.setAdapter(new RoutineAdapter(HomeActivity.this, userRoutine));
                     } else {
                         LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                         ViewGroup parent = findViewById(R.id.fragmentNoResult);
                         inflater.inflate(R.layout.fragment_no_result, parent);
                     }
 
-                },
-                HomeActivity.this
+                }, HomeActivity.this
+
         );
-
-
     }
 
     private void bootstrapping() {

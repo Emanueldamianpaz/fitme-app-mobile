@@ -38,10 +38,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.lang.ref.WeakReference;
 
 import ar.davinci.edu.R;
-import ar.davinci.edu.api.clients.ApiClient;
+import ar.davinci.edu.clients.apis.userInfo.TrainningSessionApi;
+import ar.davinci.edu.domain.model.training.detail.ExerciseRunningSession;
+import ar.davinci.edu.domain.model.training.detail.RunningSession;
+import ar.davinci.edu.domain.types.ScoringType;
 import ar.davinci.edu.infraestructure.storage.PrefManager;
 import ar.davinci.edu.infraestructure.util.Helper;
-import ar.davinci.edu.model.fitness.RunningSession;
 import ar.davinci.edu.service.LocationService;
 import ar.davinci.edu.views.activities.fitness.DispatchActivity;
 import butterknife.BindView;
@@ -216,12 +218,11 @@ public class WalkFragment extends Fragment implements OnMapReadyCallback {
                 );
 
 
-                ApiClient.addExerciseSession(
-                        runningSession,
-                        body -> {
-                            Log.i("", "");
-                        },
-                        getContext()
+                // TODO Evaluar como registrar el scoring
+
+                TrainningSessionApi.addExerciseSession(body -> Log.i("", ""),
+                        getContext(),
+                        new ExerciseRunningSession(ScoringType.UNKNOWN, runningSession)
                 );
 
                 goToDispatchActivity();

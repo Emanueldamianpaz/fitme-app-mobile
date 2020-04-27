@@ -16,13 +16,13 @@ import java.util.List;
 import java.util.Set;
 
 import ar.davinci.edu.R;
-import ar.davinci.edu.model.Nutrition;
+import ar.davinci.edu.domain.model.routine.detail.MealNutrition;
 import ar.davinci.edu.views.adapters.NutritionAdapter;
 
 public class NutritionFragment extends Fragment {
 
 
-    private List<Nutrition> nutritionList;
+    private List<MealNutrition> nutritionList;
     private Gson gson;
 
     public NutritionFragment() {
@@ -38,13 +38,13 @@ public class NutritionFragment extends Fragment {
         Bundle args = getArguments();
 
 
-        Set<Nutrition> nutrition = gson.fromJson(
+        Set<MealNutrition> nutrition = gson.fromJson(
                 args.getString("nutrition", ""),
-                new TypeToken<Set<Nutrition>>() {
+                new TypeToken<Set<MealNutrition>>() {
                 }.getType());
 
 
-        List<Nutrition> nutritions = new ArrayList<>();
+        List<MealNutrition> nutritions = new ArrayList<>();
         nutritions.addAll(nutrition);
 
         this.nutritionList = nutritions;

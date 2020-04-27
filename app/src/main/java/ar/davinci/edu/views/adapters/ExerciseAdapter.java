@@ -11,17 +11,17 @@ import android.widget.TextView;
 import java.util.List;
 
 import ar.davinci.edu.R;
-import ar.davinci.edu.model.Exercise;
+import ar.davinci.edu.domain.model.routine.detail.WorkoutExercise;
 
 public class ExerciseAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Exercise> exerciseList;
+    private List<WorkoutExercise> exerciseList;
 
     private ExerciseAdapter() {
     }
 
-    public ExerciseAdapter(Context context, List<Exercise> exerciseList) {
+    public ExerciseAdapter(Context context, List<WorkoutExercise> exerciseList) {
         this.exerciseList = exerciseList;
         this.context = context;
     }
@@ -50,11 +50,11 @@ public class ExerciseAdapter extends BaseAdapter {
         TextView txtDifficulty = exerciseView.findViewById(R.id.lblDifficulty);
         TextView txtType = exerciseView.findViewById(R.id.lblType);
 
-        Exercise exercise = exerciseList.get(i);
+        WorkoutExercise exercise = exerciseList.get(i);
 
         txtName.setText(exercise.getName());
         txtDescription.setText(exercise.getDescription());
-        txtDifficulty.setText(exercise.getDifficulty());
+        txtDifficulty.setText(exercise.getDifficulty().toString());
         txtType.setText("(" + exercise.getType() + ")");
 
         return exerciseView;

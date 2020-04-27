@@ -6,18 +6,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import ar.davinci.edu.R;
-import ar.davinci.edu.infraestructure.storage.PrefManager;
 import ar.davinci.edu.infraestructure.util.Helper;
-import ar.davinci.edu.model.UserFitnessSession;
 import ar.davinci.edu.views.activities.fitness.WalkActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.realm.Realm;
 
 public class RunningFragment extends Fragment {
 
@@ -41,31 +37,11 @@ public class RunningFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_running, container, false);
         ButterKnife.bind(this, v);
 
-
-        Realm realm = Realm.getDefaultInstance();
-        String id = PrefManager.getID(PrefManager.USER_ID);
-        UserFitnessSession user = realm.where(UserFitnessSession.class).equalTo("id", id).findFirst();
-        if (user != null) {
-            setDailyStat(user);
-        }
-
         return v;
     }
 
-    private void setDailyStat(UserFitnessSession user) {
-        String message = String.format(getString(R.string.message_label), user.getFirstName());
-        String dailyDist = String.format(getString(R.string.daily_dist_data), user.getDistanceCovered());
-        String dailyTime = String.format(getString(R.string.daily_time_data), Helper.secondToMinuteConverter(user.getTotalTimeWalk()));
-        String dailyPace = String.format(getString(R.string.daily_pace_data), user.getPace());
-
-        mMessage.setText(message);
-        mTotalDist.setText(dailyDist);
-        mTotalTime.setText(dailyTime);
-        mCurrentPace.setText(dailyPace);
-    }
-
     @OnClick(R.id.btnWalk)
-    public void goToWalkEvent(Button button) {
+    public void goToWalkEvent() {
         startActivity(Helper.getIntent(getContext(), WalkActivity.class));
     }
 

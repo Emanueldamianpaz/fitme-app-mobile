@@ -16,12 +16,12 @@ import java.util.List;
 import java.util.Set;
 
 import ar.davinci.edu.R;
-import ar.davinci.edu.model.Exercise;
+import ar.davinci.edu.domain.model.routine.detail.WorkoutExercise;
 import ar.davinci.edu.views.adapters.ExerciseAdapter;
 
 public class ExerciseFragment extends Fragment {
 
-    private List<Exercise> exerciseList;
+    private List<WorkoutExercise> exerciseList;
     private Gson gson;
 
     public ExerciseFragment() {
@@ -35,13 +35,13 @@ public class ExerciseFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_exercise, container, false);
         Bundle args = getArguments();
 
-        Set<Exercise> exercises = gson.fromJson(
+        Set<WorkoutExercise> exercises = gson.fromJson(
                 args.getString("exercise", ""),
-                new TypeToken<Set<Exercise>>() {
+                new TypeToken<Set<WorkoutExercise>>() {
                 }.getType());
 
 
-        List<Exercise> exerciseList = new ArrayList<>();
+        List<WorkoutExercise> exerciseList = new ArrayList<>();
         exerciseList.addAll(exercises);
 
         this.exerciseList = exerciseList;
