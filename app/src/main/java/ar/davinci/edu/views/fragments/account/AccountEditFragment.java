@@ -6,13 +6,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import ar.davinci.edu.R;
 import ar.davinci.edu.clients.apis.UserInfoApi;
 import ar.davinci.edu.domain.dto.fitme.user.UserInfoRequestDTO;
 import ar.davinci.edu.domain.model.user.detail.UserGoal;
 import ar.davinci.edu.domain.model.user.detail.UserInfo;
+import ar.davinci.edu.domain.types.GoalType;
 import ar.davinci.edu.infraestructure.storage.SharedJWT;
 import ar.davinci.edu.infraestructure.util.Helper;
 import ar.davinci.edu.views.activities.account.AccountViewActivity;
@@ -31,6 +37,11 @@ public class AccountEditFragment extends Fragment {
     EditText editFrecuencyExercise;
     @BindView(R.id.editHeight)
     EditText editHeight;
+    @BindView(R.id.editGoalFat)
+    EditText editGoalFat;
+    @BindView(R.id.editGoalType)
+    Spinner editGoalType;
+
 
     public AccountEditFragment() {
     }
@@ -42,6 +53,18 @@ public class AccountEditFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_account_edit, container, false);
         ButterKnife.bind(this, v);
 
+
+        List<String> goalTypes = new ArrayList<>();
+        for (GoalType goalType : GoalType.values()) {
+            goalTypes.add(goalType.toString());
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+                android.R.layout.simple_spinner_dropdown_item,
+                goalTypes);
+
+        editGoalType.setAdapter(adapter);
+
         return v;
     }
 
@@ -51,14 +74,14 @@ public class AccountEditFragment extends Fragment {
         String height = editHeight.getText().toString();
         Double currentFat = Double.parseDouble(editCurrentFat.getText().toString());
         String frecuencyExercise = editFrecuencyExercise.getText().toString();
-
-        // TODO Agregar campos de goalType en el form
+        Double goalFat = Double.parseDouble(editGoalFat.getText().toString());
+        GoalType goalType = GoalType.valueOf(editGoalType.getSelectedItem().toString());
 
         UserInfoRequestDTO userInfoReq = new UserInfoRequestDTO(initialWeight,
                 height,
                 currentFat,
                 frecuencyExercise,
-                new UserGoal(SharedJWT.getJWT().toString())
+                new UserGoal(SharedJWT.getJWT().toString(), goalType, goalFat)
         );
 
         UserInfoApi.updateUserInfo(

@@ -62,8 +62,9 @@
             android:hint="@string/height_label"
             android:textColor="#212121" />
 
+
         <EditText
-            android:id="@+id/editGoal"
+            android:id="@+id/editGoalFat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -71,6 +72,12 @@
             android:hint="@string/goal_label"
             android:textColor="#212121" />
 
+        <Spinner
+            android:id="@+id/editGoalType"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_gravity="right"
+            android:spinnerMode="dropdown" />
 
     </LinearLayout>
 

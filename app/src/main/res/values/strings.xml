@@ -25,6 +25,8 @@
     <string name="frecuency_exercise_label">Frecuencia de ejercicio</string>
     <string name="height_label">Altura</string>
     <string name="goal_label">Objetivo</string>
+    <string name="goal_fat_label">Peso objetivo</string>
+
     <string name="save_walk_data_title">Caminata</string>
     <string name="save_walk_data_message">Guardar registro de caminata</string>
     <string name="dismiss_walk_data">Cerrar</string>
