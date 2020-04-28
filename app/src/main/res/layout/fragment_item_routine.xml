@@ -8,6 +8,7 @@
     android:layout_height="150dp"
     android:layout_margin="20dp"
     android:elevation="10dp"
+    android:padding="20dp"
     app:cardElevation="6dp">
 
 
@@ -76,21 +77,12 @@
 
 
             <Button
-                android:id="@+id/btnExercise"
+                android:id="@+id/btnShowDetail"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Ejercicios"
-                android:textSize="14sp"></Button>
-
-            <Button
-                android:id="@+id/btnNutrition"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Dietas"
+                android:text="Ver detalle"
                 android:textSize="14sp">
 
             </Button>

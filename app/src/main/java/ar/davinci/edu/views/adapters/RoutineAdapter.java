@@ -52,8 +52,7 @@ public class RoutineAdapter extends BaseAdapter {
         routineView = LayoutInflater.from(context).inflate(R.layout.fragment_item_routine, viewGroup, false);
         TextView lblName = routineView.findViewById(R.id.lblName);
         TextView lblDescription = routineView.findViewById(R.id.lblDescription);
-        Button btnExercise = routineView.findViewById(R.id.btnExercise);
-        Button btnNutrition = routineView.findViewById(R.id.btnNutrition);
+        Button btnShowDetail = routineView.findViewById(R.id.btnShowDetail);
 
         UserRoutine routine = routineList.get(i);
 
@@ -70,8 +69,7 @@ public class RoutineAdapter extends BaseAdapter {
         exerciseFragment.setArguments(args);
         nutritionFragment.setArguments(args);
 
-        btnExercise.setOnClickListener(v -> Helper.changeFragments(context, exerciseFragment));
-        btnNutrition.setOnClickListener(v -> Helper.changeFragments(context, nutritionFragment));
+        btnShowDetail.setOnClickListener(v -> Helper.changeFragments(context, nutritionFragment));
 
         return routineView;
     }
