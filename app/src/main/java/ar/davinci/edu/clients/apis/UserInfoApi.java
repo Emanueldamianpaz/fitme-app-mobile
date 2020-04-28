@@ -2,9 +2,12 @@ package ar.davinci.edu.clients.apis;
 
 import android.content.Context;
 
+import java.util.List;
+
 import ar.davinci.edu.R;
 import ar.davinci.edu.clients.HttpClient;
 import ar.davinci.edu.clients.callback.OnSuccessCallback;
+import ar.davinci.edu.domain.dto.fitme.training.TrainningTotalStadistDTO;
 import ar.davinci.edu.domain.model.user.detail.UserInfo;
 import ar.davinci.edu.infraestructure.storage.SharedJWT;
 import retrofit2.Call;
@@ -20,6 +23,12 @@ interface UserInfoEndpoint {
     Call<UserInfo> getUserInfo(
             @Path(value = "id_user", encoded = true) String userId,
             @Header("Authorization") String jwt);
+
+    @GET("user/{id_user}/info/training")
+    Call<List<TrainningTotalStadistDTO>> getUserStadist(
+            @Path(value = "id_user", encoded = true) String userId,
+            @Header("Authorization") String jwt);
+
 
     @PATCH("user/{id_user}/info")
     Call<UserInfo> updateUserInfo(
@@ -42,6 +51,12 @@ public class UserInfoApi {
         String message = context.getString(R.string.obtaining_user_info);
         HttpClient.doRequest(callback, context, message, apiClient.getUserInfo(idUser, token));
     }
+
+    public static void getUserStadist(final OnSuccessCallback callback, Context context) {
+        String message = context.getString(R.string.obtaining_user_info_training);
+        HttpClient.doRequest(callback, context, message, apiClient.getUserStadist(idUser, token));
+    }
+
 
     // -------------------------------------------------------------------------------- GET
     public static void updateUserInfo(final OnSuccessCallback callback, Context context, UserInfo userInfoToUpdate) {

@@ -53,6 +53,8 @@
     <string name="creating_user_experiences">Creando experiencia</string>
 
     <string name="obtaining_user_info">Obteniendo informacion del usuario</string>
+    <string name="obtaining_user_info_training">Obteniendo informacion del entrenamiento</string>
+
     <string name="obtaining_routines">Obteniendo rutinas</string>
     <string name="obtaining_user_experiences">Obteniendo experiencias</string>
     <string name="obtaining_routine_detail">Obteniendo detalle de la rutina</string>
