@@ -7,7 +7,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,9 +21,9 @@ import ar.davinci.edu.infraestructure.security.FitmeUser;
 import ar.davinci.edu.infraestructure.storage.PrefManager;
 import ar.davinci.edu.infraestructure.storage.SharedJWT;
 import ar.davinci.edu.infraestructure.util.Helper;
-import ar.davinci.edu.views.activities.account.AccountViewActivity;
 import ar.davinci.edu.views.activities.HomeActivity;
 import ar.davinci.edu.views.activities.LoginActivity;
+import ar.davinci.edu.views.activities.account.AccountViewActivity;
 import ar.davinci.edu.views.fragments.fitness.WalkFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -85,16 +84,6 @@ public class WalkActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.tip:
-                Log.i("navbar", "cliqueó tip");
-                break;
-        }
-        return true;
-    }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

@@ -5,24 +5,29 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 import ar.davinci.edu.R;
-import ar.davinci.edu.domain.model.routine.detail.MealNutrition;
 import ar.davinci.edu.domain.model.user.detail.UserRoutine;
-import ar.davinci.edu.views.adapters.NutritionAdapter;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class UserRoutineFragment extends Fragment {
 
 
+    @BindView(R.id.lblName)
+    TextView lblName;
+    @BindView(R.id.lblDescription)
+    TextView lblDescription;
+    @BindView(R.id.lblGoalType)
+    TextView lblGoalType;
+
+    private Bundle args = getArguments();
     private UserRoutine userRoutine;
     private Gson gson;
 
@@ -35,31 +40,42 @@ public class UserRoutineFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_exercise, container, false);
-        Bundle args = getArguments();
+        View v = inflater.inflate(R.layout.fragment_user_routine, container, false);
+        ButterKnife.bind(this, v);
 
-
-        Set<MealNutrition> nutrition = gson.fromJson(
-                args.getString("nutrition", ""),
-                new TypeToken<Set<MealNutrition>>() {
+        args = getArguments();
+        userRoutine = gson.fromJson(args.getString("userRoutine", ""),
+                new TypeToken<UserRoutine>() {
                 }.getType());
 
+        bootstraping();
 
-        List<MealNutrition> nutritions = new ArrayList<>();
-        nutritions.addAll(nutrition);
-
-        this.userRoutine = nutritions;
-
-
-        bootstraping(v);
         return v;
     }
 
-    private void bootstraping(View container) {
+    private void bootstraping() {
+        lblName.setText(userRoutine.getRoutineTemplate().getName());
+        lblDescription.setText(userRoutine.getRoutineTemplate().getDescription());
+        lblGoalType.setText(userRoutine.getRoutineTemplate().getGoalType().toString());
+    }
 
-        ListView routineList = container.findViewById(R.id.listExercise);
-        routineList.setAdapter(new NutritionAdapter(container.getContext(), userRoutine));
+    @OnClick(R.id.btnExercise)
+    public void viewExercises() {
 
+        WorkoutExerciseFragment workoutExerciseFragment = new WorkoutExerciseFragment();
+        args.putString("exercise", gson.toJson(userRoutine.getRoutineTemplate().getWorkoutExercises()));
+        workoutExerciseFragment.setArguments(args);
+        // Helper.changeFragments(, workoutExerciseFragment);
 
     }
+
+    @OnClick(R.id.btnNutrition)
+    public void viewNutrition() {
+        NutritionFragment nutritionFragment = new NutritionFragment();
+        args.putString("nutrition", gson.toJson(userRoutine.getRoutineTemplate().getMealNutritions()));
+        nutritionFragment.setArguments(args);
+
+    }
+
+
 }

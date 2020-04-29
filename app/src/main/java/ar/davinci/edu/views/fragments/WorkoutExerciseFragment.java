@@ -17,14 +17,14 @@ import java.util.Set;
 
 import ar.davinci.edu.R;
 import ar.davinci.edu.domain.model.routine.detail.WorkoutExercise;
-import ar.davinci.edu.views.adapters.ExerciseAdapter;
+import ar.davinci.edu.views.adapters.WorkoutExerciseAdapter;
 
-public class ExerciseFragment extends Fragment {
+public class WorkoutExerciseFragment extends Fragment {
 
     private List<WorkoutExercise> exerciseList;
     private Gson gson;
 
-    public ExerciseFragment() {
+    public WorkoutExerciseFragment() {
         gson = new GsonBuilder().create();
     }
 
@@ -32,7 +32,7 @@ public class ExerciseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_exercise, container, false);
+        View v = inflater.inflate(R.layout.fragment_workout_exercise, container, false);
         Bundle args = getArguments();
 
         Set<WorkoutExercise> exercises = gson.fromJson(
@@ -52,8 +52,8 @@ public class ExerciseFragment extends Fragment {
 
     private void bootstraping(View container) {
 
-        ListView routineList = container.findViewById(R.id.listExercise);
-        routineList.setAdapter(new ExerciseAdapter(container.getContext(), exerciseList));
+        ListView listWorkoutExercise = container.findViewById(R.id.listWorkoutExercise);
+        listWorkoutExercise.setAdapter(new WorkoutExerciseAdapter(container.getContext(), exerciseList));
 
 
     }

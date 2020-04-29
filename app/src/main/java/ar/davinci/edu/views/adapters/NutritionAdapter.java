@@ -44,7 +44,7 @@ public class NutritionAdapter extends BaseAdapter {
     @SuppressLint("ViewHolder")
     @Override
     public View getView(int i, View nutritionView, ViewGroup viewGroup) {
-        nutritionView = LayoutInflater.from(context).inflate(R.layout.fragment_item_nutrition, viewGroup, false);
+        nutritionView = LayoutInflater.from(context).inflate(R.layout.fragment_item_meal_nutrition, viewGroup, false);
         TextView txtName = nutritionView.findViewById(R.id.lblName);
         TextView txtCalories = nutritionView.findViewById(R.id.lblCalories);
         TextView txtType = nutritionView.findViewById(R.id.lblType);

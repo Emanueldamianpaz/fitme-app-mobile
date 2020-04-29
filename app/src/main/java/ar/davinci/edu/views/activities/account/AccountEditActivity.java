@@ -7,7 +7,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -84,16 +83,7 @@ public class AccountEditActivity extends AppCompatActivity implements Navigation
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.tip:
-                Log.i("navbar", "cliqueó tip");
-                break;
-        }
-        return true;
-    }
+
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

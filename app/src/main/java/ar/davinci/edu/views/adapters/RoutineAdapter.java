@@ -17,8 +17,7 @@ import java.util.List;
 import ar.davinci.edu.R;
 import ar.davinci.edu.domain.model.user.detail.UserRoutine;
 import ar.davinci.edu.infraestructure.util.Helper;
-import ar.davinci.edu.views.fragments.ExerciseFragment;
-import ar.davinci.edu.views.fragments.NutritionFragment;
+import ar.davinci.edu.views.fragments.UserRoutineFragment;
 
 public class RoutineAdapter extends BaseAdapter {
 
@@ -49,7 +48,7 @@ public class RoutineAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View routineView, ViewGroup viewGroup) {
-        routineView = LayoutInflater.from(context).inflate(R.layout.fragment_item_routine, viewGroup, false);
+        routineView = LayoutInflater.from(context).inflate(R.layout.fragment_item_user_routine, viewGroup, false);
         TextView lblName = routineView.findViewById(R.id.lblName);
         TextView lblDescription = routineView.findViewById(R.id.lblDescription);
         Button btnShowDetail = routineView.findViewById(R.id.btnShowDetail);
@@ -60,16 +59,14 @@ public class RoutineAdapter extends BaseAdapter {
         lblDescription.setText(routine.getRoutineTemplate().getDescription());
 
         Bundle args = new Bundle();
-        ExerciseFragment exerciseFragment = new ExerciseFragment();
-        NutritionFragment nutritionFragment = new NutritionFragment();
 
-        args.putString("exercise", gson.toJson(routine.getRoutineTemplate().getWorkoutExercises()));
-        args.putString("nutrition", gson.toJson(routine.getRoutineTemplate().getMealNutritions()));
+        UserRoutineFragment userRoutineFragment = new UserRoutineFragment();
 
-        exerciseFragment.setArguments(args);
-        nutritionFragment.setArguments(args);
+        args.putString("userRoutine", gson.toJson(routine));
+        userRoutineFragment.setArguments(args);
 
-        btnShowDetail.setOnClickListener(v -> Helper.changeFragments(context, nutritionFragment));
+
+        btnShowDetail.setOnClickListener(v -> Helper.changeFragments(context, userRoutineFragment));
 
         return routineView;
     }

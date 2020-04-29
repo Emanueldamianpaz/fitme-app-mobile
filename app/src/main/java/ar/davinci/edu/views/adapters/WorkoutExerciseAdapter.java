@@ -13,15 +13,15 @@ import java.util.List;
 import ar.davinci.edu.R;
 import ar.davinci.edu.domain.model.routine.detail.WorkoutExercise;
 
-public class ExerciseAdapter extends BaseAdapter {
+public class WorkoutExerciseAdapter extends BaseAdapter {
 
     private Context context;
     private List<WorkoutExercise> exerciseList;
 
-    private ExerciseAdapter() {
+    private WorkoutExerciseAdapter() {
     }
 
-    public ExerciseAdapter(Context context, List<WorkoutExercise> exerciseList) {
+    public WorkoutExerciseAdapter(Context context, List<WorkoutExercise> exerciseList) {
         this.exerciseList = exerciseList;
         this.context = context;
     }
@@ -44,7 +44,7 @@ public class ExerciseAdapter extends BaseAdapter {
     @SuppressLint("ViewHolder")
     @Override
     public View getView(int i, View exerciseView, ViewGroup viewGroup) {
-        exerciseView = LayoutInflater.from(context).inflate(R.layout.fragment_item_exercise, viewGroup, false);
+        exerciseView = LayoutInflater.from(context).inflate(R.layout.fragment_item_workout_exercise, viewGroup, false);
         TextView txtName = exerciseView.findViewById(R.id.lblName);
         TextView txtDescription = exerciseView.findViewById(R.id.lblDescription);
         TextView txtDifficulty = exerciseView.findViewById(R.id.lblDifficulty);

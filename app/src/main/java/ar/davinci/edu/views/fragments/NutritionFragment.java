@@ -34,7 +34,7 @@ public class NutritionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_exercise, container, false);
+        View v = inflater.inflate(R.layout.fragment_meal_nutrition, container, false);
         Bundle args = getArguments();
 
 
@@ -56,7 +56,7 @@ public class NutritionFragment extends Fragment {
 
     private void bootstraping(View container) {
 
-        ListView routineList = container.findViewById(R.id.listExercise);
+        ListView routineList = container.findViewById(R.id.listMealNutrition);
         routineList.setAdapter(new NutritionAdapter(container.getContext(), nutritionList));
 
 

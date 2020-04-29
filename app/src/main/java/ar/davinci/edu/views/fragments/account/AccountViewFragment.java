@@ -87,7 +87,11 @@ public class AccountViewFragment extends Fragment {
                         height_label = String.format(getString(R.string.height_label_interpolation), userInfo.getHeight());
                     }
 
-                    String goal_label = String.format(getString(R.string.goal_label_interpolation), getString(R.string.no_info));
+                    String goal_label = String.format(getString(R.string.goal_label_interpolation), userInfo.getGoal()
+                            .getGoalFat().toString()
+                            .concat("kg ")
+                            .concat(userInfo.getGoal().getType().toString()
+                            ));
 
 
                     Glide.with(getContext())
