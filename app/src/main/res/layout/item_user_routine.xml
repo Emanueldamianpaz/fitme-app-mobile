@@ -1,0 +1,83 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_margin="20dp"
+    android:layout_marginVertical="5dp"
+    android:elevation="10dp"
+    android:padding="5dp"
+    app:cardElevation="6dp">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/user_routine" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#78ffffff"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lblName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:lineSpacingExtra="10sp"
+                android:text="Rutina de ejemplo"
+                android:textAllCaps="false"
+                android:textColor="@color/text_bold_color"
+                android:textSize="@dimen/title_1"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/lblDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Descripción de la rutina"
+                android:textAllCaps="false"
+                android:textColor="@color/text_bold_color"
+                android:textSize="@dimen/description_2"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical|right"
+        android:orientation="horizontal"
+        android:padding="@dimen/light_margin">
+
+
+        <Button
+            android:id="@+id/btnShowDetail"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:text="Ver detalle"
+            android:textColor="@color/white_color">
+
+        </Button>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
+

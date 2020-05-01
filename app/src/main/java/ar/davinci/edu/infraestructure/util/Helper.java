@@ -7,13 +7,17 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import ar.davinci.edu.R;
 
 public class Helper {
 
-    public static final String ACTION_NAME_SPACE = "ar.davinci.edu.service.LocationService";
+    public static final String ACTION_NAME_SPACE = "ar.davinci.edu.infraestructure.service.LocationService";
     public static final String INTENT_EXTRA_RESULT_CODE = "resultCode";
     public static final String INTENT_USER_LAT_LNG = "userLatLng";
+    public static final Gson gson = new GsonBuilder().create();
 
     public static AlertDialog displayMessageToUser(Context context, String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);

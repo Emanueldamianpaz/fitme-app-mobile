@@ -16,6 +16,7 @@
     <string name="distance_label">Distancia:</string>
     <string name="time_label">Tiempo:</string>
     <string name="start_walk">Comenzar a caminar</string>
+    <string name="add_nutrition_session">Cargar comida</string>
     <string name="stop_walk">Parar</string>
     <string name="daily_distance_label">Distancia caminada</string>
     <string name="daily_time_label">Total de tiempo</string>
@@ -26,6 +27,8 @@
     <string name="height_label">Altura</string>
     <string name="goal_label">Objetivo</string>
     <string name="goal_fat_label">Peso objetivo</string>
+    <string name="workout_exercise">Ejercicio</string>
+    <string name="meal_nutrition">Dieta</string>
 
     <string name="save_walk_data_title">Caminata</string>
     <string name="save_walk_data_message">Guardar registro de caminata</string>
@@ -73,5 +76,7 @@
     <!-- ...................................................................... Error messages -->
     <string name="unexpected_error">Error inesperado</string>
     <string name="has_ocurried_an_error">Ha ocurrido un error. Intente nuevamente</string>
+    <string name="nutrition_session">Comidas ingeridas</string>
+    <string name="user_experience">Experiencia</string>
 
 </resources>

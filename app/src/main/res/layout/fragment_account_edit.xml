@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".views.fragments.account.AccountEditFragment">
+    tools:context=".views.activities.account.edit.AccountEditFragment">
 
 
     <TextView
@@ -93,7 +93,7 @@
 
     <ImageView
         android:layout_width="295dp"
-        android:layout_height="202dp"
+        android:layout_height="146dp"
         android:layout_gravity="center"
         android:layout_margin="@dimen/light_margin"
         android:src="@drawable/running_photo_1" />

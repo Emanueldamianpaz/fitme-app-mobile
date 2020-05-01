@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import ar.davinci.edu.infraestructure.storage.PrefManager;
 import ar.davinci.edu.infraestructure.util.Helper;
+import ar.davinci.edu.views.activities.fitness.walk.WalkActivity;
+import ar.davinci.edu.views.activities.training.TrainingSessionActivity;
 
 
 public class DispatchActivity extends AppCompatActivity {
@@ -16,7 +18,7 @@ public class DispatchActivity extends AppCompatActivity {
         if (PrefManager.isUserWalking()) {
             startActivity(Helper.getIntent(this, WalkActivity.class));
         } else {
-            startActivity(Helper.getIntent(this, RunningSessionActivity.class));
+            startActivity(Helper.getIntent(this, TrainingSessionActivity.class));
         }
 
 

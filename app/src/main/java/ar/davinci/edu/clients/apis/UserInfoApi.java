@@ -7,7 +7,7 @@ import java.util.List;
 import ar.davinci.edu.R;
 import ar.davinci.edu.clients.HttpClient;
 import ar.davinci.edu.clients.callback.OnSuccessCallback;
-import ar.davinci.edu.domain.dto.fitme.training.TrainningTotalStadistDTO;
+import ar.davinci.edu.domain.dto.fitme.training.TrainingTotalStadistDTO;
 import ar.davinci.edu.domain.model.user.detail.UserInfo;
 import ar.davinci.edu.infraestructure.storage.SharedJWT;
 import retrofit2.Call;
@@ -25,7 +25,7 @@ interface UserInfoEndpoint {
             @Header("Authorization") String jwt);
 
     @GET("user/{id_user}/info/training")
-    Call<List<TrainningTotalStadistDTO>> getUserStadist(
+    Call<List<TrainingTotalStadistDTO>> getUserStadist(
             @Path(value = "id_user", encoded = true) String userId,
             @Header("Authorization") String jwt);
 

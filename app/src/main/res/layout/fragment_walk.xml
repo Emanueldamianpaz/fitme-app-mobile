@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white_color"
     android:orientation="vertical"
-    tools:context=".views.fragments.fitness.WalkFragment">
+    tools:context=".views.activities.fitness.walk.WalkFragment">
 
     <fragment
         android:id="@+id/map_fragment"

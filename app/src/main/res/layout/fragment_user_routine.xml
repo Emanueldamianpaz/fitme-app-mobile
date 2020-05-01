@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".views.fragments.UserRoutineFragment">
+    tools:context=".views.activities.userRoutine.userRoutine.UserRoutineFragment">
 
 
     <RelativeLayout
@@ -131,7 +131,7 @@
 
 
         <Button
-            android:id="@+id/btnExercise"
+            android:id="@+id/btnWorkoutExercise"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingHorizontal="20dp"
@@ -139,7 +139,7 @@
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/btnNutrition"
+            android:id="@+id/btnMealNutrition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingHorizontal="20dp"
