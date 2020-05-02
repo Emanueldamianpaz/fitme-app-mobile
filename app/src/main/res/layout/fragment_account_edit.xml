@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:hint="@string/goal_label"
+            android:hint="@string/goal_fat_label"
             android:textColor="#212121" />
 
         <Spinner

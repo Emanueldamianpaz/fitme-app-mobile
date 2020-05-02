@@ -4,7 +4,6 @@ package ar.davinci.edu.views.activities.training.nutrition_session;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,6 @@ import ar.davinci.edu.infraestructure.util.Helper;
 import ar.davinci.edu.views.adapters.training.NutritionSessionAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class NutritionSessionFragment extends Fragment {
 
@@ -52,11 +50,6 @@ public class NutritionSessionFragment extends Fragment {
         return v;
     }
 
-
-    @OnClick(R.id.btnAddNutritionSession)
-    public void goToWalkEvent() {
-        Log.d("NutritionSession", "agregué una nutrition session");
-    }
 
     private void bootstraping(View container) {
         ListView nutritionSessionListView = container.findViewById(R.id.listNutritionSession);

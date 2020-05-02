@@ -21,4 +21,9 @@ public class NutritionSession implements Serializable {
     private MealNutritionType type;
     private Double calories;
 
+    public NutritionSession(String name, MealNutritionType type, Double calories) {
+        this.name = name;
+        this.type = type;
+        this.calories = calories;
+    }
 }

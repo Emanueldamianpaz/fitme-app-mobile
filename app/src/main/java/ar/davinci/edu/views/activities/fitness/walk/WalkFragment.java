@@ -214,7 +214,7 @@ public class WalkFragment extends Fragment implements OnMapReadyCallback {
         editGoalType.setAdapter(adapter);
         saveBuilder.setView(customLayout);
 
-        saveBuilder.setNegativeButton(getString(R.string.dismiss_walk_data),
+        saveBuilder.setNegativeButton(getString(R.string.close),
                 (dialogInterface, i) -> {
                     dialogInterface.dismiss();
                     goToDispatchActivity();

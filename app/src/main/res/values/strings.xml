@@ -32,8 +32,10 @@
 
     <string name="save_walk_data_title">Caminata</string>
     <string name="save_walk_data_message">Guardar registro de caminata</string>
-    <string name="dismiss_walk_data">Cerrar</string>
+    <string name="close">Cerrar</string>
     <string name="save_walk_data">Guardar entrenamiento</string>
+    <string name="save_nutrition">Guardar comida</string>
+
     <string name="form_edit">Editar datos</string>
     <string name="my_location">Mi ubicación</string>
 
@@ -77,7 +79,10 @@
     <!-- ...................................................................... Error messages -->
     <string name="unexpected_error">Error inesperado</string>
     <string name="has_ocurried_an_error">Ha ocurrido un error. Intente nuevamente</string>
-    <string name="nutrition_session">Comidas ingeridas</string>
+    <string name="nutrition_sessions">Comidas ingeridas</string>
+    <string name="nutrition_session">Comidas ingerida</string>
+
     <string name="user_experience">Experiencia</string>
+    <string name="calories">Calorias</string>
 
 </resources>
