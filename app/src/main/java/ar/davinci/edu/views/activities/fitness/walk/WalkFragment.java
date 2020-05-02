@@ -5,7 +5,6 @@ import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
@@ -24,7 +23,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -36,15 +37,17 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
 
 import ar.davinci.edu.R;
 import ar.davinci.edu.clients.apis.TrainingSessionApi;
 import ar.davinci.edu.domain.model.training.detail.ExerciseRunningSession;
 import ar.davinci.edu.domain.model.training.detail.RunningSession;
 import ar.davinci.edu.domain.types.ScoringType;
+import ar.davinci.edu.infraestructure.service.LocationService;
 import ar.davinci.edu.infraestructure.storage.PrefManager;
 import ar.davinci.edu.infraestructure.util.Helper;
-import ar.davinci.edu.infraestructure.service.LocationService;
 import ar.davinci.edu.views.activities.fitness.DispatchActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -198,37 +201,49 @@ public class WalkFragment extends Fragment implements OnMapReadyCallback {
 
     private void saveWalkData(final float distanceWalked, final long timeWalked, final float speedAvg) {
         AlertDialog.Builder saveBuilder = new AlertDialog.Builder(getContext());
-        saveBuilder.setTitle(getString(R.string.save_walk_data_title));
-        saveBuilder.setMessage(getString(R.string.save_walk_data_message));
-        saveBuilder.setNegativeButton(getString(R.string.dismiss_walk_data), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-                goToDispatchActivity();
-            }
-        });
-        saveBuilder.setPositiveButton(getString(R.string.save_walk_data), (dialogInterface, i) -> {
-            RunningSession runningSession = new RunningSession(
-                    timeWalked,
-                    distanceWalked,
-                    Helper.calculatePace(timeWalked, distanceWalked),
-                    speedAvg
-            );
+        final View customLayout = getLayoutInflater().inflate(R.layout.fragment_set_scoring_session, null);
 
+        Spinner editGoalType = customLayout.findViewById(R.id.editScoringType);
 
-            // TODO Evaluar como registrar el scoring
+        List<String> scoringType = new ArrayList<>();
+        for (ScoringType st : ScoringType.values()) {
+            scoringType.add(st.toString());
+        }
 
-            TrainingSessionApi.addExerciseSession(body -> Log.i("", ""),
-                    getContext(),
-                    new ExerciseRunningSession(ScoringType.UNKNOWN, runningSession)
-            );
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, scoringType);
+        editGoalType.setAdapter(adapter);
+        saveBuilder.setView(customLayout);
 
-            goToDispatchActivity();
-        });
+        saveBuilder.setNegativeButton(getString(R.string.dismiss_walk_data),
+                (dialogInterface, i) -> {
+                    dialogInterface.dismiss();
+                    goToDispatchActivity();
+                }
+        );
+
+        saveBuilder.setPositiveButton(getString(R.string.save_walk_data),
+                (dialog, which) -> {
+
+                    RunningSession runningSession = new RunningSession(
+                            timeWalked, distanceWalked, Helper.calculatePace(timeWalked, distanceWalked), speedAvg
+                    );
+
+                    ScoringType scoringTypeSelected = ScoringType.valueOf(editGoalType.getSelectedItem().toString());
+                    // TODO Hacer el translate
+
+                    TrainingSessionApi.addExerciseSession(body -> Log.i("", ""),
+                            getContext(),
+                            new ExerciseRunningSession(scoringTypeSelected, runningSession)
+                    );
+
+                    goToDispatchActivity();
+                }
+        );
 
         saveBuilder.setCancelable(false);
         saveBuilder.create().show();
     }
+
 
     private void updateWalkPref(boolean isUserWalk) {
         PrefManager.setUserWalk(PrefManager.USER_WALK, isUserWalk);

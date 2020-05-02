@@ -56,6 +56,7 @@
     <!-- ...................................................................... Async messages -->
     <string name="creating_session">Iniciando sesión</string>
     <string name="creating_user_experiences">Creando experiencia</string>
+    <string name="how_is_your_scoring">Califique su sesión</string>
 
     <string name="obtaining_user_info">Obteniendo informacion del usuario</string>
     <string name="obtaining_user_info_training">Obteniendo informacion del entrenamiento</string>
