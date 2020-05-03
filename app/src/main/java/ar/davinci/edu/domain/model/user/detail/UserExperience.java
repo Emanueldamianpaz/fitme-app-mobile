@@ -18,9 +18,8 @@ public class UserExperience {
     private String coachTip;
 
 
-    public UserExperience(ScoringType scoring, String coachTip) {
+    public UserExperience(ScoringType scoring) {
         this.scoring = scoring;
-        this.coachTip = coachTip;
     }
 
 }

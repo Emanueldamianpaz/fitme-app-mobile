@@ -78,7 +78,7 @@ public class UserExperienceActivity extends AppCompatActivity implements Navigat
         Bundle args = new Bundle();
 
         UserExperienceFragment userExperienceFragment = new UserExperienceFragment();
-        args.putString("user_experience", getIntent().getStringExtra("user_experience"));
+        args.putString("user_routine", getIntent().getStringExtra("user_routine"));
         userExperienceFragment.setArguments(args);
 
         Helper.changeFragments(this, userExperienceFragment);

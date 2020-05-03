@@ -15,6 +15,22 @@
         android:textColor="@color/text_bold_color"
         android:textSize="@dimen/title_1"></TextView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnAddUserExperience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/light_margin"
+            android:background="@color/colorPrimaryDark"
+            android:padding="@dimen/light_margin"
+            android:text="@string/add_user_experience"
+            android:textColor="@color/white_color" />
+    </LinearLayout>
+
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"

@@ -32,7 +32,6 @@ interface UserEndpoint {
             @Header("Authorization") String jwt);
 
 
-
     @POST("user/session")
     Call<ResponseBody> createSession(
             @Body UserSessionDTO userSession,
@@ -47,20 +46,12 @@ public class UserApi {
     private static UserEndpoint apiClient = HttpClient.retrofit.create(UserEndpoint.class);
 
 
-    public static void getUser(final OnSuccessCallback callback, Context context) {
-        String idUser = SharedJWT.getUserFromSharedP().getId();
-        String token = SharedJWT.getJWT().toString();
-        String message = context.getString(R.string.obtaining_user_info);
-        HttpClient.doRequest(callback, context, message, apiClient.getUser(idUser, token));
-    }
-
     public static void getUserLight(final OnSuccessCallback callback, Context context) {
         String idUser = SharedJWT.getUserFromSharedP().getId();
         String token = SharedJWT.getJWT().toString();
         String message = context.getString(R.string.obtaining_user_info);
         HttpClient.doRequest(callback, context, message, apiClient.getUserLight(idUser, token));
     }
-
 
 
     public static Call<ResponseBody> createSession(String tokenId) {

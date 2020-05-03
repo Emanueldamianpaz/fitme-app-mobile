@@ -65,7 +65,7 @@ public class UserRoutineFragment extends Fragment {
     public void viewUserExperiences() {
         Intent userExperienceActivity = Helper.getIntent(getActivity(), UserExperienceActivity.class);
 
-        userExperienceActivity.putExtra("user_experience", Helper.gson.toJson(userRoutine.getUserExperiences()));
+        userExperienceActivity.putExtra("user_routine", Helper.gson.toJson(userRoutine));
         startActivity(userExperienceActivity);
     }
 
