@@ -14,7 +14,7 @@ import java.util.List;
 import ar.davinci.edu.R;
 import ar.davinci.edu.domain.model.user.detail.UserRoutine;
 import ar.davinci.edu.infraestructure.util.Helper;
-import ar.davinci.edu.views.activities.userRoutine.userRoutine.UserRoutineActivity;
+import ar.davinci.edu.views.activities.userRoutine.user_routine_detail.UserRoutineActivity;
 
 public class UserRoutineAdapter extends BaseAdapter {
 

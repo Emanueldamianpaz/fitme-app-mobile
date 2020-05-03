@@ -49,7 +49,7 @@ public class NutritionSessionAdapter extends BaseAdapter {
         NutritionSession nutritionSession = nutritionSessionList.get(i);
 
         lblTimestampt.setText(nutritionSession.getTimestamp().toString());
-        lblType.setText(nutritionSession.getType().toString());
+        lblType.setText(context.getResources().getString(nutritionSession.getType().getLabel()));
         lblName.setText(nutritionSession.getName());
         lblCalories.setText(nutritionSession.getCalories().toString());
 

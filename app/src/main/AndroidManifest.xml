@@ -52,7 +52,7 @@
         <activity android:name=".views.activities.account.view.AccountViewActivity"></activity>
         <activity android:name=".views.activities.account.edit.AccountEditActivity"></activity>
         <activity android:name=".views.activities.userRoutine.workout_exercise.WorkoutExerciseActivity" />
-        <activity android:name=".views.activities.userRoutine.userRoutine.UserRoutineActivity" />
+        <activity android:name=".views.activities.userRoutine.user_routine_detail.UserRoutineActivity" />
         <activity android:name=".views.activities.userRoutine.user_experience.UserExperienceActivity" />
         <activity android:name=".views.activities.userRoutine.meal_nutrition.MealNutritionActivity" />
         <activity android:name=".views.activities.training.running_session.RunningSessionActivity" />

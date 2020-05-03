@@ -50,7 +50,7 @@ public class MealNutritionAdapter extends BaseAdapter {
 
         txtName.setText(nutrition.getName());
         txtCalories.setText("(" + nutrition.getCalories().toString() + " calorias)");
-        txtType.setText(nutrition.getType().toString());
+        txtType.setText(context.getResources().getString(nutrition.getType().getLabel()));
 
         return nutritionView;
     }

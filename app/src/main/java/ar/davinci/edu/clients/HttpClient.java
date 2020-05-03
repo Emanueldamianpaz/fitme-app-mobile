@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import ar.davinci.edu.R;
 import ar.davinci.edu.clients.callback.OnSuccessCallback;
 import ar.davinci.edu.infraestructure.util.Helper;
+import ar.davinci.edu.views.activities.home.HomeActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,6 +41,7 @@ public class HttpClient {
             public void onFailure(Call<T> call, Throwable throwable) {
                 progressDialog.dismiss();
                 Helper.displayMessageToUser(context, context.getString(R.string.unexpected_error), context.getString(R.string.has_ocurried_an_error)).show();
+                context.startActivity(Helper.getIntent(context, HomeActivity.class));
             }
         });
     }

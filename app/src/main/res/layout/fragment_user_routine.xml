@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".views.activities.userRoutine.userRoutine.UserRoutineFragment">
+    tools:context=".views.activities.userRoutine.user_routine_detail.UserRoutineFragment">
 
     <RelativeLayout
         android:id="@+id/RelativeLayout01"

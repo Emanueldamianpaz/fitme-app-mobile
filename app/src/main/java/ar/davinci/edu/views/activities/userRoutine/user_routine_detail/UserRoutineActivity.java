@@ -1,4 +1,4 @@
-package ar.davinci.edu.views.activities.userRoutine.userRoutine;
+package ar.davinci.edu.views.activities.userRoutine.user_routine_detail;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
