@@ -54,8 +54,8 @@ public class WorkoutExerciseAdapter extends BaseAdapter {
 
         txtName.setText(exercise.getName());
         txtDescription.setText(exercise.getDescription());
-        txtDifficulty.setText(exercise.getDifficulty().toString());
-        txtType.setText("(" + exercise.getType() + ")");
+        txtDifficulty.setText("(" + context.getResources().getString(exercise.getDifficulty().getLabel()) + ")");
+        txtType.setText("(" + context.getResources().getString(exercise.getType().getLabel()) + ")");
 
         return exerciseView;
     }

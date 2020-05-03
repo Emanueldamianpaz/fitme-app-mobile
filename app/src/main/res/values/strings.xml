@@ -1,4 +1,9 @@
 <resources>
+
+    <!-- ...................................................................... Authentication keys -->
+    <string name="com_auth0_client_id">mWdxl1wxhy1SktUHwOJC98zGllF3WqnQ</string>
+    <string name="com_auth0_domain">fitme.auth0.com</string>
+
     <!-- ...................................................................... Commons -->
     <string name="app_name">FitMe</string>
     <string name="title_activity_maps">Mapa</string>
@@ -42,11 +47,6 @@
     <string name="form_edit">Editar datos</string>
     <string name="my_location">Mi ubicación</string>
 
-    <!-- ...................................................................... Authentication keys -->
-    <string name="com_auth0_client_id">mWdxl1wxhy1SktUHwOJC98zGllF3WqnQ</string>
-    <string name="com_auth0_domain">fitme.auth0.com</string>
-
-    <!-- ...................................................................... Interpolation -->
     <string name="initial_weight_label_interpolation">Peso inicial: %s</string>
     <string name="current_fat_label_interpolation">Peso actual: %s</string>
     <string name="frecuency_exercise_label_interpolation">Frecuencia de ejercicio: %s</string>
@@ -57,8 +57,6 @@
     <string name="daily_time_data">%d min</string>
     <string name="daily_pace_data">%.1f min/metros</string>
 
-
-    <!-- ...................................................................... Async messages -->
     <string name="creating_session">Iniciando sesión</string>
     <string name="creating_user_experiences">Creando experiencia</string>
     <string name="how_is_your_scoring">Califique su sesión</string>
@@ -80,7 +78,6 @@
     <string name="obtaining_kilometers_runned">Obteniendo kilometros recorridos</string>
 
 
-    <!-- ...................................................................... Error messages -->
     <string name="unexpected_error">Error inesperado</string>
     <string name="has_ocurried_an_error">Ha ocurrido un error. Intente nuevamente</string>
     <string name="nutrition_sessions">Comidas ingeridas</string>
@@ -89,5 +86,31 @@
     <string name="user_experience">Experiencia</string>
     <string name="calories">Calorias</string>
     <string name="training_session">Entrenamientos</string>
+
+
+    <!-- ...................................................................... Enums -->
+
+    <string name="BEGINNER">Principiante</string>
+    <string name="BASIC">Facil</string>
+    <string name="INTERMEDIATE">Intermedio</string>
+    <string name="ADVANCED">Avanzado</string>
+    <string name="EXPERT">Experto</string>
+    <string name="UNKNOWN">Desconocido</string>
+    <string name="GAIN_WEIGHT">Ganar peso</string>
+    <string name="LOSS_WEIGHT">Perder peso</string>
+    <string name="BREAKFAST">Desayuno</string>
+    <string name="BRUNCH">Brunch</string>
+    <string name="ELEVENSES">Colación</string>
+    <string name="LUNCH">Almuerzo</string>
+    <string name="TEA">Te</string>
+    <string name="SUPPER">Precena</string>
+    <string name="DINNER">Cena</string>
+    <string name="GOOD">Bueno</string>
+    <string name="REGULAR">Regular</string>
+    <string name="BAD">Malo</string>
+    <string name="AEROBIC">Aeróbico</string>
+    <string name="FLEXIBILITY">Flexibilidad</string>
+    <string name="STRENGTH">Fuerza</string>
+
 
 </resources>
