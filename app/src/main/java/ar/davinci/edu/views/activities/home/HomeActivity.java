@@ -114,5 +114,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-
+    @Override
+    public void onBackPressed() {
+        finish();
+        System.exit(0);
+    }
 }

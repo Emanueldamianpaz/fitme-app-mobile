@@ -1,6 +1,7 @@
 package ar.davinci.edu.views.activities;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -82,7 +83,11 @@ public class LoginActivity extends AppCompatActivity {
         account = new Auth0(getBaseContext());
 
         if (PrefManager.read(PrefManager.CREDENTIAL_FITME, null) != null) {
-            startActivity(Helper.getIntent(getBaseContext(), HomeActivity.class));
+            Intent intent = new Intent(getBaseContext(), HomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+            startActivity(intent);
         }
     }
 }

@@ -36,8 +36,7 @@ public class Helper {
 
     public static Intent getIntent(Context context, Class<?> goToActivity) {
         Intent intent = new Intent(context, goToActivity);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
         return intent;
     }
 
