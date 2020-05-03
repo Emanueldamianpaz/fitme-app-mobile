@@ -18,7 +18,7 @@
         android:id="@+id/begin_run"
         android:icon="@drawable/runner"
         android:orderInCategory="100"
-        android:title="Empezar a correr" />
+        android:title="@string/training_session" />
     
     <item
         android:id="@+id/close_session"
