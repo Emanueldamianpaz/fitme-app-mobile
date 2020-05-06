@@ -37,8 +37,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.List;
 
 import ar.davinci.edu.R;
 import ar.davinci.edu.clients.apis.TrainingSessionApi;
@@ -203,15 +201,11 @@ public class WalkFragment extends Fragment implements OnMapReadyCallback {
         AlertDialog.Builder saveBuilder = new AlertDialog.Builder(getContext());
         final View customLayout = getLayoutInflater().inflate(R.layout.fragment_set_scoring_session, null);
 
-        Spinner editGoalType = customLayout.findViewById(R.id.editScoringType);
+        Spinner editScoringType = customLayout.findViewById(R.id.editScoringType);
 
-        List<String> scoringType = new ArrayList<>();
-        for (ScoringType st : ScoringType.values()) {
-            scoringType.add(st.toString());
-        }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, scoringType);
-        editGoalType.setAdapter(adapter);
+        ArrayAdapter<ScoringType> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, ScoringType.values());
+        editScoringType.setAdapter(adapter);
         saveBuilder.setView(customLayout);
 
         saveBuilder.setNegativeButton(getString(R.string.close),
@@ -228,8 +222,7 @@ public class WalkFragment extends Fragment implements OnMapReadyCallback {
                             timeWalked, distanceWalked, Helper.calculatePace(timeWalked, distanceWalked), speedAvg
                     );
 
-                    ScoringType scoringTypeSelected = ScoringType.valueOf(editGoalType.getSelectedItem().toString());
-                    // TODO Hacer el translate
+                    ScoringType scoringTypeSelected = (ScoringType) editScoringType.getSelectedItem();
 
                     TrainingSessionApi.addExerciseSession(body -> Log.i("", ""),
                             getContext(),

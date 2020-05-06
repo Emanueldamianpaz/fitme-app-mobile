@@ -84,12 +84,8 @@ public class UserExperienceFragment extends Fragment {
 
         Spinner editScoringUserExperience = customLayout.findViewById(R.id.editScoringUserExpereience);
 
-        List<String> scoringTypes = new ArrayList<>();
-        for (ScoringType sct : ScoringType.values()) {
-            scoringTypes.add(sct.toString());
-        }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, scoringTypes);
+        ArrayAdapter<ScoringType> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, ScoringType.values());
         editScoringUserExperience.setAdapter(adapter);
         saveBuilder.setView(customLayout);
 
@@ -97,11 +93,9 @@ public class UserExperienceFragment extends Fragment {
         saveBuilder.setPositiveButton(getString(R.string.save_user_experience),
                 (dialog, which) -> {
 
-                    ScoringType scoringType = ScoringType.valueOf(editScoringUserExperience.getSelectedItem().toString());
+                    ScoringType scoringType = (ScoringType) editScoringUserExperience.getSelectedItem();
 
                     UserExperience userExperience = new UserExperience(scoringType);
-
-                    // TODO Hacer el translate
 
                     UserExperienceApi.createUserExperienceForUserRoutine(body -> Log.i("", ""),
                             getContext(),

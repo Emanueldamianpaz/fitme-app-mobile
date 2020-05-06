@@ -47,7 +47,7 @@ public class UserExperienceAdapter extends BaseAdapter {
 
         UserExperience userExperience = userExperienceList.get(i);
 
-        txtScoring.setText(context.getResources().getString(userExperience.getScoring().getLabel()));
+        txtScoring.setText(userExperience.getScoring().getLabel());
         txtCoachTip.setText(userExperience.getCoachTip());
 
         return userExperienceView;

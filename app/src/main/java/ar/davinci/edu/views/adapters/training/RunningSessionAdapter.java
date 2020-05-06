@@ -51,7 +51,7 @@ public class RunningSessionAdapter extends BaseAdapter {
         ExerciseRunningSession runningSession = runningSessionList.get(i);
 
         lblTimeStamp.setText(runningSession.getTimestamp().toString());
-        lblScoring.setText(context.getResources().getString(runningSession.getScoring().getLabel()));
+        lblScoring.setText(runningSession.getScoring().getLabel());
         lblTotalTimeWalk.setText(runningSession.getRunningSession().getTotalTimeWalk() + "s");
         lblDistanceCovered.setText(runningSession.getRunningSession().getDistanceCovered() + "mts");
         lblPace.setText(runningSession.getRunningSession().getPace() + " pasos");

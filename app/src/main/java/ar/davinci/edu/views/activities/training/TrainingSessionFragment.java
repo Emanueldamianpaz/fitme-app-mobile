@@ -15,7 +15,6 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ar.davinci.edu.R;
@@ -89,12 +88,10 @@ public class TrainingSessionFragment extends Fragment {
         EditText editName = customLayout.findViewById(R.id.editName);
         EditText editCalories = customLayout.findViewById(R.id.editCalories);
 
-        List<String> mealNutritionTypes = new ArrayList<>();
-        for (MealNutritionType mlt : MealNutritionType.values()) {
-            mealNutritionTypes.add(mlt.toString());
-        }
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, mealNutritionTypes);
+        ArrayAdapter<MealNutritionType> adapter = new ArrayAdapter<>(getContext(),
+                android.R.layout.simple_spinner_dropdown_item,
+                MealNutritionType.values()
+        );
         editMealNutritionType.setAdapter(adapter);
         saveBuilder.setView(customLayout);
 
@@ -102,14 +99,13 @@ public class TrainingSessionFragment extends Fragment {
         saveBuilder.setPositiveButton(getString(R.string.save_nutrition),
                 (dialog, which) -> {
 
-                    MealNutritionType mealNutritionTypeSelected = MealNutritionType.valueOf(editMealNutritionType.getSelectedItem().toString());
+                    MealNutritionType mealNutritionTypeSelected = (MealNutritionType) editMealNutritionType.getSelectedItem();
 
                     NutritionSession nutritionSession = new NutritionSession(
                             editName.getText().toString(),
                             mealNutritionTypeSelected,
                             Double.parseDouble(editCalories.getText().toString()));
 
-                    // TODO Hacer el translate
 
                     TrainingSessionApi.addNutritionSession(body -> Log.i("", ""),
                             getContext(),

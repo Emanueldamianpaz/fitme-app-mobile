@@ -1,20 +1,24 @@
 package ar.davinci.edu.domain.types;
 
-import ar.davinci.edu.R;
-
 public enum ScoringType {
-    GOOD(R.string.GOOD),
-    REGULAR(R.string.REGULAR),
-    BAD(R.string.BAD),
-    UNKNOWN(R.string.UNKNOWN);
+    GOOD("Bueno"),
+    REGULAR("Regular"),
+    BAD("Malo"),
+    UNKNOWN("Desconocido");
 
-    private final int label;
+    private final String label;
 
-    ScoringType(int label) {
+    ScoringType(String label) {
         this.label = label;
     }
 
-    public int getLabel() {
+    public String getLabel() {
+        return label;
+    }
+
+
+    @Override
+    public String toString() {
         return label;
     }
 }
