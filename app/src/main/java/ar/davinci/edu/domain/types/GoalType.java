@@ -1,20 +1,23 @@
 package ar.davinci.edu.domain.types;
 
-import ar.davinci.edu.R;
-
 public enum GoalType {
-    UNKNOWN(R.string.UNKNOWN),
-    GAIN_WEIGHT(R.string.GAIN_WEIGHT),
-    LOSS_WEIGHT(R.string.LOSS_WEIGHT);
+    UNKNOWN("Desconocido"),
+    GAIN_WEIGHT("Ganar peso"),
+    LOSS_WEIGHT("Perder peso");
 
-    private final int label;
+    private final String label;
 
-    GoalType(int label) {
+    GoalType(String label) {
         this.label = label;
     }
 
-    public int getLabel() {
+    public String getLabel() {
         return label;
     }
 
+
+    @Override
+    public String toString() {
+        return label;
+    }
 }

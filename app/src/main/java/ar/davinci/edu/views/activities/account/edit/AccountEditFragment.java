@@ -10,9 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ar.davinci.edu.R;
 import ar.davinci.edu.clients.apis.UserInfoApi;
 import ar.davinci.edu.domain.dto.fitme.user.UserInfoRequestDTO;
@@ -54,14 +51,9 @@ public class AccountEditFragment extends Fragment {
         ButterKnife.bind(this, v);
 
 
-        List<String> goalTypes = new ArrayList<>();
-        for (GoalType goalType : GoalType.values()) {
-            goalTypes.add(goalType.toString());
-        }
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+        ArrayAdapter<GoalType> adapter = new ArrayAdapter<>(getContext(),
                 android.R.layout.simple_spinner_dropdown_item,
-                goalTypes);
+                GoalType.values());
 
         editGoalType.setAdapter(adapter);
 
@@ -75,7 +67,7 @@ public class AccountEditFragment extends Fragment {
         Double currentFat = Double.parseDouble(editCurrentFat.getText().toString());
         String frecuencyExercise = editFrecuencyExercise.getText().toString();
         Double goalFat = Double.parseDouble(editGoalFat.getText().toString());
-        GoalType goalType = GoalType.valueOf(editGoalType.getSelectedItem().toString());
+        GoalType goalType = (GoalType) editGoalType.getSelectedItem();
 
         UserInfoRequestDTO userInfoReq = new UserInfoRequestDTO(initialWeight,
                 height,

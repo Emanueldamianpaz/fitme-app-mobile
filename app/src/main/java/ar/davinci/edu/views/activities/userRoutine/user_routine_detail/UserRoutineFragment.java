@@ -57,7 +57,7 @@ public class UserRoutineFragment extends Fragment {
     private void bootstraping() {
         lblName.setText(userRoutine.getRoutineTemplate().getName());
         lblDescription.setText(userRoutine.getRoutineTemplate().getDescription());
-        lblGoalType.setText(getResources().getString(userRoutine.getRoutineTemplate().getGoalType().getLabel()));
+        lblGoalType.setText(userRoutine.getRoutineTemplate().getGoalType().getLabel());
     }
 
 

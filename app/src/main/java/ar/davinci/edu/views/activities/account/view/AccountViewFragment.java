@@ -90,11 +90,11 @@ public class AccountViewFragment extends Fragment {
                     String goal_label = String.format(getString(R.string.goal_label_interpolation), userInfo.getGoal()
                             .getGoalFat().toString()
                             .concat("kg ")
-                            .concat(userInfo.getGoal().getType().toString()
+                            .concat(userInfo.getGoal().getType().getLabel()
                             ));
 
 
-                  // r2c1a = getString(getResources().getIdentifier("com.myApp:string/" + tempText, null, null));
+                    // r2c1a = getString(getResources().getIdentifier("com.myApp:string/" + tempText, null, null));
 
                     Glide.with(getContext())
                             .load(user.getPicture())

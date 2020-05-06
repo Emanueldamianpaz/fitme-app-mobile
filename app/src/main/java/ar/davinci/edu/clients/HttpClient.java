@@ -19,7 +19,7 @@ public class HttpClient {
 
     private static Gson jsonParser = new Gson();
     public static Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://192.168.0.8:4567/fitme/") // TODO Modificar esto
+            .baseUrl("https://fitme-app.herokuapp.com/fitme/") // TODO Modificar esto
             .addConverterFactory(GsonConverterFactory.create(jsonParser))
             .build();
 
