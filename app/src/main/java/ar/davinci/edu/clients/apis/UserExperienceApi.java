@@ -8,7 +8,6 @@ import ar.davinci.edu.R;
 import ar.davinci.edu.clients.HttpClient;
 import ar.davinci.edu.clients.callback.OnSuccessCallback;
 import ar.davinci.edu.domain.model.user.detail.UserExperience;
-import ar.davinci.edu.domain.model.user.detail.UserRoutine;
 import ar.davinci.edu.infraestructure.storage.SharedJWT;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -20,7 +19,7 @@ import retrofit2.http.Path;
 interface UserExperienceEndpoint {
 
     @GET("user/{id_user}/user-routine/{id_user_routine}/user-experience")
-    Call<List<UserRoutine>> getUserExperiencesFromUserRoutine(
+    Call<List<UserExperience>> getUserExperiencesFromUserRoutine(
             @Path(value = "id_user", encoded = true) String userId,
             @Path(value = "id_user_routine", encoded = true) String userRoutineId,
             @Header("Authorization") String jwt);

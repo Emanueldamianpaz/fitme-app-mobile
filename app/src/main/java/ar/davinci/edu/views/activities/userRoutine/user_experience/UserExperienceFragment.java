@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +34,7 @@ public class UserExperienceFragment extends Fragment {
 
     private List<UserExperience> userExperienceList = new ArrayList<>();
     private UserRoutine userRoutineSelected;
+    private View v;
 
     public UserExperienceFragment() {
 
@@ -45,7 +45,7 @@ public class UserExperienceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_list_user_experience, container, false);
+        v = inflater.inflate(R.layout.fragment_list_user_experience, container, false);
         ButterKnife.bind(this, v);
 
         Bundle args = getArguments();
@@ -58,19 +58,19 @@ public class UserExperienceFragment extends Fragment {
 
         userExperienceList.addAll(userRoutineSelected.getUserExperiences());
 
-        bootstraping(v);
+        bootstraping();
         return v;
     }
 
-    private void bootstraping(View container) {
+    private void bootstraping() {
 
-        ListView userExperienceList = container.findViewById(R.id.listUserExperience);
+        ListView userExperienceList = v.findViewById(R.id.listUserExperience);
 
 
         if (this.userExperienceList.size() > 0) {
-            userExperienceList.setAdapter(new UserExperienceAdapter(container.getContext(), this.userExperienceList));
+            userExperienceList.setAdapter(new UserExperienceAdapter(v.getContext(), this.userExperienceList));
         } else {
-            LayoutInflater inflater = (LayoutInflater) container.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater) v.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             inflater.inflate(R.layout.default_no_result, fragmentNoResult);
         }
 
@@ -84,7 +84,6 @@ public class UserExperienceFragment extends Fragment {
 
         Spinner editScoringUserExperience = customLayout.findViewById(R.id.editScoringUserExpereience);
 
-
         ArrayAdapter<ScoringType> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, ScoringType.values());
         editScoringUserExperience.setAdapter(adapter);
         saveBuilder.setView(customLayout);
@@ -97,7 +96,15 @@ public class UserExperienceFragment extends Fragment {
 
                     UserExperience userExperience = new UserExperience(scoringType);
 
-                    UserExperienceApi.createUserExperienceForUserRoutine(body -> Log.i("", ""),
+
+                    UserExperienceApi.createUserExperienceForUserRoutine(body ->
+                                    UserExperienceApi.getUserExperiencesFromUserRoutine(body1 -> {
+                                                userExperienceList = (List<UserExperience>) body1;
+                                                bootstraping();
+                                            },
+                                            getContext(),
+                                            userRoutineSelected.getId().toString())
+                            ,
                             getContext(),
                             userRoutineSelected.getId().toString(),
                             userExperience
