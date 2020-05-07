@@ -1,11 +1,11 @@
 package ar.davinci.edu.views.activities.account.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,6 +41,7 @@ public class AccountViewFragment extends Fragment {
     @BindView(R.id.lblGoal)
     TextView lblGoal;
 
+    private UserInfoLightRequestDTO userInfoLight;
     private FitmeUser user;
 
     public AccountViewFragment() {
@@ -62,7 +63,7 @@ public class AccountViewFragment extends Fragment {
     private void bootstraping() {
 
         UserApi.getUserLight(body -> {
-                    UserInfoLightRequestDTO userInfoLight = (UserInfoLightRequestDTO) body;
+                    userInfoLight = (UserInfoLightRequestDTO) body;
 
                     UserInfoRequestDTO userInfo = userInfoLight.getUserInfo();
                     String message_label = String.format(getString(R.string.message_label), user.getName());
@@ -114,7 +115,13 @@ public class AccountViewFragment extends Fragment {
     }
 
     @OnClick(R.id.btnEdit)
-    public void editUserInfo(Button button) {
-        startActivity(Helper.getIntent(getContext(), AccountEditActivity.class));
+    public void editUserInfo() {
+
+
+        Intent accountEditActivity = Helper.getIntent(getContext(), AccountEditActivity.class);
+
+        accountEditActivity.putExtra("user_info", Helper.gson.toJson(userInfoLight));
+        startActivity(accountEditActivity);
+
     }
 }

@@ -10,8 +10,11 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.gson.reflect.TypeToken;
+
 import ar.davinci.edu.R;
 import ar.davinci.edu.clients.apis.UserInfoApi;
+import ar.davinci.edu.domain.dto.fitme.user.UserInfoLightRequestDTO;
 import ar.davinci.edu.domain.dto.fitme.user.UserInfoRequestDTO;
 import ar.davinci.edu.domain.model.user.detail.UserGoal;
 import ar.davinci.edu.domain.model.user.detail.UserInfo;
@@ -39,6 +42,8 @@ public class AccountEditFragment extends Fragment {
     @BindView(R.id.editGoalType)
     Spinner editGoalType;
 
+    private UserInfoLightRequestDTO userInfoLight;
+
 
     public AccountEditFragment() {
     }
@@ -51,13 +56,34 @@ public class AccountEditFragment extends Fragment {
         ButterKnife.bind(this, v);
 
 
+        bootstrapping();
+
+
+        return v;
+    }
+
+
+    private void bootstrapping() {
+        Bundle args = getArguments();
+
+        userInfoLight = Helper.gson.fromJson(
+                args.getString("user_info", ""),
+                new TypeToken<UserInfoLightRequestDTO>() {
+                }.getType());
+
         ArrayAdapter<GoalType> adapter = new ArrayAdapter<>(getContext(),
                 android.R.layout.simple_spinner_dropdown_item,
                 GoalType.values());
 
         editGoalType.setAdapter(adapter);
 
-        return v;
+        editInitialWeight.setText(userInfoLight.getUserInfo().getInitialWeight().toString());
+        editCurrentFat.setText(userInfoLight.getUserInfo().getCurrentFat().toString());
+        editFrecuencyExercise.setText(userInfoLight.getUserInfo().getFrecuencyExercise());
+        editHeight.setText(userInfoLight.getUserInfo().getHeight());
+        editGoalFat.setText(userInfoLight.getUserInfo().getGoal().getGoalFat().toString());
+        editGoalType.setSelection(adapter.getPosition(userInfoLight.getUserInfo().getGoal().getType()));
+
     }
 
     @OnClick(R.id.btnSave)

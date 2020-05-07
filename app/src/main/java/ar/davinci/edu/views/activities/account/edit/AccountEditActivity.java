@@ -21,8 +21,8 @@ import ar.davinci.edu.infraestructure.security.FitmeUser;
 import ar.davinci.edu.infraestructure.storage.PrefManager;
 import ar.davinci.edu.infraestructure.storage.SharedJWT;
 import ar.davinci.edu.infraestructure.util.Helper;
-import ar.davinci.edu.views.activities.home.HomeActivity;
 import ar.davinci.edu.views.activities.LoginActivity;
+import ar.davinci.edu.views.activities.home.HomeActivity;
 import ar.davinci.edu.views.activities.training.TrainingSessionActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,7 +72,13 @@ public class AccountEditActivity extends AppCompatActivity implements Navigation
                 .apply(RequestOptions.circleCropTransform())
                 .into(imgUser);
 
-        Helper.changeFragments(this, new AccountEditFragment());
+        Bundle args = new Bundle();
+
+        AccountEditFragment accountEditFragment = new AccountEditFragment();
+        args.putString("user_info", getIntent().getStringExtra("user_info"));
+        accountEditFragment.setArguments(args);
+
+        Helper.changeFragments(this, accountEditFragment);
     }
 
     @Override
@@ -81,7 +87,6 @@ public class AccountEditActivity extends AppCompatActivity implements Navigation
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
 
 
     @Override
