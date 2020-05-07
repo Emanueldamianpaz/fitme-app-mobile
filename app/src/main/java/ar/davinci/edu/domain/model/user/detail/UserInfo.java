@@ -7,10 +7,12 @@ import ar.davinci.edu.domain.model.training.TrainingSession;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
+@Data
 @Builder
 public class UserInfo {
 
@@ -32,6 +34,7 @@ public class UserInfo {
         this.height = userInfoRequest.getHeight();
         this.currentFat = userInfoRequest.getCurrentFat();
         this.frecuencyExercise = userInfoRequest.getFrecuencyExercise();
+        this.userGoal = userInfoRequest.getGoal();
     }
 
     public UserInfo(String id, UserInfoRequestDTO userInfoRequest) {

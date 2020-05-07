@@ -77,13 +77,24 @@ public class AccountEditFragment extends Fragment {
 
         editGoalType.setAdapter(adapter);
 
-        editInitialWeight.setText(userInfoLight.getUserInfo().getInitialWeight().toString());
-        editCurrentFat.setText(userInfoLight.getUserInfo().getCurrentFat().toString());
-        editFrecuencyExercise.setText(userInfoLight.getUserInfo().getFrecuencyExercise());
-        editHeight.setText(userInfoLight.getUserInfo().getHeight());
-        editGoalFat.setText(userInfoLight.getUserInfo().getGoal().getGoalFat().toString());
-        editGoalType.setSelection(adapter.getPosition(userInfoLight.getUserInfo().getGoal().getType()));
-
+        if (userInfoLight.getUserInfo().getInitialWeight() != null) {
+            editInitialWeight.setText(userInfoLight.getUserInfo().getInitialWeight().toString());
+        }
+        if (userInfoLight.getUserInfo().getCurrentFat() != null) {
+            editCurrentFat.setText(userInfoLight.getUserInfo().getCurrentFat().toString());
+        }
+        if (userInfoLight.getUserInfo().getFrecuencyExercise() != null) {
+            editFrecuencyExercise.setText(userInfoLight.getUserInfo().getFrecuencyExercise());
+        }
+        if (userInfoLight.getUserInfo().getHeight() != null) {
+            editHeight.setText(userInfoLight.getUserInfo().getHeight());
+        }
+        if (userInfoLight.getUserInfo().getGoal().getGoalFat() != null) {
+            editGoalFat.setText(userInfoLight.getUserInfo().getGoal().getGoalFat().toString());
+        }
+        if (userInfoLight.getUserInfo().getGoal().getType() != null) {
+            editGoalType.setSelection(adapter.getPosition(userInfoLight.getUserInfo().getGoal().getType()));
+        }
     }
 
     @OnClick(R.id.btnSave)
@@ -95,17 +106,19 @@ public class AccountEditFragment extends Fragment {
         Double goalFat = Double.parseDouble(editGoalFat.getText().toString());
         GoalType goalType = (GoalType) editGoalType.getSelectedItem();
 
-        UserInfoRequestDTO userInfoReq = new UserInfoRequestDTO(initialWeight,
+        UserInfo userInfoReq = new UserInfo(new UserInfoRequestDTO(initialWeight,
                 height,
                 currentFat,
                 frecuencyExercise,
                 new UserGoal(SharedJWT.getJWT().toString(), goalType, goalFat)
-        );
+        ));
+
+        userInfoReq.setId(SharedJWT.getUserFromSharedP().getId());
 
         UserInfoApi.updateUserInfo(
                 body -> Log.i("", ""),
                 getContext(),
-                new UserInfo(userInfoReq)
+                userInfoReq
         );
 
         startActivity(Helper.getIntent(getContext(), AccountViewActivity.class));
