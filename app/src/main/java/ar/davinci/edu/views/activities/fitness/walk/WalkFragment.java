@@ -1,22 +1,18 @@
 package ar.davinci.edu.views.activities.fitness.walk;
 
 
-import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -86,14 +82,9 @@ public class WalkFragment extends Fragment implements OnMapReadyCallback {
         View v = inflater.inflate(R.layout.fragment_walk, container, false);
         ButterKnife.bind(this, v);
 
-
         mRealm = Realm.getDefaultInstance();
         setUpMap();
 
-
-        if (ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-        }
 
         return v;
     }
@@ -125,16 +116,15 @@ public class WalkFragment extends Fragment implements OnMapReadyCallback {
             int resultCode = intent.getIntExtra(Helper.INTENT_EXTRA_RESULT_CODE, RESULT_CANCELED);
 
             if (resultCode == RESULT_OK) {
-                Log.i("New marker", "New position register");
                 Location userLocation = intent.getParcelableExtra(Helper.INTENT_USER_LAT_LNG);
                 LatLng latLng = getLatLng(userLocation);
-                updateUserMarkerLocation(latLng);
+                if (latLng != null) updateUserMarkerLocation(latLng);
             }
         }
     };
 
     private void updateUserMarkerLocation(LatLng latLng) {
-        mLocationMarker.setPosition(latLng);
+        if (mLocationMarker != null) mLocationMarker.setPosition(latLng);
     }
 
 

@@ -62,25 +62,16 @@ public class LocationProvider implements GoogleApiClient.ConnectionCallbacks,
         }
     }
 
-    public void changeSetting(int priority, long setInterval, long fastInterval) {
-
-        mLocationRequest.setPriority(priority);
-        mLocationRequest.setInterval(setInterval);
-        mLocationRequest.setFastestInterval(fastInterval);
-
-    }
-
-
     @Override
     public void onConnected(Bundle bundle) {
 
-            Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
-            if (location != null) {
-                mLocationCallback.handleInitialLocation(location);
-            }
+        if (location != null) {
+            mLocationCallback.handleInitialLocation(location);
+        }
 
-            startPeriodicUpdates();
+        startPeriodicUpdates();
 
     }
 

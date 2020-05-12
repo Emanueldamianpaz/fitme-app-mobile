@@ -1,7 +1,11 @@
 package ar.davinci.edu.views.activities.fitness.walk;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,9 +25,9 @@ import ar.davinci.edu.infraestructure.security.FitmeUser;
 import ar.davinci.edu.infraestructure.storage.PrefManager;
 import ar.davinci.edu.infraestructure.storage.SharedJWT;
 import ar.davinci.edu.infraestructure.util.Helper;
-import ar.davinci.edu.views.activities.home.HomeActivity;
 import ar.davinci.edu.views.activities.LoginActivity;
 import ar.davinci.edu.views.activities.account.view.AccountViewActivity;
+import ar.davinci.edu.views.activities.home.HomeActivity;
 import ar.davinci.edu.views.activities.training.TrainingSessionActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,7 +48,14 @@ public class WalkActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_walk);
 
-        bootstrapping();
+        String permission = Manifest.permission.ACCESS_FINE_LOCATION;
+
+        if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+            startActivity(Helper.getIntent(this, TrainingSessionActivity.class));
+            ActivityCompat.requestPermissions(this, new String[]{permission}, 1);
+        } else {
+            bootstrapping();
+        }
     }
 
     private void bootstrapping() {

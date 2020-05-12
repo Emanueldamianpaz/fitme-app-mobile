@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +39,8 @@ public class TrainingSessionFragment extends Fragment {
     @BindView(R.id.fragmentNoResult)
     ViewGroup fragmentNoResult;
 
+    private View v;
+
     public TrainingSessionFragment() {
     }
 
@@ -48,27 +49,27 @@ public class TrainingSessionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_training_session, container, false);
+        v = inflater.inflate(R.layout.fragment_training_session, container, false);
         ButterKnife.bind(this, v);
 
         mMessage.setText(getString(R.string.message_label, SharedJWT.getUserFromSharedP().getName()));
-        renderTrainingSessions(v);
+        renderTrainingSessions();
 
         return v;
     }
 
-    private void renderTrainingSessions(View container) {
+    private void renderTrainingSessions() {
 
         TrainingSessionApi.getTrainingSession(body -> {
             List<TrainingSession> trainningSessionList = (List<TrainingSession>) body;
 
             if (trainningSessionList.size() > 0) {
-                trainingSessionList.setAdapter(new TrainingSessionAdapter(container.getContext(), trainningSessionList));
+                trainingSessionList.setAdapter(new TrainingSessionAdapter(v.getContext(), trainningSessionList));
             } else {
-                LayoutInflater inflater = (LayoutInflater) container.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                LayoutInflater inflater = (LayoutInflater) v.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 inflater.inflate(R.layout.default_no_result, fragmentNoResult);
             }
-        }, container.getContext());
+        }, v.getContext());
 
 
     }
@@ -107,12 +108,13 @@ public class TrainingSessionFragment extends Fragment {
                             Double.parseDouble(editCalories.getText().toString()));
 
 
-                    TrainingSessionApi.addNutritionSession(body -> Log.i("", ""),
+                    TrainingSessionApi.addNutritionSession(body -> renderTrainingSessions(),
                             getContext(),
                             nutritionSession
                     );
 
                     dialog.dismiss();
+
                 }
         );
 
