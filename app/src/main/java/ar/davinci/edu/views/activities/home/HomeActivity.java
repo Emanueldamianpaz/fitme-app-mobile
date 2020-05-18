@@ -99,9 +99,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.close_session:
+                finish();
                 PrefManager.removeSession();
                 startActivity(Helper.getIntent(this, LoginActivity.class));
-                finish();
                 break;
 
             case R.id.my_account:

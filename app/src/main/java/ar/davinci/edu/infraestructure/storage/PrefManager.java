@@ -41,10 +41,6 @@ public class PrefManager {
         editSharedPrefs().putBoolean(key, value).commit();
     }
 
-    public static boolean isAuthorized() {
-        return getID(USER_ID) != null;
-    }
-
     public static boolean isUserWalking() {
         return getUserWalk(USER_WALK);
     }
@@ -61,9 +57,10 @@ public class PrefManager {
 
     public static void removeSession() {
         SharedPreferences.Editor prefsEditor = PrefController.edit();
-        prefsEditor.putString(PrefManager.CREDENTIAL_FITME, "");
+        prefsEditor.clear();
         prefsEditor.commit();
     }
+
     public static boolean read(String key, boolean defValue) {
         return PrefController.getBoolean(key, defValue);
     }
