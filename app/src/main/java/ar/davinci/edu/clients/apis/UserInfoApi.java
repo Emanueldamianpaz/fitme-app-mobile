@@ -43,25 +43,22 @@ interface UserInfoEndpoint {
 public class UserInfoApi {
 
     private static UserInfoEndpoint apiClient = HttpClient.retrofit.create(UserInfoEndpoint.class);
-    private static String idUser = SharedJWT.getUserFromSharedP().getId();
-    private static String token = SharedJWT.getJWT().toString();
-
 
     public static void getUserInfo(final OnSuccessCallback callback, Context context) {
         String message = context.getString(R.string.obtaining_user_info);
-        HttpClient.doRequest(callback, context, message, apiClient.getUserInfo(idUser, token));
+        HttpClient.doRequest(callback, context, message, apiClient.getUserInfo(SharedJWT.getUserFromSharedP().getId(), SharedJWT.getJWT().toString()));
     }
 
     public static void getUserStadist(final OnSuccessCallback callback, Context context) {
         String message = context.getString(R.string.obtaining_user_info_training);
-        HttpClient.doRequest(callback, context, message, apiClient.getUserStadist(idUser, token));
+        HttpClient.doRequest(callback, context, message, apiClient.getUserStadist(SharedJWT.getUserFromSharedP().getId(), SharedJWT.getJWT().toString()));
     }
 
 
     // -------------------------------------------------------------------------------- GET
     public static void updateUserInfo(final OnSuccessCallback callback, Context context, UserInfo userInfoToUpdate) {
         String message = context.getString(R.string.updating_user_info);
-        HttpClient.doRequest(callback, context, message, apiClient.updateUserInfo(userInfoToUpdate, idUser, token));
+        HttpClient.doRequest(callback, context, message, apiClient.updateUserInfo(userInfoToUpdate, SharedJWT.getUserFromSharedP().getId(), SharedJWT.getJWT().toString()));
     }
 
 }

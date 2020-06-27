@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.auth0.android.Auth0;
 import com.auth0.android.authentication.AuthenticationException;
@@ -55,6 +56,9 @@ public class LoginActivity extends AppCompatActivity {
                         Call<ResponseBody> createSession = UserApi.createSession(idToken);
                         try {
                             createSession.execute();
+
+                            Log.i("Credentials", gson.toJson(idToken));
+
                             PrefManager.write(PrefManager.CREDENTIAL_FITME, gson.toJson(idToken));
                             startActivity(Helper.getIntent(getBaseContext(), HomeActivity.class));
                         } catch (Exception ex) {

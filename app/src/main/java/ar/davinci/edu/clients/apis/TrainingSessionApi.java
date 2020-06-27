@@ -47,27 +47,24 @@ interface TrainingSessionEndpoint {
 public class TrainingSessionApi {
 
     private static TrainingSessionEndpoint apiClient = HttpClient.retrofit.create(TrainingSessionEndpoint.class);
-    private static String idUser = SharedJWT.getUserFromSharedP().getId();
-    private static String token = SharedJWT.getJWT().toString();
-
 
     public static void getTrainingSession(final OnSuccessCallback callback, Context context) {
         String message = context.getString(R.string.obtaining_exercise_running);
-        HttpClient.doRequest(callback, context, message, apiClient.getTrainingSession(idUser, token));
+        HttpClient.doRequest(callback, context, message, apiClient.getTrainingSession(SharedJWT.getUserFromSharedP().getId(), SharedJWT.getJWT().toString()));
     }
 
 
     public static void addExerciseSession(final OnSuccessCallback callback, Context context, ExerciseRunningSession exerciseRunningSession) {
         String message = context.getString(R.string.saving_running_session);
         HttpClient.doRequest(callback, context, message,
-                apiClient.addExerciseSession(exerciseRunningSession, idUser, token)
+                apiClient.addExerciseSession(exerciseRunningSession, SharedJWT.getUserFromSharedP().getId(), SharedJWT.getJWT().toString())
         );
     }
 
     public static void addNutritionSession(final OnSuccessCallback callback, Context context, NutritionSession nutritionSession) {
         String message = context.getString(R.string.saving_nutrition_session);
         HttpClient.doRequest(callback, context, message,
-                apiClient.addNutritionSession(nutritionSession, idUser, token)
+                apiClient.addNutritionSession(nutritionSession, SharedJWT.getUserFromSharedP().getId(), SharedJWT.getJWT().toString())
         );
     }
 

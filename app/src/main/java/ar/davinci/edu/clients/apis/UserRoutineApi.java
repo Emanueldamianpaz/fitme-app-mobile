@@ -33,19 +33,18 @@ interface UserRoutineEndpoint {
 public class UserRoutineApi {
 
     private static UserRoutineEndpoint apiClient = HttpClient.retrofit.create(UserRoutineEndpoint.class);
-    private static String idUser = SharedJWT.getUserFromSharedP().getId();
-    private static String token = SharedJWT.getJWT().toString();
 
     // -------------------------------------------------------------------------------- GET
     public static void getListUserRoutines(final OnSuccessCallback callback, Context context) {
         String message = context.getString(R.string.obtaining_routines);
-        HttpClient.doRequest(callback, context, message, apiClient.getListUserRoutines(idUser, token));
+        HttpClient.doRequest(callback, context, message, apiClient.getListUserRoutines(SharedJWT.getUserFromSharedP().getId(), SharedJWT.getJWT().toString()));
     }
 
     // -------------------------------------------------------------------------------- GET
     public static void getUserRoutine(final OnSuccessCallback callback, Context context, String userRoutineId) {
         String message = context.getString(R.string.obtaining_routine_detail);
-        HttpClient.doRequest(callback, context, message, apiClient.getUserRoutine(idUser, userRoutineId, token));
+        HttpClient.doRequest(callback, context, message, apiClient.getUserRoutine(SharedJWT.getUserFromSharedP().getId(), userRoutineId, SharedJWT.getJWT().toString()))
+        ;
     }
 
 }

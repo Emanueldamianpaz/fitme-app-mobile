@@ -36,14 +36,12 @@ interface UserExperienceEndpoint {
 public class UserExperienceApi {
 
     private static UserExperienceEndpoint apiClient = HttpClient.retrofit.create(UserExperienceEndpoint.class);
-    private static String idUser = SharedJWT.getUserFromSharedP().getId();
-    private static String token = SharedJWT.getJWT().toString();
 
     // -------------------------------------------------------------------------------- GET
     public static void getUserExperiencesFromUserRoutine(final OnSuccessCallback callback, Context context, String userRoutineId) {
         String message = context.getString(R.string.obtaining_user_experiences);
         HttpClient.doRequest(callback, context, message,
-                apiClient.getUserExperiencesFromUserRoutine(idUser, userRoutineId, token)
+                apiClient.getUserExperiencesFromUserRoutine(SharedJWT.getUserFromSharedP().getId(), userRoutineId, SharedJWT.getJWT().toString())
         );
     }
 
@@ -51,7 +49,7 @@ public class UserExperienceApi {
     public static void createUserExperienceForUserRoutine(final OnSuccessCallback callback, Context context, String userRoutineId, UserExperience userExperience) {
         String message = context.getString(R.string.creating_user_experiences);
         HttpClient.doRequest(callback, context, message,
-                apiClient.createUserExperienceForUserRoutine(userExperience, idUser, userRoutineId, token)
+                apiClient.createUserExperienceForUserRoutine(userExperience, SharedJWT.getUserFromSharedP().getId(), userRoutineId, SharedJWT.getJWT().toString())
         );
     }
 
