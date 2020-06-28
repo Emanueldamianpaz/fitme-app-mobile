@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".views.activities.LoginActivity">
+        <activity
+            android:name=".views.activities.LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,6 +27,7 @@
         </activity>
         <activity
             android:name="com.auth0.android.provider.RedirectActivity"
+            android:screenOrientation="portrait"
             tools:node="replace">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -43,20 +46,46 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBAJF-lhWIH_8kyXK6n2v9EItOGzymhyvk" />
 
-        <activity android:name="com.auth0.android.provider.WebAuthActivity" />
+        <activity
+            android:name="com.auth0.android.provider.WebAuthActivity"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".views.activities.home.HomeActivity" />
-        <activity android:name=".views.activities.training.TrainingSessionActivity" />
-        <activity android:name=".views.activities.fitness.walk.WalkActivity" />
-        <activity android:name=".views.activities.fitness.DispatchActivity"></activity>
-        <activity android:name=".views.activities.account.view.AccountViewActivity"></activity>
-        <activity android:name=".views.activities.account.edit.AccountEditActivity"></activity>
-        <activity android:name=".views.activities.userRoutine.workout_exercise.WorkoutExerciseActivity" />
-        <activity android:name=".views.activities.userRoutine.user_routine_detail.UserRoutineActivity" />
-        <activity android:name=".views.activities.userRoutine.user_experience.UserExperienceActivity" />
-        <activity android:name=".views.activities.userRoutine.meal_nutrition.MealNutritionActivity" />
-        <activity android:name=".views.activities.training.running_session.RunningSessionActivity" />
-        <activity android:name=".views.activities.training.nutrition_session.NutritionSessionActivity" />
+        <activity
+            android:name=".views.activities.home.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.training.TrainingSessionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.fitness.walk.WalkActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.fitness.DispatchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.account.view.AccountViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.account.edit.AccountEditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.userRoutine.workout_exercise.WorkoutExerciseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.userRoutine.user_routine_detail.UserRoutineActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.userRoutine.user_experience.UserExperienceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.userRoutine.meal_nutrition.MealNutritionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.training.running_session.RunningSessionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.training.nutrition_session.NutritionSessionActivity"
+            android:screenOrientation="portrait" />
 
 
         <service android:name=".infraestructure.service.LocationService" />
