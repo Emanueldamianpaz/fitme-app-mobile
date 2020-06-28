@@ -65,13 +65,14 @@ public class UserExperienceFragment extends Fragment {
     private void bootstraping() {
 
         ListView userExperienceList = v.findViewById(R.id.listUserExperience);
-
+        LayoutInflater inflater = (LayoutInflater) v.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater.inflate(R.layout.default_no_result, fragmentNoResult);
 
         if (this.userExperienceList.size() > 0) {
             userExperienceList.setAdapter(new UserExperienceAdapter(v.getContext(), this.userExperienceList));
+            fragmentNoResult.setVisibility(View.INVISIBLE);
         } else {
-            LayoutInflater inflater = (LayoutInflater) v.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            inflater.inflate(R.layout.default_no_result, fragmentNoResult);
+            fragmentNoResult.setVisibility(View.VISIBLE);
         }
 
     }
