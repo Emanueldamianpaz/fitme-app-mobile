@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -84,7 +85,7 @@ public class UserExperienceFragment extends Fragment {
         final View customLayout = getLayoutInflater().inflate(R.layout.fragment_set_user_experience, null);
 
         Spinner editScoringUserExperience = customLayout.findViewById(R.id.editScoringUserExpereience);
-
+        EditText editUserMessage = customLayout.findViewById(R.id.editUserMessage);
         ArrayAdapter<ScoringType> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, ScoringType.values());
         editScoringUserExperience.setAdapter(adapter);
         saveBuilder.setView(customLayout);
@@ -95,8 +96,7 @@ public class UserExperienceFragment extends Fragment {
 
                     ScoringType scoringType = (ScoringType) editScoringUserExperience.getSelectedItem();
 
-                    UserExperience userExperience = new UserExperience(scoringType);
-
+                    UserExperience userExperience = new UserExperience(scoringType, editUserMessage.getText().toString());
 
                     UserExperienceApi.createUserExperienceForUserRoutine(body ->
                                     UserExperienceApi.getUserExperiencesFromUserRoutine(body1 -> {

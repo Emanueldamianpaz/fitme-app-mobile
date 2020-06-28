@@ -16,10 +16,11 @@ public class UserExperience {
     private Long id;
     private ScoringType scoring;
     private String coachTip;
+    private String userMessage;
 
-
-    public UserExperience(ScoringType scoring) {
+    public UserExperience(ScoringType scoring, String userMessage) {
         this.scoring = scoring;
+        this.userMessage = userMessage;
     }
 
 }

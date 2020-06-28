@@ -46,6 +46,7 @@
 
     <string name="form_edit">Editar datos</string>
     <string name="my_location">Mi ubicación</string>
+    <string name="message_user_experience">Escriba un breve comentario para darle feedback a su coach</string>
 
     <string name="initial_weight_label_interpolation">Peso inicial: %s</string>
     <string name="current_fat_label_interpolation">Peso actual: %s</string>

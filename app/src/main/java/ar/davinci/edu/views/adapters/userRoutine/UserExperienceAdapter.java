@@ -44,11 +44,22 @@ public class UserExperienceAdapter extends BaseAdapter {
         userExperienceView = LayoutInflater.from(context).inflate(R.layout.item_user_experience, viewGroup, false);
         TextView txtScoring = userExperienceView.findViewById(R.id.lblScoring);
         TextView txtCoachTip = userExperienceView.findViewById(R.id.lblCoachTip);
+        TextView txtUserMessage = userExperienceView.findViewById(R.id.lblUserMessage);
 
         UserExperience userExperience = userExperienceList.get(i);
 
-        txtScoring.setText(userExperience.getScoring().getLabel());
-        txtCoachTip.setText(userExperience.getCoachTip());
+        txtScoring.setText("Tu puntuación :" + userExperience.getScoring().getLabel());
+        if (userExperience.getCoachTip() == null) {
+            txtCoachTip.setText("-No hay tip del coach-");
+        } else {
+            txtCoachTip.setText("Tip coach: " + userExperience.getCoachTip());
+
+        }
+        if (userExperience.getUserMessage() == null) {
+            txtUserMessage.setText("-No has escrito ningun mensaje para coach-");
+        } else {
+            txtUserMessage.setText("Tu mensaje: " + userExperience.getUserMessage());
+        }
 
         return userExperienceView;
     }
