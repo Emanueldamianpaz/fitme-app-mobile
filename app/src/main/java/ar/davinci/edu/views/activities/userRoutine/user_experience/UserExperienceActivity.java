@@ -52,6 +52,8 @@ public class UserExperienceActivity extends AppCompatActivity implements Navigat
 
         user = SharedJWT.getUserFromSharedP();
 
+        toolbar.setTitle("Experiencias de usuario");
+
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

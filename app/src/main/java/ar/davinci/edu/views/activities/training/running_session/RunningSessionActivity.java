@@ -56,6 +56,7 @@ public class RunningSessionActivity extends AppCompatActivity implements Navigat
 
         user = SharedJWT.getUserFromSharedP();
 
+        toolbar.setTitle("Entrenamiento - Running");
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

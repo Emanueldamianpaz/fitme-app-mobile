@@ -21,8 +21,8 @@ import ar.davinci.edu.infraestructure.security.FitmeUser;
 import ar.davinci.edu.infraestructure.storage.PrefManager;
 import ar.davinci.edu.infraestructure.storage.SharedJWT;
 import ar.davinci.edu.infraestructure.util.Helper;
-import ar.davinci.edu.views.activities.home.HomeActivity;
 import ar.davinci.edu.views.activities.LoginActivity;
+import ar.davinci.edu.views.activities.home.HomeActivity;
 import ar.davinci.edu.views.activities.training.TrainingSessionActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,6 +48,8 @@ public class AccountViewActivity extends AppCompatActivity implements Navigation
         ButterKnife.bind(this);
 
         user = SharedJWT.getUserFromSharedP();
+
+        toolbar.setTitle("Mis datos");
 
         setSupportActionBar(toolbar);
 

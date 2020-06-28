@@ -50,6 +50,7 @@ public class UserRoutineActivity extends AppCompatActivity implements Navigation
         ButterKnife.bind(this);
 
         user = SharedJWT.getUserFromSharedP();
+        toolbar.setTitle("Rutina asignada");
 
         setSupportActionBar(toolbar);
 
@@ -72,7 +73,6 @@ public class UserRoutineActivity extends AppCompatActivity implements Navigation
                 .load(user.getPicture())
                 .apply(RequestOptions.circleCropTransform())
                 .into(imgUser);
-
 
 
         Bundle args = new Bundle();

@@ -52,6 +52,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void bootstrapping() {
+        toolbar.setTitle("Inicio");
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

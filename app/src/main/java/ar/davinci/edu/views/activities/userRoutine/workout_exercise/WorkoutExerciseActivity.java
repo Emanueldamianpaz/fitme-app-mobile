@@ -49,6 +49,7 @@ public class WorkoutExerciseActivity extends AppCompatActivity implements Naviga
         ButterKnife.bind(this);
 
         user = SharedJWT.getUserFromSharedP();
+        toolbar.setTitle("Rutina asignada - Ejercicios");
 
         setSupportActionBar(toolbar);
 

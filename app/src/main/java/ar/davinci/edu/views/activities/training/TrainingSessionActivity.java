@@ -56,6 +56,9 @@ public class TrainingSessionActivity extends AppCompatActivity implements Naviga
 
         user = SharedJWT.getUserFromSharedP();
 
+        toolbar.setTitle("Entrenamiento");
+
+
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

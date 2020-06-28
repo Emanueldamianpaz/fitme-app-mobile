@@ -49,6 +49,8 @@ public class MealNutritionActivity extends AppCompatActivity implements Navigati
         ButterKnife.bind(this);
 
         user = SharedJWT.getUserFromSharedP();
+        toolbar.setTitle("Rutina asignada - Dieta sugerida");
+
 
         setSupportActionBar(toolbar);
 

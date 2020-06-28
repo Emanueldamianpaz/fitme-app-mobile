@@ -63,6 +63,7 @@ public class WalkActivity extends AppCompatActivity implements NavigationView.On
 
         user = SharedJWT.getUserFromSharedP();
 
+        toolbar.setTitle("Entrenamiento - Running");
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
