@@ -35,7 +35,7 @@
     <string name="goal_label">Objetivo</string>
     <string name="goal_fat_label">Peso objetivo</string>
     <string name="workout_exercise">Ejercicio</string>
-    <string name="meal_nutrition">Dieta</string>
+    <string name="meal_nutrition">Dieta sugerida</string>
 
     <string name="save_walk_data_title">Caminata</string>
     <string name="save_walk_data_message">Guardar registro de caminata</string>
@@ -112,6 +112,7 @@
     <string name="AEROBIC">Aeróbico</string>
     <string name="FLEXIBILITY">Flexibilidad</string>
     <string name="STRENGTH">Fuerza</string>
+    <string name="running_session">Sesión de running</string>
 
 
 </resources>

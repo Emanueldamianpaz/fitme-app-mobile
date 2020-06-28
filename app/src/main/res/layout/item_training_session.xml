@@ -54,7 +54,7 @@
                     android:layout_marginHorizontal="@dimen/light_margin"
                     android:background="@color/colorPrimaryDark"
                     android:gravity="center"
-                    android:text="Entrenamientos"
+                    android:text="Running"
                     android:textColor="@color/white_color" />
 
 
@@ -65,7 +65,7 @@
                     android:layout_marginHorizontal="@dimen/light_margin"
                     android:background="@color/colorPrimaryDark"
                     android:gravity="center"
-                    android:text="Dietas"
+                    android:text="Comidas"
                     android:textColor="@color/white_color" />
 
 

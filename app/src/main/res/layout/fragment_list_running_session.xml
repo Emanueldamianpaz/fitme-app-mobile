@@ -6,14 +6,16 @@
     android:orientation="vertical"
     tools:context=".views.activities.training.running_session.RunningSessionFragment">
 
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_horizontal_margin"
-        android:text="@string/workout_exercise"
-        android:textAlignment="center"
+        android:text="Acá puede visualizar las sesiones de running que realizó"
         android:textColor="@color/text_bold_color"
-        android:textSize="@dimen/title_1"></TextView>
+        android:textSize="@dimen/description_1"
+        android:textStyle="italic"></TextView>
+
 
     <View
         android:id="@+id/divider"

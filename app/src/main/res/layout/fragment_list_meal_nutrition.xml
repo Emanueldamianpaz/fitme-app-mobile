@@ -11,10 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_horizontal_margin"
-        android:text="@string/meal_nutrition"
-        android:textAlignment="center"
+        android:text="Acá puede visualizar las dietas sugeridas para su rutina"
         android:textColor="@color/text_bold_color"
-        android:textSize="@dimen/title_1"></TextView>
+        android:textSize="@dimen/description_1"
+        android:textStyle="italic"></TextView>
+
 
     <View
         android:id="@+id/divider"
@@ -30,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_horizontal_margin" />
+
     <RelativeLayout
         android:id="@+id/fragmentNoResult"
         android:layout_width="match_parent"

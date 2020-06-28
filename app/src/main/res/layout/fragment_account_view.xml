@@ -1,116 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".views.activities.account.view.AccountViewFragment">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:isScrollContainer="true"
+    android:overScrollMode="always"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    android:scrollbarStyle="outsideInset"
+    android:scrollbars="vertical">
 
-
-    <ImageView
-        android:id="@+id/imgUser"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/heavy_margin">
-
-    </ImageView>
-
-    <TextView
-        android:id="@+id/lblUsername"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/heavy_margin"
-        android:textAlignment="center"
-        android:textColor="#212121"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        tools:text="@string/message_label" />
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="20dp"
-        android:background="@android:color/darker_gray" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="@dimen/light_margin">
+        tools:context=".views.activities.account.view.AccountViewFragment">
+
+        <ImageView
+            android:id="@+id/imgUser"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/heavy_margin">
+
+        </ImageView>
 
         <TextView
-            android:id="@+id/lblInitialWeight"
+            android:id="@+id/lblUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_margin="@dimen/heavy_margin"
+            android:textAlignment="center"
             android:textColor="#212121"
+            android:textSize="30sp"
             android:textStyle="bold"
-            tools:text="@string/initial_weight_label_interpolation" />
+            tools:text="@string/message_label" />
 
-        <TextView
-            android:id="@+id/lblCurrentFat"
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="20dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:textColor="#212121"
-            android:textStyle="bold"
-            tools:text="@string/current_fat_label_interpolation" />
+            android:orientation="vertical"
+            android:padding="@dimen/light_margin">
 
-        <TextView
-            android:id="@+id/lblFrecuencyExercise"
+            <TextView
+                android:id="@+id/lblInitialWeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textColor="#212121"
+                android:textStyle="bold"
+                tools:text="@string/initial_weight_label_interpolation" />
+
+            <TextView
+                android:id="@+id/lblCurrentFat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textColor="#212121"
+                android:textStyle="bold"
+                tools:text="@string/current_fat_label_interpolation" />
+
+            <TextView
+                android:id="@+id/lblFrecuencyExercise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textColor="#212121"
+                android:textStyle="bold"
+                tools:text="@string/frecuency_exercise_label_interpolation" />
+
+
+            <TextView
+                android:id="@+id/lblHeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textColor="#212121"
+                android:textStyle="bold"
+                tools:text="@string/height_label_interpolation" />
+
+            <TextView
+                android:id="@+id/lblGoal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textColor="#212121"
+                android:textStyle="bold"
+                tools:text="@string/goal_label_interpolation" />
+
+        </LinearLayout>
+
+
+        <View
             android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="20dp"
+            android:background="@android:color/darker_gray" />
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:textColor="#212121"
-            android:textStyle="bold"
-            tools:text="@string/frecuency_exercise_label_interpolation" />
-
-
-        <TextView
-            android:id="@+id/lblHeight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:textColor="#212121"
-            android:textStyle="bold"
-            tools:text="@string/height_label_interpolation" />
-
-        <TextView
-            android:id="@+id/lblGoal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:textColor="#212121"
-            android:textStyle="bold"
-            tools:text="@string/goal_label_interpolation" />
-
+            android:layout_marginTop="@dimen/heavy_margin"
+            android:background="@color/colorPrimary"
+            android:text="@string/edit"
+            android:textColor="@color/white_color" />
     </LinearLayout>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="20dp"
-        android:background="@android:color/darker_gray" />
-
-    <Button
-        android:id="@+id/btnEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/heavy_margin"
-        android:background="@color/colorPrimary"
-        android:text="@string/edit"
-        android:textColor="@color/white_color" />
-
-</LinearLayout>
+</ScrollView>

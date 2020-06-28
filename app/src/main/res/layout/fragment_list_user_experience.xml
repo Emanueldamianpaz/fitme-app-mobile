@@ -10,14 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_horizontal_margin"
-        android:text="@string/user_experience"
-        android:textAlignment="center"
+        android:text="Acá puede visualizar las experiencias que tuvo con la rutina"
         android:textColor="@color/text_bold_color"
-        android:textSize="@dimen/title_1"></TextView>
+        android:textSize="@dimen/description_1"
+        android:textStyle="italic"></TextView>
 
     <LinearLayout
         android:layout_width="match_parent"
+
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
         android:gravity="center">
 
         <Button

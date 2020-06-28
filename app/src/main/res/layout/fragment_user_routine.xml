@@ -1,64 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".views.activities.userRoutine.user_routine_detail.UserRoutineFragment">
 
-    <RelativeLayout
-        android:id="@+id/RelativeLayout01"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:isScrollContainer="true"
+    android:overScrollMode="always"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    android:scrollbarStyle="outsideInset"
+    android:scrollbars="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".views.activities.userRoutine.user_routine_detail.UserRoutineFragment">
 
-        <TextView
-            android:id="@+id/lblName"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/RelativeLayout01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/lblName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/heavy_margin"
+                android:layout_marginVertical="@dimen/medium_margin"
+                android:textAlignment="center"
+                android:textColor="#212121"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="Name" />
+
+
+            <TextView
+                android:id="@+id/lblGoalType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/heavy_margin"
+                android:layout_marginVertical="@dimen/medium_margin"
+                android:textAlignment="center"
+                android:textColor="#212121"
+                android:textSize="20sp"
+                android:textStyle="bold|italic"
+                tools:text="GoalType" />
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="@dimen/heavy_margin"
-            android:layout_marginVertical="@dimen/medium_margin"
-            android:textAlignment="center"
-            android:textColor="#212121"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            tools:text="Name" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lblDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/heavy_margin"
+                android:maxHeight="200dp"
+                android:textColor="@color/text_bold_color"
+                android:textSize="@dimen/description_1"
+                android:textStyle="italic"
+                tools:text="Descripción Descripción Descripción Descripción Descripción Descripción Descripción " />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="20dp"
+                android:background="@android:color/darker_gray" />
+
+            <FrameLayout
+                android:id="@+id/lytUserExperience"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imgBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/user_experience" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="183dp"
+                    android:background="#78ffffff"></View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="163dp"
+                    android:layout_margin="10dp"
+                    android:gravity="center_horizontal"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/heavy_margin"
+                        android:text="Experiencia del usuario"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textColor="#212121"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </FrameLayout>
 
 
-        <TextView
-            android:id="@+id/lblGoalType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="@dimen/heavy_margin"
-            android:layout_marginVertical="@dimen/medium_margin"
-            android:textAlignment="center"
-            android:textColor="#212121"
-            android:textSize="20sp"
-            android:textStyle="bold|italic"
-            tools:text="GoalType" />
+        </LinearLayout>
 
-
-    </RelativeLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/lblDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/heavy_margin"
-            android:maxHeight="200dp"
-            android:textColor="@color/text_bold_color"
-            android:textSize="@dimen/description_1"
-            android:textStyle="italic"
-            tools:text="Descripción Descripción Descripción Descripción Descripción Descripción Descripción " />
 
         <View
             android:layout_width="match_parent"
@@ -67,86 +129,33 @@
             android:layout_marginVertical="20dp"
             android:background="@android:color/darker_gray" />
 
-        <FrameLayout
-            android:id="@+id/lytUserExperience"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/imgBackground"
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/user_experience" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="183dp"
-                android:background="#78ffffff"></View>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="163dp"
-                android:layout_margin="10dp"
-                android:gravity="center_horizontal"
-
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/heavy_margin"
-                    android:text="Experiencia del usuario"
-                    android:textAlignment="center"
-                    android:textAllCaps="false"
-                    android:textColor="#212121"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-        </FrameLayout>
-
-
-    </LinearLayout>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="20dp"
-        android:background="@android:color/darker_gray" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginVertical="@dimen/heavy_margin"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnWorkoutExercise"
-            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/light_margin"
-            android:background="@color/colorPrimaryDark"
-            android:padding="@dimen/light_margin"
-            android:text="Ejercicio"
-            android:textColor="@color/white_color" />
+            android:layout_gravity="center"
+            android:layout_marginVertical="@dimen/heavy_margin"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnMealNutrition"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/light_margin"
-            android:background="@color/colorPrimaryDark"
-            android:padding="@dimen/light_margin"
-            android:text="Dietas"
-            android:textColor="@color/white_color" />
+            <Button
+                android:id="@+id/btnWorkoutExercise"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/light_margin"
+                android:background="@color/colorPrimaryDark"
+                android:padding="@dimen/light_margin"
+                android:text="Ejercicio"
+                android:textColor="@color/white_color" />
+
+            <Button
+                android:id="@+id/btnMealNutrition"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/light_margin"
+                android:background="@color/colorPrimaryDark"
+                android:padding="@dimen/light_margin"
+                android:text="Dietas sugeridas"
+                android:textColor="@color/white_color" />
+        </LinearLayout>
     </LinearLayout>
-
-
-</LinearLayout>
+</ScrollView>
